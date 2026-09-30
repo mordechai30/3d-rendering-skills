@@ -1,10 +1,10 @@
 # XCUITest UI Automation Guide
 
-This guide covers UI automation using Apple's native XCUITest framework. XCUITest replaces MCP-based tools like `tap`, `type_text`, and `describe_ui` with more powerful, native capabilities.
+This guide covers UI automation using Apple's native XCUITest framework: element queries, tapping, typing, and gestures.
 
 ## Execution model
 
-XCUITest queries and actions run inside a UI test bundle through Xcode's test runner. They require target and scheme setup. They are not direct shell replacements for interactive MCP commands. Prefer accessibility identifiers for stable element queries.
+XCUITest queries and actions run inside a UI test bundle through Xcode's test runner. They require target and scheme setup. Run these actions inside the test bundle, not directly in a shell. Prefer accessibility identifiers for stable element queries.
 
 ## Setup
 
@@ -161,7 +161,7 @@ app.images["zoomableImage"].doubleTap()
 app.maps.firstMatch.twoFingerTap()
 ```
 
-### Tap by Coordinates (like MCP's tap)
+### Tap by Coordinates
 
 ```swift
 // Tap at specific point
@@ -587,15 +587,3 @@ app.tap()  // Sometimes needed to trigger the handler
 ```
 
 ---
-
-## Migration from MCP Tools
-
-| MCP Tool | XCUITest Equivalent |
-|----------|---------------------|
-| `describe_ui()` | `print(app.debugDescription)` |
-| `tap({x: 100, y: 200})` | `app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()` |
-| `type_text({text: "hello"})` | `element.typeText("hello")` |
-| `gesture({preset: "scroll-down"})` | `app.swipeDown()` |
-| `screenshot()` | `app.screenshot()` |
-
-The main shift is from coordinate-based interaction to element-based queries, which makes tests more maintainable and reliable.

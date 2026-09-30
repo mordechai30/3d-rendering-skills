@@ -1,6 +1,6 @@
 # xcode-build-skill
 
-An agent plugin that teaches your agent to build and manage iOS/macOS projects using native Xcode CLI tools (`xcodebuild`, `xcrun simctl`) instead of MCP servers.
+An agent plugin that teaches your agent to build and manage iOS/macOS projects using native Xcode CLI tools (`xcodebuild`, `xcrun simctl`).
 
 ## Installation
 
@@ -17,20 +17,10 @@ This plugin provides agents with comprehensive guidance for:
 - **Taking screenshots** and recording video
 - **UI automation** via XCUITest framework (tap, type, gestures, element queries)
 
-## Why Use This?
-
-Instead of relying on external MCP servers like XcodeBuildMCP, this plugin teaches Claude to use Apple's native CLI tools directly.
-
-| Aspect | MCP Approach | This Plugin |
-|--------|--------------|-------------|
-| Dependencies | External MCP server | Xcode; jq for JSON examples |
-| Flexibility | Limited to MCP tools | Full CLI capabilities |
-| UI Automation | Coordinate-based | Semantic element targeting |
-| Learning | Abstracts away details | Teaches actual commands |
 
 ## Usage
 
-Once installed, the skill auto-activates when you ask Claude about:
+Once installed, the skill auto-activates when you ask the agent about:
 
 - Building iOS/macOS apps
 - Running simulators
@@ -47,9 +37,6 @@ Once installed, the skill auto-activates when you ask Claude about:
 
 ```
 xcode-build-skill/
-├── .claude-plugin/
-│   ├── plugin.json           # Plugin manifest
-│   └── marketplace.json      # Marketplace manifest
 ├── skills/
 │   └── xcode-build/
 │       ├── SKILL.md          # Main skill definition
@@ -58,8 +45,6 @@ xcode-build-skill/
 │           ├── XCUITEST_GUIDE.md # UI test guidance
 │           ├── examples.md       # Build and run workflow
 │           └── README.md         # Package overview
-├── README.md
-└── LICENSE
 ```
 
 ## Command Examples
