@@ -2,20 +2,9 @@
 
 This guide covers UI automation using Apple's native XCUITest framework. XCUITest replaces MCP-based tools like `tap`, `type_text`, and `describe_ui` with more powerful, native capabilities.
 
-## Why XCUITest?
+## Execution model
 
-| Feature | MCP Tools | XCUITest |
-|---------|-----------|----------|
-| Element discovery | `describe_ui()` | `app.debugDescription`, element queries |
-| Tapping | `tap({x, y})` | `element.tap()`, semantic targeting |
-| Typing | `type_text({text})` | `element.typeText("...")` |
-| Waiting | None | `waitForExistence(timeout:)` |
-| Assertions | None | Full XCTest assertions |
-| Gestures | `gesture({preset})` | `swipeUp()`, `pinch()`, custom gestures |
-
-XCUITest targets elements semantically (by accessibility label, identifier, type) rather than coordinates, making tests more reliable.
-
----
+XCUITest queries and actions run inside a UI test bundle through Xcode's test runner. They require target and scheme setup. They are not direct shell replacements for interactive MCP commands. Prefer accessibility identifiers for stable element queries.
 
 ## Setup
 
@@ -27,7 +16,9 @@ In Xcode:
 3. Name it `AppUITests`
 4. Ensure it's added to your scheme's Test action
 
-Or add to `project.pbxproj` manually.
+Use an existing UI test target when available. Add or edit a target only when the task permits project changes. The Swift snippets belong inside that target, not in a shell or standalone Swift script.
+
+Discover schemes with `xcodebuild -list`. Use a scheme whose Test action includes the UI test target. `AppUITests` below is an example scheme name; a target with that name does not guarantee a matching scheme. Select the actual simulator destination and define `UDID` before running CLI examples. See [CLI_REFERENCE.md](CLI_REFERENCE.md) for prerequisites and discovery.
 
 ### 2. Basic Test Structure
 
@@ -66,7 +57,7 @@ func testPrintHierarchy() {
 }
 ```
 
-This outputs the full accessibility tree - equivalent to `describe_ui()`.
+This prints the hierarchy visible to XCUITest. It is useful for element discovery; it does not expose every app view or internal state.
 
 ### Query Elements by Type
 
@@ -216,6 +207,8 @@ emailField.clearAndEnterText("new@example.com")  // Custom extension needed
 
 ### Clear Text Field
 
+The helper below assumes the value is actual text and the caret is at its end. Placeholder values and masked secure text can make this method unreliable. Use a known clear control or verified selection behavior for those fields.
+
 ```swift
 extension XCUIElement {
     func clearAndEnterText(_ text: String) {
@@ -227,7 +220,7 @@ extension XCUIElement {
 
         self.tap()
 
-        // Select all and delete
+        // Send one delete key for each character in the current value
         let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
         self.typeText(deleteString)
         self.typeText(text)
@@ -284,10 +277,16 @@ let table = app.tables.firstMatch
 table.swipeUp()
 
 // Scroll until element visible
-while !app.cells["item_50"].isHittable {
+let item = app.cells["item_50"]
+for _ in 0..<20 {
+    if item.isHittable { break }
     app.swipeUp()
 }
-app.cells["item_50"].tap()
+guard item.isHittable else {
+    XCTFail("Item was not visible after 20 swipes")
+    return
+}
+item.tap()
 ```
 
 ### Pinch
@@ -594,7 +593,7 @@ app.tap()  // Sometimes needed to trigger the handler
 | MCP Tool | XCUITest Equivalent |
 |----------|---------------------|
 | `describe_ui()` | `print(app.debugDescription)` |
-| `tap({x: 100, y: 200})` | `app.coordinate(withNormalizedOffset:).tap()` |
+| `tap({x: 100, y: 200})` | `app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()` |
 | `type_text({text: "hello"})` | `element.typeText("hello")` |
 | `gesture({preset: "scroll-down"})` | `app.swipeDown()` |
 | `screenshot()` | `app.screenshot()` |
