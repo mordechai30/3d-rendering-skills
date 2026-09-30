@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "skills": {
+    "camera-systems": {
+      "source": "gamedev-skills/awesome-gamedev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/disciplines/camera-systems/SKILL.md",
+      "computedHash": "62e167163fe430dd407a89bf9bb78876be78d251ab3408095af7d2c92c5c2b65"
+    },
+    "game-ai": {
+      "source": "gamedev-skills/awesome-gamedev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/disciplines/game-ai/SKILL.md",
+      "computedHash": "7730b795e9a3633b70b0bde36848c23aff1d6a6b5a57f4aa756a88303dff48a1"
+    },
+    "particle-system": {
+      "source": "iart-ai/webgl-animation-skills",
+      "sourceType": "github",
+      "skillPath": "skills/particle-system/SKILL.md",
+      "computedHash": "33e9c87a68ed4591c265cf2b88409ddd7026c7ca9ca3dbdc72113ac5144b5761"
+    },
+    "performance-optimization": {
+      "source": "gamedev-skills/awesome-gamedev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/disciplines/performance-optimization/SKILL.md",
+      "computedHash": "5adf560f7c61bd52049781c86c90c88dbd471624acb185803cb5433e000112c7"
+    },
+    "shader-glsl": {
+      "source": "iart-ai/webgl-animation-skills",
+      "sourceType": "github",
+      "skillPath": "skills/shader-glsl/SKILL.md",
+      "computedHash": "09eb08ac1e1a6fe69260fb70d0880adc1ebc62faf7aa304c5c8a49dc43ebfb91"
+    },
+    "shader-programming": {
+      "source": "gamedev-skills/awesome-gamedev-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/disciplines/shader-programming/SKILL.md",
+      "computedHash": "51ee561d37adb1a08333ba7226c1a080f91e8c22ac60751f6b4dc05eb43786a5"
+    },
+    "threejs-animation": {
+      "source": "iart-ai/webgl-animation-skills",
+      "sourceType": "github",
+      "skillPath": "skills/threejs-animation/SKILL.md",
+      "computedHash": "fc7bf12130f2996a2ab79c17b71381cc5f72581d4b46cc9663927c83b70ffe0e"
+    }
+  }
+}
