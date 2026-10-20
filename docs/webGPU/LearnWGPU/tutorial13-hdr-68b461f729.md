@@ -6,11 +6,11 @@ Up to this point, we've been using the sRGB colorspace to render our scene. Whil
 
 The kicker with this is most of the precision gets used to represent darker values of the scene. This means that bright objects like light bulbs have the same value as exceedingly bright objects like the sun. This inaccuracy makes realistic lighting difficult to do right. Because of this, we are going to switch our rendering system to use high dynamic range in order to give our scene more flexibility and enable us to leverage more advanced techniques such as Physically Based Rendering.
 
-## [What is High Dynamic Range?](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#what-is-high-dynamic-range)
+## [What is High Dynamic Range?](#what-is-high-dynamic-range)
 
 In layman's terms, a High Dynamic Range texture is a texture with more bits per pixel. In addition to this, HDR textures are stored as floating point values instead of integer values. This means that the texture can have brightness values greater than 1.0, meaning you can have a dynamic range of brighter objects.
 
-## [Switching to HDR](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#switching-to-hdr)
+## [Switching to HDR](#switching-to-hdr)
 
 As of writing, wgpu doesn't allow us to use a floating point format such as `TextureFormat::Rgba16Float` as the surface texture format (not all monitors support that anyway), so we will have to render our scene in an HDR format, then convert the values to a supported format, such as `TextureFormat::Bgra8UnormSrgb` using a technique called tonemapping.
 
@@ -207,7 +207,7 @@ fn create_render_pipeline(
 }
 ```
 
-## [Tonemapping](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#tonemapping)
+## [Tonemapping](#tonemapping)
 
 The process of tonemapping is taking an HDR image and converting it to a Standard Dynamic Range (SDR), which is usually sRGB. The exact tonemapping curve you use is ultimately up to your artistic needs, but for this tutorial, we'll use a popular one known as the Academy Color Encoding System or ACES used throughout the game industry as well as the film industry.
 
@@ -357,13 +357,13 @@ Here's what it looks like after implementing HDR:
 
 ![Image 2: after hdr](https://sotrh.github.io/learn-wgpu/assets/after-hdr-cPEwQ_pk.png)
 
-## [Loading HDR textures](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#loading-hdr-textures)
+## [Loading HDR textures](#loading-hdr-textures)
 
 Now that we have an HDR render buffer, we can start leveraging HDR textures to their fullest. One of the primary uses for HDR textures is to store lighting information in the form of an environment map.
 
 This map can be used to light objects, display reflections and also to make a skybox. We're going to create a skybox using HDR texture, but first, we need to talk about how environment maps are stored.
 
-## [Equirectangular textures](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#equirectangular-textures)
+## [Equirectangular textures](#equirectangular-textures)
 
 An equirectangular texture is a texture where a sphere is stretched across a rectangular surface using what's known as an equirectangular projection. This map of the Earth is an example of this projection.
 
@@ -377,7 +377,7 @@ This simple projection is easy to use, making it one of the most popular project
 
 ![Image 5: equirectangular skybox](https://sotrh.github.io/learn-wgpu/assets/kloofendal_43d_clear_puresky-DT0dA7dc.jpg)
 
-## [Cube Maps](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#cube-maps)
+## [Cube Maps](#cube-maps)
 
 While we can technically use an equirectangular map directly, as long as we do some math to figure out the correct coordinates, it is a lot more convenient to convert our environment map into a cube map.
 
@@ -453,7 +453,7 @@ impl CubeTexture {
 
 With this, we can now write the code to load the HDR into a cube texture.
 
-## [Compute shaders](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#compute-shaders)
+## [Compute shaders](#compute-shaders)
 
 Up to this point, we've been exclusively using render pipelines, but I felt this was a good time to introduce the compute pipelines and, by extension, compute shaders. Compute pipelines are a lot easier to set up. All you need is to tell the pipeline what resources you want to use, what code you want to run, and how many threads you'd like the GPU to use when running your code. We're going to use a compute shader to give each pixel in our cube texture a color from the HDR image.
 
@@ -656,7 +656,7 @@ The `dispatch_workgroups` call tells the GPU to run our code in batches called w
 
 In this example, we have a workgroup grid divided into 16x16 chunks and storing the layer in the z dimension.
 
-## [The compute shader](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#the-compute-shader)
+## [The compute shader](#the-compute-shader)
 
 Now, let's write a compute shader that will convert our equirectangular texture to a cube texture. Create a file called `equirectangular.wgsl`. We're going to break it down chunk by chunk.
 
@@ -782,7 +782,7 @@ let sky_texture = hdr_loader.from_equirectangular_bytes(
 )?;
 ```
 
-## [Skybox](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#skybox)
+## [Skybox](#skybox)
 
 Now that we have an environment map to render let's use it to make our skybox. There are different ways to render a skybox. A standard way is to render a cube and map the environment map on it. While that method works, it can have some artifacts in the corners and edges where the cube's faces meet.
 
@@ -1018,7 +1018,7 @@ struct Camera {
 var<uniform> camera: Camera;
 ```
 
-## [Reflections](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#reflections)
+## [Reflections](#reflections)
 
 Now that we have a sky, we can mess around with using it for lighting. This won't be physically accurate (we'll look into that later). That being said, we have the environment map, so we might as well use it.
 
@@ -1174,7 +1174,7 @@ Here's the finished scene:
 
 ![Image 7: with-reflections](https://sotrh.github.io/learn-wgpu/assets/with-reflections-CfKwjl5O.png)
 
-## [Output too dark on WebGPU?](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#output-too-dark-on-webgpu)
+## [Output too dark on WebGPU?](#output-too-dark-on-webgpu)
 
 WebGPU doesn't support using sRGB texture formats as the output for a surface. We can get around this by making the texture view used to render use the sRGB version of the format. To do this we need to change the surface config we use to allow view formats with sRGB.
 
@@ -1207,6 +1207,6 @@ You may have noticed as well that in `HdrPipeline::new()` we use `config.format.
 
 With that you should get the sRGB output as expected.
 
-## [Demo](https://sotrh.github.io/learn-wgpu/intermediate/tutorial13-hdr/#demo)
+## [Demo](#demo)
 
 If your browser doesn't support WebGPU, this example won't work for you.

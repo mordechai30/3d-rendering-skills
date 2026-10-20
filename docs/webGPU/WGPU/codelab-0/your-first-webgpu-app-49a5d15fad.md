@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [1. Introduction](https://codelabs.developers.google.com/your-first-webgpu-app#0)
+## [1. Introduction](./your-first-webgpu-app-49a5d15fad.md)
 
 ![The WebGPU Logo consists of several blue triangles that form a stylized 'W'](<your-first-webgpu-app/8de0fef231bdc8c0a1ed242b.png>)
 
@@ -8,7 +8,7 @@
 
 ## **What is WebGPU?**
 
-[WebGPU](https://gpuweb.github.io/gpuweb/) is a new, modern API for accessing the capabilities of your GPU in web apps.
+[WebGPU](../gpuweb-spec/gpuweb-spec.md) is a new, modern API for accessing the capabilities of your GPU in web apps.
 
 <a id="modern-api"></a>
 

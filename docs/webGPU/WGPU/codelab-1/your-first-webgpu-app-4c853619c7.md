@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [2. Get set up](https://codelabs.developers.google.com/your-first-webgpu-app#1)
+## [2. Get set up](./your-first-webgpu-app-4c853619c7.md)
 
 <a id="get-the-code"></a>
 

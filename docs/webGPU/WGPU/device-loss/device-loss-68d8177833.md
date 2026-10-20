@@ -83,7 +83,7 @@ listenForDeviceLoss(device);
 
 ### Device Loss Information
 
-When the `lost` promise does resolve it’ll give you a [`GPUDeviceLostInfo` object](https://gpuweb.github.io/gpuweb/#gpudevicelostinfo) with two pieces of information: A `reason` enum and a `message`. The `reason` will only ever be `'destroyed'`, if the reason for the loss was the `destroy()` method being called, or `'unknown'` for any other reason why the device may have been lost. This is useful if your app sometimes intentionally destroys the device and you want to detect if the loss is “real”.
+When the `lost` promise does resolve it’ll give you a [`GPUDeviceLostInfo` object](../gpuweb-spec/gpuweb-spec.md#gpudevicelostinfo) with two pieces of information: A `reason` enum and a `message`. The `reason` will only ever be `'destroyed'`, if the reason for the loss was the `destroy()` method being called, or `'unknown'` for any other reason why the device may have been lost. This is useful if your app sometimes intentionally destroys the device and you want to detect if the loss is “real”.
 
 ```
 device.lost.then((info) => {
@@ -107,7 +107,7 @@ The `message` is a human readable string describing the reason for the loss. Thi
 
 On initialization WebGPU may return a `null` adapter from `navigator.gpu.requestAdapter()` but `adapter.requestDevice()` will *always* return a `GPUDevice`. That device is not guaranteed to be valid, though! And if a valid device can’t be returned for any reason you’ll instead get back a `GPUDevice` where the `lost` promise is already resolved. If this happens it’s likely because of some internal failure which may be temporary (if you got an adapter then you can at least assume that the browser and hardware are WebGPU-capable), and you can simply try again.
 
-There is one scenario where a device may lost on creation due to an application error, however: `GPUAdapters` have a concept of being [“consumed” or “expired”](https://gpuweb.github.io/gpuweb/#dom-adapter-state-slot). They are “consumed” after being used to create a `GPUDevice`, and they may be expired after some implementation-specific duration. In either case, calling `adapter.requestDevice()` on an adapter that was consumed or expired will return a lost device.
+There is one scenario where a device may lost on creation due to an application error, however: `GPUAdapters` have a concept of being [“consumed” or “expired”](../gpuweb-spec/gpuweb-spec.md#dom-adapter-state-slot). They are “consumed” after being used to create a `GPUDevice`, and they may be expired after some implementation-specific duration. In either case, calling `adapter.requestDevice()` on an adapter that was consumed or expired will return a lost device.
 
 Because of this, the simple best practice is to always get a new adapter right before you request a device! Don’t hold onto adapter objects any longer than necessary.
 

@@ -264,7 +264,7 @@ We have attempted to provide useful information to help you understand why error
 - Non-obvious, for example combinations of descriptor properties that produce validation errors. There is no point telling you to make sure you use the correct descriptor object structure. That is both obvious and vague.
 - Developer-controlled. Some of the error criteria are purely based on internals and not really relevant to web developers.
 
-You can find more information about WebGPU error handling in the explainer — see [Object validity and destroyed-ness](https://gpuweb.github.io/gpuweb/explainer/#invalid-and-destroyed "External link (opens in new tab)") and [Errors](https://gpuweb.github.io/gpuweb/explainer/#errors "External link (opens in new tab)"). [WebGPU Error Handling best practices](https://toji.dev/webgpu-best-practices/error-handling "External link (opens in new tab)") provides useful real-world examples and advice.
+You can find more information about WebGPU error handling in the explainer — see [Object validity and destroyed-ness](../explainer-97ed0ab750.md#invalid-and-destroyed "External link (opens in new tab)") and [Errors](../explainer-97ed0ab750.md#errors "External link (opens in new tab)"). [WebGPU Error Handling best practices](https://toji.dev/webgpu-best-practices/error-handling "External link (opens in new tab)") provides useful real-world examples and advice.
 
 **Note:**
 The historic way of handling errors in WebGL is to provide a [`getError()`](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/getError "getError()") method to return error information. This is problematic in that it returns errors synchronously, which is bad for performance — each call requires a round-trip to the GPU and requires all previously issued operations to be finished. Its state model is also flat, meaning that errors can leak between unrelated code. The creators of WebGPU were determined to improve on this.
@@ -510,7 +510,7 @@ The whole API is available only in a [secure context](https://developer.mozilla.
 
 | Specification |
 | --- |
-| [WebGPU # gpu-interface](https://gpuweb.github.io/gpuweb/#gpu-interface) |
+| [WebGPU # gpu-interface](../gpuweb-spec/gpuweb-spec.md#gpu-interface) |
 
 <a id="browser_compatibility"></a>
 

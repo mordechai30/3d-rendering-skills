@@ -19,7 +19,7 @@ Expand description
 `wgpu` is a cross-platform, safe, pure-Rust graphics API. It runs natively on
 Vulkan, Metal, D3D12, and OpenGL; and on top of WebGL2 and WebGPU on wasm.
 
-The API is based on the [WebGPU standard](https://gpuweb.github.io/gpuweb/), but is a fully native Rust library.
+The API is based on the [WebGPU standard](../gpuweb-spec/gpuweb-spec.md), but is a fully native Rust library.
 It serves as the core of the WebGPU integration in Firefox, Servo, and Deno.
 
 <a id="getting-started"></a>
@@ -56,14 +56,14 @@ For high-level documentation on how to use these extensions, see documentation o
 
 🧪EXPERIMENTAL🧪 APIs are subject to change and may allow undefined behavior if used incorrectly.
 
-- 🧪EXPERIMENTAL🧪 [Ray Tracing](https://github.com/gfx-rs/wgpu/blob/v30/docs/api-specs/ray_tracing.md).
-- 🧪EXPERIMENTAL🧪 [Mesh Shading](https://github.com/gfx-rs/wgpu/blob/v30/docs/api-specs/mesh_shading.md).
+- 🧪EXPERIMENTAL🧪 [Ray Tracing](../../ray_tracing.md).
+- 🧪EXPERIMENTAL🧪 [Mesh Shading](../../mesh_shading.md).
 
 <a id="shader-support"></a>
 
 ### [§](#shader-support)Shader Support
 
-`wgpu` can consume shaders in [WGSL](https://gpuweb.github.io/gpuweb/wgsl/), SPIR-V, and GLSL.
+`wgpu` can consume shaders in [WGSL](../../WGSL/WGSL-95be865bb5.md), SPIR-V, and GLSL.
 Both [HLSL](https://github.com/Microsoft/DirectXShaderCompiler) and [GLSL](https://github.com/KhronosGroup/glslang)
 have compilers to target SPIR-V. All of these shader languages can be used with any backend as we handle all of the conversions. Additionally, support for these shader inputs is not going away.
 
@@ -902,7 +902,7 @@ conversion. The [HDR surface example](https://github.com/gfx-rs/wgpu/tree/v30/ex
 :   Result of a call to [`Surface::get_current_texture`](https://docs.rs/wgpu/latest/wgpu/struct.Surface.html#method.get_current_texture "method wgpu::Surface::get_current_texture").
 
 [DeviceLostReason](https://docs.rs/wgpu/latest/wgpu/enum.DeviceLostReason.html "enum wgpu::DeviceLostReason")
-:   Corresponds to a [`GPUDeviceLostReason`](https://www.w3.org/TR/webgpu/#enumdef-gpudevicelostreason).
+:   Corresponds to a [`GPUDeviceLostReason`](../../webgpu_spec/webgpu-5f71975aec.md#enumdef-gpudevicelostreason).
 
 [DeviceType](https://docs.rs/wgpu/latest/wgpu/enum.DeviceType.html "enum wgpu::DeviceType")
 :   Supported physical device types.
@@ -1045,7 +1045,7 @@ conversion. The [HDR surface example](https://github.com/gfx-rs/wgpu/tree/v30/ex
 :   Controls API call tracing and specifies where the trace is written.
 
 [VertexFormat](https://docs.rs/wgpu/latest/wgpu/enum.VertexFormat.html "enum wgpu::VertexFormat")
-:   Corresponds to [WebGPU `GPUVertexFormat`](https://gpuweb.github.io/gpuweb/#enumdef-gpuvertexformat).
+:   Corresponds to [WebGPU `GPUVertexFormat`](../gpuweb-spec/gpuweb-spec.md#enumdef-gpuvertexformat).
 
 [VertexStepMode](https://docs.rs/wgpu/latest/wgpu/enum.VertexStepMode.html "enum wgpu::VertexStepMode")
 :   Whether a vertex buffer is indexed by vertex or by instance.

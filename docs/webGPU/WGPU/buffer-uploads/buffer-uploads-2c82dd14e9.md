@@ -241,7 +241,7 @@ If you want to see these techniques (and a few others) at work in the real world
 
 ## Further reading
 
-If you want to learn more about the mechanics of buffer use, I’d recommend looking through the [WebGPU Explainer](https://gpuweb.github.io/gpuweb/explainer/#buffer-mapping) and relevant bits of the [WebGPU spec](https://gpuweb.github.io/gpuweb/#buffers). The spec, in particular, isn’t exactly what I’d call “light reading” but it describes the expected behavior of WebGPU buffers in great detail.
+If you want to learn more about the mechanics of buffer use, I’d recommend looking through the [WebGPU Explainer](../explainer-97ed0ab750.md#buffer-mapping) and relevant bits of the [WebGPU spec](../gpuweb-spec/gpuweb-spec.md#buffers). The spec, in particular, isn’t exactly what I’d call “light reading” but it describes the expected behavior of WebGPU buffers in great detail.
 
 <a id="have-fun-and-make-cool-stuff"></a>
 

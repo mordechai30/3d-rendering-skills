@@ -27,7 +27,7 @@ Contents
 
 ## Introduction
 
-In WebGPU resources are exposed to a shader through the [`GPUBindGroup`](https://gpuweb.github.io/gpuweb/#gpubindgroup) structure, alongside the layout definitions that support it: [`GPUBindGroupLayout`](https://gpuweb.github.io/gpuweb/#gpubindgrouplayout) and [`GPUPipelineLayout`](https://gpuweb.github.io/gpuweb/#pipeline-layout), and the declarations of the bind groups in the shaders themselves. The shaders, the layouts, and the bind groups all need to be made compatible, often repeating information at each stage. As a result this aspect of the API can feel unnecessarily complicated at first glance, and frustrating to work with.
+In WebGPU resources are exposed to a shader through the [`GPUBindGroup`](../gpuweb-spec/gpuweb-spec.md#gpubindgroup) structure, alongside the layout definitions that support it: [`GPUBindGroupLayout`](../gpuweb-spec/gpuweb-spec.md#gpubindgrouplayout) and [`GPUPipelineLayout`](../gpuweb-spec/gpuweb-spec.md#pipeline-layout), and the declarations of the bind groups in the shaders themselves. The shaders, the layouts, and the bind groups all need to be made compatible, often repeating information at each stage. As a result this aspect of the API can feel unnecessarily complicated at first glance, and frustrating to work with.
 
 This doc is focused on explaining why the Bind Group interface is structured the way it is and how to best take advantage of it.
 
@@ -114,7 +114,7 @@ const bindGroupLayout = gpuDevice.createBindGroupLayout({
 });
 ```
 
-Note that each entry has an explicit `binding` which matches up with the `@binding` values in the shader. They also state which shader stages they are visible to (which can be multiple stages). And finally it indicates the binding type, like [`buffer`](https://www.w3.org/TR/webgpu/#dictdef-gpubufferbindinglayout), [`texture`](https://www.w3.org/TR/webgpu/#dictdef-gputexturebindinglayout), or [`sampler`](https://www.w3.org/TR/webgpu/#dictdef-gpusamplerbindinglayout). Each of those types have options to further specify different types of binding, such as if the buffer type is `'storage'` rather than `'uniform'`. But if the defaults are appropriate at the very least an empty dictionary must be set to signal the type, as seen above.
+Note that each entry has an explicit `binding` which matches up with the `@binding` values in the shader. They also state which shader stages they are visible to (which can be multiple stages). And finally it indicates the binding type, like [`buffer`](../../webgpu_spec/webgpu-5f71975aec.md#dictdef-gpubufferbindinglayout), [`texture`](../../webgpu_spec/webgpu-5f71975aec.md#dictdef-gputexturebindinglayout), or [`sampler`](../../webgpu_spec/webgpu-5f71975aec.md#dictdef-gpusamplerbindinglayout). Each of those types have options to further specify different types of binding, such as if the buffer type is `'storage'` rather than `'uniform'`. But if the defaults are appropriate at the very least an empty dictionary must be set to signal the type, as seen above.
 
 <a id="pipelines-and-pipeline-layouts"></a>
 
@@ -412,7 +412,7 @@ const computeBindGroupA = gpuDevice.createBindGroup({
 });
 ```
 
-But that will result in an error! Why? As it turns out the `globalState` uniform was never [statically used](https://gpuweb.github.io/gpuweb/#statically-used) in the shader body, so during pipeline creation it was omitted by the automatic layout creation.
+But that will result in an error! Why? As it turns out the `globalState` uniform was never [statically used](../gpuweb-spec/gpuweb-spec.md#statically-used) in the shader body, so during pipeline creation it was omitted by the automatic layout creation.
 
 In this case this would most likely represent a bug in the shader, which probably wants to make use of both the `timeDelta` and `gravity` variables when updating the particles, so it would be relatively easy to fix. But this scenario could just as easily have come about because the uniform use was commented out while debugging, in which case a bind group that worked perfectly well previously suddenly begins failing.
 
@@ -739,7 +739,7 @@ function renderScene(passEncoder) {
 
 You can see that the above code establishes a kind of hierarchy of state changes, with the values that change least frequently being set at the very top of the function and then working into progressively tighter loops that each represent more frequently changing values. In broad terms, this is the type of pattern that you want to strive for when performing any sort of rendering or compute operations in WebGPU: Set state as infrequently as possible, and break state up based on how frequently it changes.
 
-Note that many WebGPU implementations will be limited to 4 bind groups at a time (check [`limits.maxBindGroups`](https://gpuweb.github.io/gpuweb/#dom-supported-limits-maxbindgroups) on the `GPUAdapter` to determine the system’s actual limit, and pass the desired count in when calling `requestDevice()` to raise the limit in your own application.) This should be enough for most cases, though. The separation of bind groups into “Per Frame/Per Material/Per Draw” state as seen above is quite common.
+Note that many WebGPU implementations will be limited to 4 bind groups at a time (check [`limits.maxBindGroups`](../gpuweb-spec/gpuweb-spec.md#dom-supported-limits-maxbindgroups) on the `GPUAdapter` to determine the system’s actual limit, and pass the desired count in when calling `requestDevice()` to raise the limit in your own application.) This should be enough for most cases, though. The separation of bind groups into “Per Frame/Per Material/Per Draw” state as seen above is quite common.
 
 <a id="group-indices-matter"></a>
 

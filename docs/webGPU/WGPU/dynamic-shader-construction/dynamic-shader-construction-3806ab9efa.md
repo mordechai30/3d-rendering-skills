@@ -149,7 +149,7 @@ const basicAlphaFragment = device.createShaderModule({
 
 ## Alternately, use pipeline-overridable constants
 
-Another way to provide constants to your shaders in WebGPU that wasn’t available to WebGL is [pipeline-overridable constants](https://gpuweb.github.io/gpuweb/#dom-gpuprogrammablestage-constants).
+Another way to provide constants to your shaders in WebGPU that wasn’t available to WebGL is [pipeline-overridable constants](../gpuweb-spec/gpuweb-spec.md#dom-gpuprogrammablestage-constants).
 
 Pipeline-overridable constants are values that you can set in your WGSL shader, with an optional default value, and then at *pipeline creation time* override them with a JavaScript-provided value. Consider the following:
 

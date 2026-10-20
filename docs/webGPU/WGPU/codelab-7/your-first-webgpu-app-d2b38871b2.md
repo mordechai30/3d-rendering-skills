@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [8. Run the simulation](https://codelabs.developers.google.com/your-first-webgpu-app#7)
+## [8. Run the simulation](./your-first-webgpu-app-d2b38871b2.md)
 
 Now, for the last major piece of the puzzle: performing the Game of Life simulation in a compute shader!
 
@@ -177,11 +177,11 @@ And that's it for your compute shader—for now! But before you can see the resu
 
 One thing that you might notice from the above shader is that it largely uses the same inputs (uniforms and storage buffers) as your render pipeline. So you might think that you can simply use the same bind groups and be done with it, right? The good news is that you can! It just takes a bit more manual setup to be able to do that.
 
-Any time that you create a bind group, you need to provide a [`GPUBindGroupLayout`](https://gpuweb.github.io/gpuweb/#gpubindgrouplayout). Previously, you got that layout by calling `getBindGroupLayout()` on the render pipeline, which in turn created it automatically because you supplied `layout: "auto"` when you created it. That approach works well when you only use a single pipeline, but if you have multiple pipelines that want to share resources, you need to create the layout explicitly, and then provide it to both the bind group and pipelines.
+Any time that you create a bind group, you need to provide a [`GPUBindGroupLayout`](../gpuweb-spec/gpuweb-spec.md#gpubindgrouplayout). Previously, you got that layout by calling `getBindGroupLayout()` on the render pipeline, which in turn created it automatically because you supplied `layout: "auto"` when you created it. That approach works well when you only use a single pipeline, but if you have multiple pipelines that want to share resources, you need to create the layout explicitly, and then provide it to both the bind group and pipelines.
 
 To help understand why, consider this: in your render pipelines you use a single uniform buffer and a single storage buffer, but in the compute shader you just wrote, you need a second storage buffer. Because the two shaders use the same `@binding` values for the uniform and first storage buffer, you can share those between pipelines, and the render pipeline ignores the second storage buffer, which it doesn't use. You want to create a layout that describes *all* of the resources that are present in the bind group, not just the ones used by a specific pipeline.
 
-1. To create that layout, call [`device.createBindGroupLayout()`](https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbindgrouplayout):
+1. To create that layout, call [`device.createBindGroupLayout()`](../gpuweb-spec/gpuweb-spec.md#dom-gpudevice-createbindgrouplayout):
 
 **index.html**
 
@@ -208,7 +208,7 @@ const bindGroupLayout = device.createBindGroupLayout({
 
 This is similar in structure to creating the bind group itself, in that you describe a list of *`entries`*. The difference is that you describe what type of resource the entry must be and how it's used rather than providing the resource itself.
 
-In each entry, you give the *`binding`* number for the resource, which (as you learned when you created the bind group) matches the `@binding` value in the shaders. You also provide the *`visibility`*, which are [`GPUShaderStage`](https://gpuweb.github.io/gpuweb/#typedefdef-gpushaderstageflags) flags that indicate which shader stages can use the resource. You want both the uniform and first storage buffer to be accessible in the vertex and compute shaders, but the second storage buffer only needs to be accessible in compute shaders.
+In each entry, you give the *`binding`* number for the resource, which (as you learned when you created the bind group) matches the `@binding` value in the shaders. You also provide the *`visibility`*, which are [`GPUShaderStage`](../gpuweb-spec/gpuweb-spec.md#typedefdef-gpushaderstageflags) flags that indicate which shader stages can use the resource. You want both the uniform and first storage buffer to be accessible in the vertex and compute shaders, but the second storage buffer only needs to be accessible in compute shaders.
 
 **Note:** You may need to make resources accessible to fragment shaders by adding *`GPUShaderStage.FRAGMENT`* for the uniform and first storage buffer if your fragment shader code uses the uniform *`grid`* variable as explained in the previous section.
 
@@ -259,7 +259,7 @@ const bindGroups = [
 
 And now that the bind group has been updated to use this explicit bind group layout, you need to update the render pipeline to use the same thing.
 
-3. Create a [`GPUPipelineLayout`](https://gpuweb.github.io/gpuweb/#gpupipelinelayout).
+3. Create a [`GPUPipelineLayout`](../gpuweb-spec/gpuweb-spec.md#gpupipelinelayout).
 
 <a id="index.html_27"></a>
 
@@ -452,7 +452,7 @@ fn computeMain(@builtin(global_invocation_id) cell: vec3u) {
 
 This leads to a minor problem, though: what happens when the cell you're checking is off the edge of the board? According to your `cellIndex()` logic right now, it either overflows to the next or previous row, or runs off the edge of the buffer!
 
-**Caution:** Unlike some languages, indexing [outside the bounds](https://gpuweb.github.io/gpuweb/wgsl/#out-of-bounds-access-sec) of a buffer in WGSL isn't *unsafe*, but it is unpredictable. The language makes sure you still get *some* value from the buffer, so you can't accidentally end up reading data from another process or anything like that, but it's almost certain to not give you the results you want. And the behavior may be different, depending on the platform and browser you use, so you should never depend on out-of-bounds accesses.
+**Caution:** Unlike some languages, indexing [outside the bounds](../../WGSL/WGSL-95be865bb5.md#out-of-bounds-access-sec) of a buffer in WGSL isn't *unsafe*, but it is unpredictable. The language makes sure you still get *some* value from the buffer, so you can't accidentally end up reading data from another process or anything like that, but it's almost certain to not give you the results you want. And the behavior may be different, depending on the platform and browser you use, so you should never depend on out-of-bounds accesses.
 
 For the Game of Life, a common and easy way to resolve this is to have cells on the edge of the grid treat cells on the opposite edge of the grid as their neighbors, creating a kind of wrap-around effect.
 

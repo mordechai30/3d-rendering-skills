@@ -117,7 +117,7 @@ We can do better! First let’s look at the different types of errors we can cap
 
 - **`validation`** errors occur whenever invalid inputs were given to a WebGPU call. These are consistent, predictable, and should generally not be expected during normal operation of a well formed application. They will fail in the same way on every device your code runs on, so once you’ve fixed any errors that show up during development you probably don’t need to observe them directly most of the time. An exception to that rule is if you’re consuming user-supplied assets/shaders/etc, in which case watching for validation errors while loading may be helpful.
 - **`out-of-memory`** errors mean exactly what they say: The device has run out of memory and can’t complete the requested operation as a result. These should be relatively rare in a well behaved app but are much more unpredictable than validation errors because they are dependent on the device your app is running on in addition to what other things on the device are using GPU resources at the time.
-- **`internal`** errors occur when something happens in the WebGPU implementation that wasn’t caught by validation and wasn’t able to be clearly identified as an out of memory error. It generally means that an operation that you performed ran afoul some system limit in a way that was difficult to express with WebGPU’s [supported limits](https://gpuweb.github.io/gpuweb/#gpusupportedlimits). The same operation might succeed on a different device. At the moment these can only be raised by pipeline creation, usually if the shader ends up being too complex for the device, but other situations might be added by the spec in the future.
+- **`internal`** errors occur when something happens in the WebGPU implementation that wasn’t caught by validation and wasn’t able to be clearly identified as an out of memory error. It generally means that an operation that you performed ran afoul some system limit in a way that was difficult to express with WebGPU’s [supported limits](../gpuweb-spec/gpuweb-spec.md#gpusupportedlimits). The same operation might succeed on a different device. At the moment these can only be raised by pipeline creation, usually if the shader ends up being too complex for the device, but other situations might be added by the spec in the future.
 
 Taking that into account, let’s re-organize the above example to make better use of the error scopes:
 
@@ -233,7 +233,7 @@ device.addEventListener('uncapturederror', (event) => {
 
 Like Error Scopes, listening to the `uncapturederror` event will prevent errors from showing up in the console, which may or may not be part of the desired effect for your app. If you want to ensure that the messages continue showing up in the console you’ll need to repeat them yourself as shown in the above code snippet.
 
-(Side note: If you are gathering errors for telemetry purposes it may also be beneficial to pair it with adapter information from [`adapter.info`](https://gpuweb.github.io/gpuweb/#dom-gpuadapter-info) so that you can see if there’s a pattern behind what device types are seeing errors most frequently.)
+(Side note: If you are gathering errors for telemetry purposes it may also be beneficial to pair it with adapter information from [`adapter.info`](../gpuweb-spec/gpuweb-spec.md#dom-gpuadapter-info) so that you can see if there’s a pattern behind what device types are seeing errors most frequently.)
 
 <a id="shaders-are-special"></a>
 

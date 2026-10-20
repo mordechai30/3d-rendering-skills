@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [5. Draw a grid](https://codelabs.developers.google.com/your-first-webgpu-app#4)
+## [5. Draw a grid](./your-first-webgpu-app-c733a0861c.md)
 
 First, take a moment to congratulate yourself! Getting the first bits of geometry on screen is often one of the hardest steps with most GPU APIs. Everything you do from here can be done in smaller steps, making it easier to verify your progress as you go.
 
@@ -124,7 +124,7 @@ After specifying the layout, you provide an array of *`entries`*. Each entry is 
 - **`binding`**, which corresponds with the `@binding()` value you entered in the shader. In this case, `0`.
 - **`resource`**, which is the actual resource that you want to expose to the variable at the specified binding index. In this case, your uniform buffer.
 
-The function returns a [`GPUBindGroup`](https://gpuweb.github.io/gpuweb/#gpubindgroup), which is an opaque, immutable handle. You can't change the resources that a bind group points to after it's been created, though you *can* change the contents of those resources. For example, if you change the uniform buffer to contain a new grid size, that is reflected by future draw calls using this bind group.
+The function returns a [`GPUBindGroup`](../gpuweb-spec/gpuweb-spec.md#gpubindgroup), which is an opaque, immutable handle. You can't change the resources that a bind group points to after it's been created, though you *can* change the contents of those resources. For example, if you change the uniform buffer to contain a new grid size, that is reflected by future draw calls using this bind group.
 
 <a id="bind-the-bind-group"></a>
 
@@ -321,7 +321,7 @@ This tells the system that you want it to draw the six (`vertices.length / 2`) v
 
 Why? Well, it's because you draw all 16 of those squares in the same spot. Your need to have some additional logic in the shader that repositions the geometry on a per-instance basis.
 
-In the shader, in addition to the vertex attributes like `pos` that come from your vertex buffer, you can also access what are known as WGSL's [*built-in values*](https://gpuweb.github.io/gpuweb/wgsl/#built-in-values). These are values that are calculated by WebGPU, and one such value is the `instance_index`. The `instance_index` is an unsigned 32-bit number from `0` to `number of instances - 1` that you can use as part of your shader logic. Its value is the same for every vertex processed that's part of the same instance. That means your vertex shader gets called six times with an `instance_index` of `0`, once for each position in your vertex buffer. Then six more times with an `instance_index` of `1`, then six more with `instance_index` of `2`, and so on.
+In the shader, in addition to the vertex attributes like `pos` that come from your vertex buffer, you can also access what are known as WGSL's [*built-in values*](../../WGSL/WGSL-95be865bb5.md#built-in-values). These are values that are calculated by WebGPU, and one such value is the `instance_index`. The `instance_index` is an unsigned 32-bit number from `0` to `number of instances - 1` that you can use as part of your shader logic. Its value is the same for every vertex processed that's part of the same instance. That means your vertex shader gets called six times with an `instance_index` of `0`, once for each position in your vertex buffer. Then six more times with an `instance_index` of `1`, then six more with `instance_index` of `2`, and so on.
 
 To see this in action, you have to add the `instance_index` built-in to your shader inputs. Do this in the same way as the position, but instead of tagging it with a `@location` attribute, use `@builtin(instance_index)`, and then name the argument whatever you want. (You can call it `instance` to match the example code.) Then use it as part of the shader logic!
 
@@ -358,7 +358,7 @@ That's because the cell coordinates you generate are (0, 0), (1, 1), (2, 2)... a
 
 ![A visualization of the canvas conceptually divided into a 4x4 grid with each cell also corresponding to a linear instance index.](<your-first-webgpu-app/9709f94874866d543146c048.png>)
 
-The math for that is reasonably straightforward. For each cell's X value, you want the [modulo](https://en.wikipedia.org/wiki/Modulo) of the `instance_index` and the grid width, which you can perform in WGSL with the `%` operator. And for each cell's Y value you want the `instance_index` divided by the grid width, discarding any fractional remainder. You can do that with WGSL's [`floor()`](https://gpuweb.github.io/gpuweb/wgsl/#floor-builtin) function.
+The math for that is reasonably straightforward. For each cell's X value, you want the [modulo](https://en.wikipedia.org/wiki/Modulo) of the `instance_index` and the grid width, which you can perform in WGSL with the `%` operator. And for each cell's Y value you want the `instance_index` divided by the grid width, discarding any fractional remainder. You can do that with WGSL's [`floor()`](../../WGSL/WGSL-95be865bb5.md#floor-builtin) function.
 
 3. Change the calculations, like this:
 
@@ -403,7 +403,7 @@ Tada! You can actually make this grid really, *really* big now and your average 
 
 **Note:** You might be thinking, "That could have all been done with one line of Canvas 2D code in a nested loop!" And, well... yeah! It could have! And if that level of rendering is all you're interested in then you're probably better off sticking with a simpler API like Canvas 2D. This codelab is focused on introducing core WebGPU concepts, and pushing the limits of the API's rendering capabilities is way, *way* out of scope.
 
-It's worth noting that if you have a use case where you want to use Canvas 2D for more simplistic rendering needs like this but still want to take advantage of WebGPU's compute capabilities, you can use the APIs cooperatively! It requires more data copies than if everything is done in WebGPU. See [WebGPU — All of the cores, none of the canvas](https://surma.dev/things/webgpu/) as an example of using WebGPU and Canvas 2D together.
+It's worth noting that if you have a use case where you want to use Canvas 2D for more simplistic rendering needs like this but still want to take advantage of WebGPU's compute capabilities, you can use the APIs cooperatively! It requires more data copies than if everything is done in WebGPU. See [WebGPU — All of the cores, none of the canvas](../surma-webgpu/webgpu-2046e74ac4.md) as an example of using WebGPU and Canvas 2D together.
 
 <a id="6-extra-credit-make-it-more-colorful"></a>
 

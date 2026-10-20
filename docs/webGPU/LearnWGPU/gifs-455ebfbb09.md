@@ -38,7 +38,7 @@ All we need to use this code is the frames of the GIF, how fast it should run, a
 
 ## [How do we make the frames?](#how-do-we-make-the-frames)
 
-If you checked out the [windowless showcase](https://sotrh.github.io/learn-wgpu/showcase/windowless/#a-triangle-without-a-window), you'll know that we render directly to a `wgpu::Texture`. We'll create a texture to render to and a buffer to copy the output to.
+If you checked out the [windowless showcase](./windowless-5a664b566f.md#a-triangle-without-a-window), you'll know that we render directly to a `wgpu::Texture`. We'll create a texture to render to and a buffer to copy the output to.
 
 ```
 // create a texture to render to

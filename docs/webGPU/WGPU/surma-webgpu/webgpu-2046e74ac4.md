@@ -54,11 +54,11 @@ The GPU is a shared resource. It is not only used by many applications at the sa
 
 Adapters, in turn, are the translation layer from operating system’s native graphics API to WebGPU. As the browser is a single OS-level application that can run multiple web applications, there is yet again a need for multiplexing, so that each web app feels like it has sole control of the GPU. This is modelled in WebGPU with the concept of *logical* devices.
 
-To get access to an adapter, you call `navigator.gpu.requestAdapter()`. At the time of writing, [`requestAdapter()`](https://gpuweb.github.io/gpuweb/#gpu-interface) takes very few options. The options allow you to request a high-performance or low-energy adapter.
+To get access to an adapter, you call `navigator.gpu.requestAdapter()`. At the time of writing, [`requestAdapter()`](../gpuweb-spec/gpuweb-spec.md#gpu-interface) takes very few options. The options allow you to request a high-performance or low-energy adapter.
 
 > **Software rendering:** Some implementations also offer a “fallback adapter” for systems with no GPU or a GPU that isn’t sufficiently capable. Fallback adapters are effectively a pure software implementation, which will not be very fast but keeps your app functional.
 
-If this succeeds, i.e. the returned adapter is non-`null`, you can inspect the adapter’s capabilities and request a logical device from the adapter using [`adapter.requestDevice()`](https://gpuweb.github.io/gpuweb/#gpuadapter).
+If this succeeds, i.e. the returned adapter is non-`null`, you can inspect the adapter’s capabilities and request a logical device from the adapter using [`adapter.requestDevice()`](../gpuweb-spec/gpuweb-spec.md#gpuadapter).
 
 ```
 if (!navigator.gpu) throw Error("WebGPU not supported.");
@@ -73,7 +73,7 @@ device.lost.then(()=>{ // this one should not be await-ed.
 
 ```
 
-Without any options, `requestDevice()` will return a device that does *not* necessarily match the physical device’s capabilities, but rather what the WebGPU team considers a reasonable, lowest common denominator of all GPUs. The details are [specified](https://gpuweb.github.io/gpuweb/#limit) in the WebGPU standard. For example, even though my GPU is easily capable of handling data buffers up to 4GiB in size, the `device` returned will only allow data buffers up to 1GiB, and will reject any data buffers that are bigger. This might seem restrictive, but is actually quite helpful: If your WebGPU app runs with the default device, it will run on the vast majority of devices. If necessary, you can inspect the real limits of the physical GPU via `adapter.limits` and request a `device` with raised limits by passing an options object to `requestDevice()`.
+Without any options, `requestDevice()` will return a device that does *not* necessarily match the physical device’s capabilities, but rather what the WebGPU team considers a reasonable, lowest common denominator of all GPUs. The details are [specified](../gpuweb-spec/gpuweb-spec.md#limit) in the WebGPU standard. For example, even though my GPU is easily capable of handling data buffers up to 4GiB in size, the `device` returned will only allow data buffers up to 1GiB, and will reject any data buffers that are bigger. This might seem restrictive, but is actually quite helpful: If your WebGPU app runs with the default device, it will run on the vast majority of devices. If necessary, you can inspect the real limits of the physical GPU via `adapter.limits` and request a `device` with raised limits by passing an options object to `requestDevice()`.
 
 For best practices about handling lost devices, check [this blog post](https://toji.dev/webgpu-best-practices/device-loss.html).
 
@@ -115,7 +115,7 @@ const pipeline = device.createComputePipeline({
 });
 ```
 
-This is the first time [WGSL](https://gpuweb.github.io/gpuweb/wgsl) (pronounced “wig-sal”), the WebGPU Shading Language, makes an appearance. WGSL feels like a cross-over of Rust and GLSL to me. It has a lot of Rust-y syntax with GLSL’s global functions (like `dot()`, `norm()`, `len()`, ...), types (like `vec2`, `mat4x4`, ...) and the [swizzling](https://en.wikipedia.org/wiki/Swizzling_(computer_graphics)) notation (like `some_vec.xxy`, ...). The browser will compile your WGSL to whatever the underlying system expects. That’s likely to be HLSL for DirectX 12, MSL for Metal and [SPIR-V](https://www.khronos.org/spir/) for Vulkan.
+This is the first time [WGSL](../../WGSL/WGSL-95be865bb5.md) (pronounced “wig-sal”), the WebGPU Shading Language, makes an appearance. WGSL feels like a cross-over of Rust and GLSL to me. It has a lot of Rust-y syntax with GLSL’s global functions (like `dot()`, `norm()`, `len()`, ...), types (like `vec2`, `mat4x4`, ...) and the [swizzling](https://en.wikipedia.org/wiki/Swizzling_(computer_graphics)) notation (like `some_vec.xxy`, ...). The browser will compile your WGSL to whatever the underlying system expects. That’s likely to be HLSL for DirectX 12, MSL for Metal and [SPIR-V](https://www.khronos.org/spir/) for Vulkan.
 
 > **SPIR-V:** [SPIR-V](https://www.khronos.org/spir/) is interesting because it’s an open, binary, intermediate format standardized by the Khronos Group. You can think of SPIR-V as the LLVM of parallel programming language compilers, and there is support to compile many languages *to* SPIR-V as well as compiling SPIR-V to many other languages.
 
@@ -440,12 +440,12 @@ The struct has a hole (padding) in its memory layout due to alignment constraint
 
 I put `999` the first field of the struct to make it easy to see where the struct begins in the buffer. There’s a total of 6 numbers until we reach the next `999`, which is a bit surprising because the struct really only has 5 numbers to store: `radius`, `position.x`, `position.y`, `velocity.x` and `velocity.y`. Taking a closer look, it is clear that the number after `radius` is always 0. This is because of alignment.
 
-Each WGSL data type has well-defined [alignment requirements](https://gpuweb.github.io/gpuweb/wgsl/#alignment-and-size). If a data type has an alignment of NNN, it means that a value of that data type can only be stored at a memory address that is a multiple of NNN. `f32` has an alignment of 4, while `vec2<f32>` has an alignment of 8. If we assume our struct starts at address 0, then the `radius` field can be stored at address 0, as 0 is a multiple of 4. The next field in the struct is `vec2<f32>`, which has an alignment of 8. However, the first free address after `radius` is 4, which is *not* a multiple of 8. To remedy this, the compiler adds padding of 4 bytes to get to the next address that is a multiple of 8. This explains why we see an unused field with the value 0 in the DevTools console.
+Each WGSL data type has well-defined [alignment requirements](../../WGSL/WGSL-95be865bb5.md#alignment-and-size). If a data type has an alignment of NNN, it means that a value of that data type can only be stored at a memory address that is a multiple of NNN. `f32` has an alignment of 4, while `vec2<f32>` has an alignment of 8. If we assume our struct starts at address 0, then the `radius` field can be stored at address 0, as 0 is a multiple of 4. The next field in the struct is `vec2<f32>`, which has an alignment of 8. However, the first free address after `radius` is 4, which is *not* a multiple of 8. To remedy this, the compiler adds padding of 4 bytes to get to the next address that is a multiple of 8. This explains why we see an unused field with the value 0 in the DevTools console.
 
 ![image](<ingswebgpu/b958880e9a2396e73e35f7ec.jpeg>)
 
 
-The (shortened) [alignment table](https://gpuweb.github.io/gpuweb/wgsl/#alignment-and-size) from the WGSL spec.
+The (shortened) [alignment table](../../WGSL/WGSL-95be865bb5.md#alignment-and-size) from the WGSL spec.
 
 Now that we know how our struct is laid out in memory, we can populate it from JavaScript to generate our initial state of balls and also read it back to visualize it.
 
@@ -594,7 +594,7 @@ To see how fast this really is, I disabled rendering and instead used [`performa
 
 WebGPU has been worked on for a while and I think the standards group is eager to declare the API as stable. That being said, the API is only available in Chrome and Firefox behind a flag. I’m optimistic about Safari shipping this API but at the time of writing there’s nothing to see in Safari TP just yet.
 
-In terms of stability, some changes landed even while I was doing the research for this article. For example, the syntax for attributes was changed from `[[stage(compute), workgroup_size(64)]]` to `@compute @workgroup_size(64)`. At the time of writing, Firefox is still on the old syntax. `passEncoder.end()` used to be `passEncoder.endPass()`. There are also some things in the spec that haven’t been implemented in any browser yet like [shader constants](https://gpuweb.github.io/gpuweb/#dom-gpuprogrammablestage-constants) or the API being available on mobile devices.
+In terms of stability, some changes landed even while I was doing the research for this article. For example, the syntax for attributes was changed from `[[stage(compute), workgroup_size(64)]]` to `@compute @workgroup_size(64)`. At the time of writing, Firefox is still on the old syntax. `passEncoder.end()` used to be `passEncoder.endPass()`. There are also some things in the spec that haven’t been implemented in any browser yet like [shader constants](../gpuweb-spec/gpuweb-spec.md#dom-gpuprogrammablestage-constants) or the API being available on mobile devices.
 
 Basically what I am saying is: Expect some more breaking changes to happen while the browsers and standards folks are on the home stretch of this API’s journey to ✨stable✨.
 

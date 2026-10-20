@@ -248,7 +248,7 @@ You'll notice that buffers is a `&[Option<wgpu::VertexBufferLayout>]`. Each entr
 ]
 ```
 
-Slot 0 would be a vertex buffer, slot 1 would be an instance buffer (we'll talk about those [later](https://sotrh.github.io/learn-wgpu/beginner/tutorial7-instancing/)), and a buffer for material data. If you only wanted vertex and material data in your pipeline you could use the following:
+Slot 0 would be a vertex buffer, slot 1 would be an instance buffer (we'll talk about those [later](./tutorial7-instancing-bad6afe612.md)), and a buffer for material data. If you only wanted vertex and material data in your pipeline you could use the following:
 
 ```
 &[

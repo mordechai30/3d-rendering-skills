@@ -366,8 +366,8 @@ There's also a number of open source projects including:
 
 The specification for WebGPU and WebGPU Shading Language is also worth taking a look:
 
-- [WebGPU Specification](https://gpuweb.github.io/gpuweb/)
-- [WebGPU Shading Language (WGSL) Specification](https://gpuweb.github.io/gpuweb/wgsl/)
+- [WebGPU Specification](../gpuweb-spec/gpuweb-spec.md)
+- [WebGPU Shading Language (WGSL) Specification](../../WGSL/WGSL-95be865bb5.md)
 
 ---
 

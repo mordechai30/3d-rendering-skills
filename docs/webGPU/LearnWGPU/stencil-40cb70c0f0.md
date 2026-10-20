@@ -289,7 +289,7 @@ With that in place we can now draw our hidden objects:
 }
 ```
 
-I'm using a `Model` struct based on [the model rendering tutorial](https://sotrh.github.io/learn-wgpu/beginner/tutorial9-models/) with some custom drawing code as I have put the visible and hidden objects in the same instance buffer. Again the exact model rendering doesn't matter here as long as your pipeline is setup to use the stencil buffer correctly.
+I'm using a `Model` struct based on [the model rendering tutorial](./tutorial9-models-033d323f01.md) with some custom drawing code as I have put the visible and hidden objects in the same instance buffer. Again the exact model rendering doesn't matter here as long as your pipeline is setup to use the stencil buffer correctly.
 
 You can also use any model you want, but I'm using the rounded cube from the same demo.
 

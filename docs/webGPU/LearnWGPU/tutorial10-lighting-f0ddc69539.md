@@ -48,7 +48,7 @@ Note
 
 The rule of thumb for alignment with WGSL structs is field alignments are always powers of 2. For example, a `vec3` may only have three float fields, giving it a size of 12. The alignment will be bumped up to the next power of 2 being 16. This means that you have to be more careful with how you layout your struct in Rust.
 
-Some developers choose to use `vec4`s instead of `vec3`s to avoid alignment issues. You can learn more about the alignment rules in the [WGSL spec](https://www.w3.org/TR/WGSL/#alignment-and-size)
+Some developers choose to use `vec4`s instead of `vec3`s to avoid alignment issues. You can learn more about the alignment rules in the [WGSL spec](../WGSL/WGSL-95be865bb5.md#alignment-and-size)
 
 We're going to create another buffer to store our light in.
 

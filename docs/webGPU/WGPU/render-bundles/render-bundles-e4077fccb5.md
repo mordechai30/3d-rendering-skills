@@ -22,7 +22,7 @@ Contents
 
 ## Introduction
 
-WebGPU offers a powerful new tool called [Render Bundles](https://gpuweb.github.io/gpuweb/#bundles) that can significantly reduce the amount of CPU time spent issuing repeated rendered commands, especially in the browser. At first glance they may seem to be fairly restrictive, but with the right techniques render bundles can be flexible enough to be used in many real-world scenarios, including more dynamic ones than you might expect!
+WebGPU offers a powerful new tool called [Render Bundles](../gpuweb-spec/gpuweb-spec.md#bundles) that can significantly reduce the amount of CPU time spent issuing repeated rendered commands, especially in the browser. At first glance they may seem to be fairly restrictive, but with the right techniques render bundles can be flexible enough to be used in many real-world scenarios, including more dynamic ones than you might expect!
 
 This doc is focused on explaining how to best take advantage of render bundles, freeing up valuable CPU cycles in the process.
 
@@ -260,7 +260,7 @@ Because of the above mentioned requirements that render bundles contain all the 
 
 Keep in mind, however, that render bundles are only really effective if they can be executed more than once. If you find yourself in a situation where you are rebuilding your render bundles on a per-frame basis to accommodate new or updated draw calls then you may be better off simply doing the draws directly.
 
-Similarly, there’s some types of WebGPU content that actively requires frequent changes to the resources used, such as [External Textures](https://gpuweb.github.io/gpuweb/#gpuexternaltexture). Created from video streams, these textures expire once the video decoding has prepared the next frame, requiring a new external texture to be created to capture the new video frame, and a new bind group created to bind it. That means that any render bundle that includes an external texture is likely to be made invalid by the texture expiring within a frame or two of it’s creation. As a result it’s generally not advised to use render bundles and External Textures together.
+Similarly, there’s some types of WebGPU content that actively requires frequent changes to the resources used, such as [External Textures](../gpuweb-spec/gpuweb-spec.md#gpuexternaltexture). Created from video streams, these textures expire once the video decoding has prepared the next frame, requiring a new external texture to be created to capture the new video frame, and a new bind group created to bind it. That means that any render bundle that includes an external texture is likely to be made invalid by the texture expiring within a frame or two of it’s creation. As a result it’s generally not advised to use render bundles and External Textures together.
 
 An exception would be if you know that the same content will be rendered more than once in a single frame, such as when rendering the left and right views for a virtual reality application. In that case the savings from skipping the encoding and validation for the repeated draws will almost always be worth it, even if the content being drawn is changing on a nearly per-frame basis.
 
@@ -329,7 +329,7 @@ The most common reason is that you want to define the draw call parameters in a 
 
 As you’ve probably guessed, since the indirect draw buffers are, well, buffers, they play nicely with render bundles. While the bindings and number of draw calls in a bundle will always be locked to what was originally encoded, if indirect draws are used the amount of geometry and the number of instances drawn by those calls can be dynamic. It makes it practical to include rendering things like particle systems in a render bundle without unnecessary overhead.
 
-> **Update:** If you are using indirect draws in your app, be sure to check out my article on [Indirect draw call best practices](https://toji.dev/webgpu-best-practices/indirect-draws)!
+> **Update:** If you are using indirect draws in your app, be sure to check out my article on [Indirect draw call best practices](../indirect-draws/indirect-draws-4fa5230fd4.md)!
 
 <a id="object-culling"></a>
 

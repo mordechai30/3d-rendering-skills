@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [3. Initialize WebGPU](https://codelabs.developers.google.com/your-first-webgpu-app#2)
+## [3. Initialize WebGPU](./your-first-webgpu-app-413f5c961e.md)
 
 <a id="start-with-a-canvas"></a>
 
@@ -51,7 +51,7 @@ Create a new HTML document with a single `<canvas>` element in it, as well as a 
 
 Now you can get into the WebGPU bits! First, you should consider that APIs like WebGPU can take a while to propagate throughout the entire web ecosystem. As a result, a good first precautionary step is to check if the user's browser can use WebGPU.
 
-1. To check if the [`navigator.gpu`](https://gpuweb.github.io/gpuweb/#navigator-gpu) object, which serves as the entry point for WebGPU, exists, add the following code:
+1. To check if the [`navigator.gpu`](../gpuweb-spec/gpuweb-spec.md#navigator-gpu) object, which serves as the entry point for WebGPU, exists, add the following code:
 
 <a id="index.html_1"></a>
 
@@ -65,9 +65,9 @@ if (!navigator.gpu) {
 
 Ideally, you want to inform the user if WebGPU is unavailable by having the page fall back to a mode that doesn't use WebGPU. (Maybe it could use WebGL instead?) For the purposes of this codelab, though, you just throw an error to stop the code from executing further.
 
-Once you know that WebGPU is supported by the browser, the first step in initializing WebGPU for your app is to request a [`GPUAdapter`](https://gpuweb.github.io/gpuweb/#gpuadapter). You can think of an adapter as WebGPU's representation of a specific piece of GPU hardware in your device.
+Once you know that WebGPU is supported by the browser, the first step in initializing WebGPU for your app is to request a [`GPUAdapter`](../gpuweb-spec/gpuweb-spec.md#gpuadapter). You can think of an adapter as WebGPU's representation of a specific piece of GPU hardware in your device.
 
-2. To get an adapter, use the [`navigator.gpu.requestAdapter()`](https://gpuweb.github.io/gpuweb/#dom-gpu-requestadapter) method. It returns a promise, so it's most convenient to call it with `await`.
+2. To get an adapter, use the [`navigator.gpu.requestAdapter()`](../gpuweb-spec/gpuweb-spec.md#dom-gpu-requestadapter) method. It returns a promise, so it's most convenient to call it with `await`.
 
 <a id="index.html_2"></a>
 
@@ -82,11 +82,11 @@ if (!adapter) {
 
 If no appropriate adapters can be found, the returned `adapter` value might be `null`, so you want to handle that possibility. It might happen if the user's browser supports WebGPU but their GPU hardware doesn't have all the features necessary to use WebGPU.
 
-Most of the time it's OK to simply let the browser pick a default adapter, as you do here, but for more advanced needs there are [arguments that can be passed](https://gpuweb.github.io/gpuweb/#adapter-selection) to `requestAdapter()` that specify whether you want to use low-power or high-performance hardware on devices with multiple GPUs (like some laptops).
+Most of the time it's OK to simply let the browser pick a default adapter, as you do here, but for more advanced needs there are [arguments that can be passed](../gpuweb-spec/gpuweb-spec.md#adapter-selection) to `requestAdapter()` that specify whether you want to use low-power or high-performance hardware on devices with multiple GPUs (like some laptops).
 
-Once you have an adapter, the last step before you can start working with the GPU is to request a [GPUDevice](https://gpuweb.github.io/gpuweb/#gpudevice). The device is the main interface through which most interaction with the GPU happens.
+Once you have an adapter, the last step before you can start working with the GPU is to request a [GPUDevice](../gpuweb-spec/gpuweb-spec.md#gpudevice). The device is the main interface through which most interaction with the GPU happens.
 
-3. Get the device by calling [`adapter.requestDevice()`](https://gpuweb.github.io/gpuweb/#dom-gpuadapter-requestdevice), which also returns a promise.
+3. Get the device by calling [`adapter.requestDevice()`](../gpuweb-spec/gpuweb-spec.md#dom-gpuadapter-requestdevice), which also returns a promise.
 
 <a id="index.html_3"></a>
 
@@ -96,7 +96,7 @@ Once you have an adapter, the last step before you can start working with the GP
 const device = await adapter.requestDevice();
 ```
 
-As with `requestAdapter()`, there are [options that can be passed](https://gpuweb.github.io/gpuweb/#gpudevicedescriptor) here for more advanced uses like enabling specific hardware features or requesting higher limits, but for your purposes the defaults work just fine.
+As with `requestAdapter()`, there are [options that can be passed](../gpuweb-spec/gpuweb-spec.md#gpudevicedescriptor) here for more advanced uses like enabling specific hardware features or requesting higher limits, but for your purposes the defaults work just fine.
 
 <a id="configure-the-canvas"></a>
 
@@ -104,7 +104,7 @@ As with `requestAdapter()`, there are [options that can be passed](https://gpuwe
 
 Now that you have a device, there's one more thing to do if you want to use it to show anything on the page: configure the canvas to be used with the device you just created.
 
-- To do this, first request a [`GPUCanvasContext`](https://gpuweb.github.io/gpuweb/#canvas-context) from the canvas by calling `canvas.getContext("webgpu")`. (This is the same call that you'd use to initialize Canvas 2D or WebGL contexts, using the `2d` and `webgl` context types, respectively.) The `context` that it returns must then be associated with the device using the [`configure()`](https://gpuweb.github.io/gpuweb/#dom-gpucanvascontext-configure) method, like so:
+- To do this, first request a [`GPUCanvasContext`](../gpuweb-spec/gpuweb-spec.md#canvas-context) from the canvas by calling `canvas.getContext("webgpu")`. (This is the same call that you'd use to initialize Canvas 2D or WebGL contexts, using the `2d` and `webgl` context types, respectively.) The `context` that it returns must then be associated with the device using the [`configure()`](../gpuweb-spec/gpuweb-spec.md#dom-gpucanvascontext-configure) method, like so:
 
 <a id="index.html_4"></a>
 
@@ -123,7 +123,7 @@ There are a few options that can be passed here, but the most important ones are
 
 Textures are the objects that WebGPU uses to store image data, and each texture has a format that lets the GPU know how that data is laid out in memory. The details of how texture memory works are beyond the scope of this codelab. The important thing to know is that the canvas context provides textures for your code to draw into, and the format that you use can have an impact on how efficiently the canvas shows those images. Different types of devices perform best when using different texture formats, and if you don't use the device's preferred format it may cause extra memory copies to happen behind the scenes before the image can be displayed as part of the page.
 
-Fortunately, you don't have to worry much about any of that because WebGPU tells you which format to use for your canvas! In almost all cases, you want to pass the value returned by calling [`navigator.gpu.getPreferredCanvasFormat()`](https://gpuweb.github.io/gpuweb/#dom-gpu-getpreferredcanvasformat), as shown above.
+Fortunately, you don't have to worry much about any of that because WebGPU tells you which format to use for your canvas! In almost all cases, you want to pass the value returned by calling [`navigator.gpu.getPreferredCanvasFormat()`](../gpuweb-spec/gpuweb-spec.md#dom-gpu-getpreferredcanvasformat), as shown above.
 
 **Note:** One big difference in how WebGPU works compared to WebGL is that because canvas configuration is separate from device creation you can have any number of canvases that are all being rendered by a single device! This will make certain use cases, like multi-pane 3D editors, much easier to develop.
 
@@ -137,7 +137,7 @@ Now that you have a device and the canvas has been configured with it, you can s
 
 In order to do that—or pretty much anything else in WebGPU—you need to provide some commands to the GPU instructing it what to do.
 
-1. To do this, have the device create a [`GPUCommandEncoder`](https://gpuweb.github.io/gpuweb/#gpucommandencoder), which provides an interface for recording GPU commands.
+1. To do this, have the device create a [`GPUCommandEncoder`](../gpuweb-spec/gpuweb-spec.md#gpucommandencoder), which provides an interface for recording GPU commands.
 
 <a id="index.html_5"></a>
 
@@ -149,9 +149,9 @@ const encoder = device.createCommandEncoder();
 
 The commands you want to send to the GPU are related to rendering (in this case, clearing the canvas), so the next step is to use the `encoder` to begin a Render Pass.
 
-Render passes are when all drawing operations in WebGPU happen. Each one starts off with a [`beginRenderPass()`](https://gpuweb.github.io/gpuweb/#dom-gpucommandencoder-beginrenderpass) call, which defines the textures that receive the output of any drawing commands performed. More advanced uses can provide several textures, called *attachments*, with various purposes such as storing the depth of rendered geometry or providing antialiasing. For this app, however, you only need one.
+Render passes are when all drawing operations in WebGPU happen. Each one starts off with a [`beginRenderPass()`](../gpuweb-spec/gpuweb-spec.md#dom-gpucommandencoder-beginrenderpass) call, which defines the textures that receive the output of any drawing commands performed. More advanced uses can provide several textures, called *attachments*, with various purposes such as storing the depth of rendered geometry or providing antialiasing. For this app, however, you only need one.
 
-2. Get the texture from the canvas context you created earlier by calling [`context.getCurrentTexture()`](https://gpuweb.github.io/gpuweb/#dom-gpucanvascontext-getcurrenttexture), which returns a texture with a pixel width and height matching the canvas' `width` and `height` attributes and the `format` specified when you called `context.configure()`.
+2. Get the texture from the canvas context you created earlier by calling [`context.getCurrentTexture()`](../gpuweb-spec/gpuweb-spec.md#dom-gpucanvascontext-getcurrenttexture), which returns a texture with a pixel width and height matching the canvas' `width` and `height` attributes and the `format` specified when you called `context.configure()`.
 
 <a id="index.html_6"></a>
 

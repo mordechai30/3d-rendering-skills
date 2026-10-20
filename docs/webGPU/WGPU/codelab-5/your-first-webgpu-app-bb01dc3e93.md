@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [6. Extra credit: make it more colorful!](https://codelabs.developers.google.com/your-first-webgpu-app#5)
+## [6. Extra credit: make it more colorful!](./your-first-webgpu-app-bb01dc3e93.md)
 
 At this point, you can easily skip to the next section since you've laid the groundwork for the rest of the codelab. But while the grid of squares all sharing the same color is serviceable, it's not exactly exciting, is it? Fortunately you can make things a bit brighter with a little more math and shader code!
 

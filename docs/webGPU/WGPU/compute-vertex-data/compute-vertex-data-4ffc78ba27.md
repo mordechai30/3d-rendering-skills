@@ -101,7 +101,7 @@ The second buffer contains just the normal data, staring at byte 0 of the buffer
 new Float32Array([n.x, n.y, n.z, 0, n.x, n.y, n.z, 0, /* ... and so on */]);
 ```
 
-Conveniently, we don’t have to worry about the exact layout of the data when we’re writing our WGSL vertex shader. As long as the `@location()` attributes line up with the `shaderLocation` values in the render pipeline definition the hardware will work out the rest. And as long as the attributes match one of the defined [vertex formats](https://gpuweb.github.io/gpuweb/#enumdef-gpuvertexformat) the data can be packed in a fairly flexible manner.
+Conveniently, we don’t have to worry about the exact layout of the data when we’re writing our WGSL vertex shader. As long as the `@location()` attributes line up with the `shaderLocation` values in the render pipeline definition the hardware will work out the rest. And as long as the attributes match one of the defined [vertex formats](../gpuweb-spec/gpuweb-spec.md#enumdef-gpuvertexformat) the data can be packed in a fairly flexible manner.
 
 That flexibility is convenient when it comes to rendering work, but can become quite difficult to deal with should you try to manipulate that same data with a compute shader.
 
@@ -206,7 +206,7 @@ For the sake of brevity I’m not going to provide accompanying JavaScript code 
 
 ### Alignment problems
 
-The above compute shader works well, but ONLY if the normal buffer has an `arrayStride` of 16 as our previous example showed. Why? Because WGSL (and the underlying languages it compiles down to) has [strict rules about data alignment](https://gpuweb.github.io/gpuweb/wgsl/#alignment-and-size) in structures and arrays. One of those rules is that `vec3`s of 32 bit values *must* be aligned to 16 byte offsets. Since three 32 bit values only take up 12 bytes, it’s a fairly unusual thing to have an array of them that are spaced 16 bytes apart. It’s much more common to see such values tightly packed at 12 byte intervals or interleaved with other values that don’t add up to a multiple of 16 bytes either. (Like our position and texture coordinate buffer above, which had a stride of 20 bytes.)
+The above compute shader works well, but ONLY if the normal buffer has an `arrayStride` of 16 as our previous example showed. Why? Because WGSL (and the underlying languages it compiles down to) has [strict rules about data alignment](../../WGSL/WGSL-95be865bb5.md#alignment-and-size) in structures and arrays. One of those rules is that `vec3`s of 32 bit values *must* be aligned to 16 byte offsets. Since three 32 bit values only take up 12 bytes, it’s a fairly unusual thing to have an array of them that are spaced 16 bytes apart. It’s much more common to see such values tightly packed at 12 byte intervals or interleaved with other values that don’t add up to a multiple of 16 bytes either. (Like our position and texture coordinate buffer above, which had a stride of 20 bytes.)
 
 If the normals in the buffer were tightly packed, the above code would still *run* but it would read and write the values incorrectly. Specifically if your normal buffer contained the following values:
 
@@ -289,7 +289,7 @@ function updateUniforms(vertexCount, normalStrideInBytes) {
 }
 ```
 
-But what if the stride isn’t evenly divisible by the size of a float (4 bytes)? Well then you’ve got bigger problems on your hands, because WebGPU [requires vertex buffer strides to be a multiple of 4](https://gpuweb.github.io/gpuweb/#dictdef-gpuvertexbufferlayout:~:text=descriptor.arrayStride%20is%20a%20multiple%20of%204.). So if you find that you have vertex data formatted that way you’re going to be forced to reformat it before rendering anyway, and that’s beyond the scope of this document.
+But what if the stride isn’t evenly divisible by the size of a float (4 bytes)? Well then you’ve got bigger problems on your hands, because WebGPU [requires vertex buffer strides to be a multiple of 4](../gpuweb-spec/gpuweb-spec.md#dictdef-gpuvertexbufferlayout:~:text=descriptor.arrayStride%20is%20a%20multiple%20of%204.). So if you find that you have vertex data formatted that way you’re going to be forced to reformat it before rendering anyway, and that’s beyond the scope of this document.
 
 <a id="pass-buffer-offsets-as-uniforms"></a>
 
@@ -297,7 +297,7 @@ But what if the stride isn’t evenly divisible by the size of a float (4 bytes)
 
 Stride isn’t the only thing that defines how the values in a vertex buffer are stored, though. As we saw in the render pipeline creation code above, we also need to provide the offset into the buffer that the attribute starts at.
 
-One tempting option for handling the buffer offsets is to supply them during bind group creation time. After all, there *is* an [`offset`](https://gpuweb.github.io/gpuweb/#dom-gpubufferbinding-offset) property in the buffer binding options. Unfortunately that won’t work for the majority of vertex data manipulation uses because the offset is required to be a multiple of the [`minStorageBufferOffsetAlignment` limit](https://gpuweb.github.io/gpuweb/#dom-supported-limits-minstoragebufferoffsetalignment) which is 256 by default. Since the vast majority of attribute offsets will be smaller than that we can’t rely on it here.
+One tempting option for handling the buffer offsets is to supply them during bind group creation time. After all, there *is* an [`offset`](../gpuweb-spec/gpuweb-spec.md#dom-gpubufferbinding-offset) property in the buffer binding options. Unfortunately that won’t work for the majority of vertex data manipulation uses because the offset is required to be a multiple of the [`minStorageBufferOffsetAlignment` limit](../gpuweb-spec/gpuweb-spec.md#dom-supported-limits-minstoragebufferoffsetalignment) which is 256 by default. Since the vast majority of attribute offsets will be smaller than that we can’t rely on it here.
 
 The solution is to simply pass the offset in as a uniform and factor it into our manual indexing, just like the stride.
 
@@ -566,7 +566,7 @@ fn getJoints16(index: u32) -> vec4u {
 }
 ```
 
-You’ll want to select which of those joint unpacking methods to use at pipeline creation time. See my [WebGPU Dynamic Shader Construction](https://toji.dev/webgpu-best-practices/dynamic-shader-construction) article for more details on various ways to approach that.
+You’ll want to select which of those joint unpacking methods to use at pipeline creation time. See my [WebGPU Dynamic Shader Construction](../dynamic-shader-construction/dynamic-shader-construction-3806ab9efa.md) article for more details on various ways to approach that.
 
 <a id="unpackingpacking-non-32-bit-floats"></a>
 
@@ -574,11 +574,11 @@ You’ll want to select which of those joint unpacking methods to use at pipelin
 
 Extracting 8 or 16 bit integer values from 32 bit integer values is pretty straightforward, as you can see above. If you happen to have floating point values that aren’t 32 bit, though, you need to take a different approach. Normally the algorithms for unpacking binary16 (or “half”) floats into a 32 bit ones from a `u32` value is [a non-trivial operation](https://en.wikipedia.org/wiki/Half-precision_floating-point_format), and beyond the scope of this document. Fortunately WGSL has some functions to help you out here.
 
-First, there’s the [`unpack2x16float()` builtin function](https://gpuweb.github.io/gpuweb/wgsl/#unpack2x16float-builtin). This will take a single `u32` value and return a `vec2f` containing the converted 16-bit floats from either half of the `u32` binary value. The [`pack2x16float()` builtin function](https://gpuweb.github.io/gpuweb/wgsl/#pack2x16float-builtin) is also provided to go the other direction, encoding a `vec2f` as a single `u32` value.
+First, there’s the [`unpack2x16float()` builtin function](../../WGSL/WGSL-95be865bb5.md#unpack2x16float-builtin). This will take a single `u32` value and return a `vec2f` containing the converted 16-bit floats from either half of the `u32` binary value. The [`pack2x16float()` builtin function](../../WGSL/WGSL-95be865bb5.md#pack2x16float-builtin) is also provided to go the other direction, encoding a `vec2f` as a single `u32` value.
 
-Also, eventually most WebGPU implementations are likely to support the [`"shader-f16"`](https://gpuweb.github.io/gpuweb/#shader-f16) feature, which will allow you to use `array<f16>` directly in your shader.
+Also, eventually most WebGPU implementations are likely to support the [`"shader-f16"`](../gpuweb-spec/gpuweb-spec.md#shader-f16) feature, which will allow you to use `array<f16>` directly in your shader.
 
-It’s also fairly common to work with normalized values, where the full range of an integer value is interpreted as a floating point value with a 0->1 range. So the value of `255` in an 8 bit unsigned int would be treated as `1.0`, the value of `127` would be treated as `0.5`, etc. This is especially common when dealing with color data. These conversions are more trivial, in that you simply have to bitmask out the packed values and divide by the max value for that type, but WGSL also offers convenience functions to help with these conversions too: [`unpack4x8snorm()`, `unpack4x8unorm()`, `unpack2x16snorm()`, and `unpack2x16unorm()`](https://gpuweb.github.io/gpuweb/wgsl/#unpack-builtin-functions), as well as the inverse [packing functions](https://gpuweb.github.io/gpuweb/wgsl/#pack-builtin-functions).
+It’s also fairly common to work with normalized values, where the full range of an integer value is interpreted as a floating point value with a 0->1 range. So the value of `255` in an 8 bit unsigned int would be treated as `1.0`, the value of `127` would be treated as `0.5`, etc. This is especially common when dealing with color data. These conversions are more trivial, in that you simply have to bitmask out the packed values and divide by the max value for that type, but WGSL also offers convenience functions to help with these conversions too: [`unpack4x8snorm()`, `unpack4x8unorm()`, `unpack2x16snorm()`, and `unpack2x16unorm()`](../../WGSL/WGSL-95be865bb5.md#unpack-builtin-functions), as well as the inverse [packing functions](../../WGSL/WGSL-95be865bb5.md#pack-builtin-functions).
 
 <a id="final-example-normal-generation"></a>
 
@@ -716,9 +716,9 @@ Turns out, that causes a problem for us. While it’s ideal for the shader to be
 
 ### Synchronizing data access with atomics
 
-Fortunately WGSL provides us with [Atomic types and functions](https://gpuweb.github.io/gpuweb/wgsl/#atomic-builtin-functions)! These operations ensure that only one shader thread is allowed to update or read a specific bit of information at a time, which is exactly what we need in this case to stop all those normal accumulations from accidentally stomping on each other. *Unfortunately* the only types that are allowed to be atomic are scalar `i32` and `u32` values. Which isn’t particularly helpful when we definitely want our normals to be vectors of floating point values.
+Fortunately WGSL provides us with [Atomic types and functions](../../WGSL/WGSL-95be865bb5.md#atomic-builtin-functions)! These operations ensure that only one shader thread is allowed to update or read a specific bit of information at a time, which is exactly what we need in this case to stop all those normal accumulations from accidentally stomping on each other. *Unfortunately* the only types that are allowed to be atomic are scalar `i32` and `u32` values. Which isn’t particularly helpful when we definitely want our normals to be vectors of floating point values.
 
-The way that we solve this is to quantize the floating point value into an `i32`, effectively representing it as a fixed point precision value during the accumulation stage. This allows us to expose the normal values as atomics and use operations like [`atomicAdd()`](https://gpuweb.github.io/gpuweb/wgsl/#atomic-rmw) on the individual components.
+The way that we solve this is to quantize the floating point value into an `i32`, effectively representing it as a fixed point precision value during the accumulation stage. This allows us to expose the normal values as atomics and use operations like [`atomicAdd()`](../../WGSL/WGSL-95be865bb5.md#atomic-rmw) on the individual components.
 
 Worth noting that because atomics can’t be vectors, however, we need to fall back to some of the same patterns for writing/reconstructing vectors from flat arrays as we use elsewhere.
 

@@ -35,9 +35,9 @@ Let's take a look at the following table:
 | vec3<T> | **16** | 12 |
 | vec4<T> | 16 | 16 |
 
-You can see for `vec3` the alignment is the next power of 2 from the size, 16. This can catch beginners (and even veterans) off guard as it's not the most intuitive. This becomes especially important when we start laying out structs. Take the light struct from the [lighting tutorial](https://sotrh.github.io/learn-wgpu/intermediate/tutorial10-lighting/#seeing-the-light):
+You can see for `vec3` the alignment is the next power of 2 from the size, 16. This can catch beginners (and even veterans) off guard as it's not the most intuitive. This becomes especially important when we start laying out structs. Take the light struct from the [lighting tutorial](./tutorial10-lighting-f0ddc69539.md#seeing-the-light):
 
-You can see the full table of the alignments in section [4.3.7.1 of the WGSL spec](https://www.w3.org/TR/WGSL/#alignment-and-size)
+You can see the full table of the alignments in section [4.3.7.1 of the WGSL spec](../WGSL/WGSL-95be865bb5.md#alignment-and-size)
 
 ```
 struct Light {

@@ -52,7 +52,7 @@ Note
 
 I'm using [pollster](https://docs.rs/pollster) to handle `async` in the native code in these examples. You can use whatever `async` implementation you like though. I'm also using [anyhow](https://docs.rs/anyhow) for error handling, and [flume](https://docs.rs/flume) for it's `async` channel implementation.
 
-If you want more info about these calls and the potential arguments you can pass to them check out [the rendering guide](https://sotrh.github.io/learn-wgpu/beginner/tutorial2-surface/).
+If you want more info about these calls and the potential arguments you can pass to them check out [the rendering guide](./tutorial2-surface-2f25c2eb3b.md).
 
 Now that we have a device to talk to the GPU let's start talking about how to set up a compute pipeline.
 
@@ -213,7 +213,7 @@ This is important to know because if you change workgroup size, the `global_invo
 
 ## [Buffers](#buffers)
 
-While I've covered buffers in the [rendering guide](https://sotrh.github.io/learn-wgpu/beginner/tutorial4-buffer/), I'll go over them briefly here too. In WebGPU a buffer is memory on the GPU that you've set aside. This memory can be used for anything from vertex data, to neurons in a neural network. For the most part the GPU doesn't care what data the buffer contains, but it does care about how that data is used.
+While I've covered buffers in the [rendering guide](./tutorial4-buffer-e73f961b27.md), I'll go over them briefly here too. In WebGPU a buffer is memory on the GPU that you've set aside. This memory can be used for anything from vertex data, to neurons in a neural network. For the most part the GPU doesn't care what data the buffer contains, but it does care about how that data is used.
 
 Here's an example of setting up an input and output buffer.
 
@@ -238,7 +238,7 @@ We specifically need the `STORAGE` usage our buffer is this shader. We can use `
 
 ## [Bindgroup setup](#bindgroup-setup)
 
-Again I won't go into detail about how to define bind groups here, as I've already done that in [the rendering guide](https://sotrh.github.io/learn-wgpu/beginner/tutorial5-textures/), but I cover the theory. In WebGPU a bind group describes resources that can be used by the shader. These can be textures, buffers, samplers, etc. A `BindGroupLayout` defines how these resources are grouped what shaders stages have access to them, and how the shader will interpret the resources.
+Again I won't go into detail about how to define bind groups here, as I've already done that in [the rendering guide](./tutorial5-textures-86335923b3.md), but I cover the theory. In WebGPU a bind group describes resources that can be used by the shader. These can be textures, buffers, samplers, etc. A `BindGroupLayout` defines how these resources are grouped what shaders stages have access to them, and how the shader will interpret the resources.
 
 You can manually specify the `BindGroupLayout`, but WGPU can infer the layout based on shader code. For example:
 

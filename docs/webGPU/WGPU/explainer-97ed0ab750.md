@@ -107,7 +107,7 @@ In the content process, WebGPU types (`GPUBuffer`, `GPUTexture`, `GPURenderPipel
 This means that the CPU and GPU memory used by WebGPU object isn’t necessarily known in the content process.
 A `GPUBuffer` object can use maybe 150 bytes of CPU memory in the content process but hold a 1GB allocation of GPU memory.
 
-See also the description of [the content and device timelines in the specification](https://gpuweb.github.io/gpuweb/#programming-model-timelines).
+See also the description of [the content and device timelines in the specification](./gpuweb-spec/gpuweb-spec.md#programming-model-timelines).
 
 <a id="memory-visibility"></a>
 
@@ -938,7 +938,7 @@ Therefore, these objects will also be `[Serializable]` but have a small amount o
 Though access to this shared state is somewhat limited - it can’t be changed arbitrarily quickly
 on a single object - it might still be a timing attack vector, like `SharedArrayBuffer`,
 so it is tentatively gated on cross-origin isolation.
-See [Timing attacks](https://gpuweb.github.io/gpuweb/#security-timing).
+See [Timing attacks](./gpuweb-spec/gpuweb-spec.md#security-timing).
 
 <a id="example-ca230bfa"></a>
 
@@ -1241,7 +1241,7 @@ which mentions that strongly-typed bitflags in JavaScript would be useful.
 ## 4. Security and Privacy (self-review)
 
 This section is the Security and Privacy self-review.
-You can also see the [Malicious use considerations](https://gpuweb.github.io/gpuweb/#malicious-use) section of the specification.
+You can also see the [Malicious use considerations](./gpuweb-spec/gpuweb-spec.md#malicious-use) section of the specification.
 
 <a id="questionnaire-1"></a>
 
@@ -1370,7 +1370,7 @@ User-agents will need to be careful not to reuse the shader compilation caches w
 ### 4.16. Does this specification have both "Security Considerations" and "Privacy Considerations" sections?
 
 Yes.
-They are both under the [Malicious use considerations](https://gpuweb.github.io/gpuweb/#malicious-use) section.
+They are both under the [Malicious use considerations](./gpuweb-spec/gpuweb-spec.md#malicious-use) section.
 
 <a id="questionnaire-17"></a>
 

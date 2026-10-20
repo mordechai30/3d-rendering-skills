@@ -206,7 +206,7 @@ Regardless, `PresentMode::Fifo` will always be supported, and `PresentMode::Auto
 
 `alpha_mode` is honestly not something I'm familiar with. I believe it has something to do with transparent windows, but feel free to open a pull request. For now, we'll just use the first `AlphaMode` in the list given by `surface_caps`.
 
-`view_formats` is a list of `TextureFormat`s that you can use when creating `TextureView`s (we'll cover those briefly later in this tutorial as well as more in depth [in the texture tutorial](https://sotrh.github.io/learn-wgpu/beginner/tutorial5-textures)). As of writing, this means that if your surface is sRGB color space, you can create a texture view that uses a linear color space.
+`view_formats` is a list of `TextureFormat`s that you can use when creating `TextureView`s (we'll cover those briefly later in this tutorial as well as more in depth [in the texture tutorial](./tutorial5-textures-86335923b3.md)). As of writing, this means that if your surface is sRGB color space, you can create a texture view that uses a linear color space.
 
 `color_space` this tells wgpu how your windowing system expects colors to be laid out. It's more of an advanced topic so I won't be covering it here. In most cases `Auto` should be good enough.
 

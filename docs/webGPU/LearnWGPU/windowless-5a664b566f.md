@@ -32,7 +32,7 @@ let (device, queue) = adapter
 
 ## [A triangle without a window](#a-triangle-without-a-window)
 
-Now we've talked about not needing to see what the gpu is doing, but we do need to see the results at some point. If we look back to talking about the [surface](https://sotrh.github.io/beginner/tutorial2-surface/#render) we see that we use `surface.get_current_texture()` to grab a texture to draw to. We'll skip that step by creating the texture ourselves. One thing to note here is we need to specify `wgpu::TextureFormat::Rgba8UnormSrgb` to `format` instead of `surface.get_preferred_format(&adapter)` since PNG uses RGBA, not BGRA.
+Now we've talked about not needing to see what the gpu is doing, but we do need to see the results at some point. If we look back to talking about the [surface](./tutorial2-surface-2f25c2eb3b.md#render) we see that we use `surface.get_current_texture()` to grab a texture to draw to. We'll skip that step by creating the texture ourselves. One thing to note here is we need to specify `wgpu::TextureFormat::Rgba8UnormSrgb` to `format` instead of `surface.get_preferred_format(&adapter)` since PNG uses RGBA, not BGRA.
 
 ```
 let texture_size = 256u32;
@@ -58,7 +58,7 @@ let texture_view = texture.create_view(&Default::default());
 
 We're using `TextureUsages::RENDER_ATTACHMENT` so wgpu can render to our texture. The `TextureUsages::COPY_SRC` is so we can pull data out of the texture so we can save it to a file.
 
-While we can use this texture to draw our triangle, we need some way to get at the pixels inside it. Back in the [texture tutorial](https://sotrh.github.io/beginner/tutorial5-textures/) we used a buffer to load color data from a file that we then copied into our buffer. Now we are going to do the reverse: copy data into a buffer from our texture to save into a file. We'll need a buffer big enough for our data.
+While we can use this texture to draw our triangle, we need some way to get at the pixels inside it. Back in the [texture tutorial](./tutorial5-textures-86335923b3.md) we used a buffer to load color data from a file that we then copied into our buffer. Now we are going to do the reverse: copy data into a buffer from our texture to save into a file. We'll need a buffer big enough for our data.
 
 ```
 // we need to store this for later
@@ -76,7 +76,7 @@ let output_buffer_desc = wgpu::BufferDescriptor {
 let output_buffer = device.create_buffer(&output_buffer_desc);
 ```
 
-Now that we have something to draw to, let's make something to draw. Since we're just drawing a triangle, let's grab the shader code from the [pipeline tutorial](https://sotrh.github.io/beginner/tutorial3-pipeline/#writing-the-shaders).
+Now that we have something to draw to, let's make something to draw. Since we're just drawing a triangle, let's grab the shader code from the [pipeline tutorial](./tutorial3-pipeline-bdec48cb25.md#writing-the-shaders).
 
 ```
 // shader.vert

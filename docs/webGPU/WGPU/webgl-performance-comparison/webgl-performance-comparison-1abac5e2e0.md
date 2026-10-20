@@ -158,7 +158,7 @@ The consequence of not using the preferred format is that on some systems (for C
 
 ### Use equivalent depth/stencil settings
 
-WebGL contexts are created with a depth buffer but no stencil buffer by default, controlled using the `depth` and `stencil` booleans during context creation. WebGPU does not automatically handle creation of depth/stencil textures for you, but instead requires you to create one manually and provide it to the [`GPUDepthStencilAttachment`](https://gpuweb.github.io/gpuweb/#depth-stencil-attachments) when beginning a render pass.
+WebGL contexts are created with a depth buffer but no stencil buffer by default, controlled using the `depth` and `stencil` booleans during context creation. WebGPU does not automatically handle creation of depth/stencil textures for you, but instead requires you to create one manually and provide it to the [`GPUDepthStencilAttachment`](../gpuweb-spec/gpuweb-spec.md#depth-stencil-attachments) when beginning a render pass.
 
 Whether or not your application needs a depth or stencil buffer is app-specific, but if your app doesn’t require them ensure that you explicitly set `depth` and/or `stencil` to false when creating the WebGL context.
 
@@ -176,7 +176,7 @@ Conversely, if a depth/stencil buffer is used in WebGL ensure that you are passi
 
 Unfortunately the [WebGL spec is unclear on exactly what format of depth/stencil buffer will be allocated](https://registry.khronos.org/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES), it merely says that any depth buffer will be at least 16 bits and any stencil buffer will be at least 8 bits. You can query the exact precision by calling `gl.getParameter(gl.DEPTH_BITS)` and `gl.getParameter(gl.STENCIL_BITS)`. In Chrome, at least, this is very likely to be a  [`GL_DEPTH24_STENCIL8_OES`](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/graphics/gpu/drawing_buffer.cc;drc=8ee9326b165ffd2d2575df34b054b435f0253871;l=1320) renderbuffer (even if stencil wasn’t explicitly requested, as a compatibility workaround.)
 
-The equivalent [WebGPU depth/stencil format](https://gpuweb.github.io/gpuweb/#depth-formats) would be a `'depth24plus-stencil8'` texture, though you can use a `'depth24plus'` texture if no stencil is required and `'stencil8'` if no depth is required.
+The equivalent [WebGPU depth/stencil format](../gpuweb-spec/gpuweb-spec.md#depth-formats) would be a `'depth24plus-stencil8'` texture, though you can use a `'depth24plus'` texture if no stencil is required and `'stencil8'` if no depth is required.
 
 Regardless of the format used, don’t enable depth or stencil operations in your WebGPU render passes if the WebGL context does not explicitly enable the same.
 
@@ -184,7 +184,7 @@ Regardless of the format used, don’t enable depth or stencil operations in you
 
 ### Alpha Blending
 
-Both WebGL and WebGPU have the option of specifying that the canvas be alpha-blended with the rest of the page, which can have some performance implications. The defaults for each API are different, though. In WebGPU the default behavior, specified through the `alphaMode` [canvas configuration option](https://gpuweb.github.io/gpuweb/#canvas-configuration), is `'opaque'`, which does no blending with the page but *might* incur an extra step to clear the alpha channel on some platforms. In WebGL the default behavior is to do premultiplied alpha blending with the page, which is specified through a combination of the `alpha` and `premultiplied` booleans during context creation.
+Both WebGL and WebGPU have the option of specifying that the canvas be alpha-blended with the rest of the page, which can have some performance implications. The defaults for each API are different, though. In WebGPU the default behavior, specified through the `alphaMode` [canvas configuration option](../gpuweb-spec/gpuweb-spec.md#canvas-configuration), is `'opaque'`, which does no blending with the page but *might* incur an extra step to clear the alpha channel on some platforms. In WebGL the default behavior is to do premultiplied alpha blending with the page, which is specified through a combination of the `alpha` and `premultiplied` booleans during context creation.
 
 Whether you use alpha blending for the canvas or not is up to your application, but it should be explicitly stated for both APIs to ensure equivalent workloads.
 
@@ -234,7 +234,7 @@ Do not use `{ alpha: true, premultiplied: false }` with WebGL when doing perform
 
 The `preserveDrawingBuffer` option for WebGL contexts does not have an equivalent mode in WebGPU, and thus should be avoided when doing performance comparisons. It defaults to `false` so as long as you avoid setting it or explicitly set it to `false` you’re fine.
 
-If `preserveDrawingBuffer`-like behavior is required for your app to perform correctly it must be emulated in WebGPU by rendering to an intermediate color target without clearing each frame. (Use `loadOp: 'load'` in the render pass [GPURenderPassColorAttachments](https://gpuweb.github.io/gpuweb/#color-attachments)) This texture then need to be manually copied to the canvas’ current texture each frame.
+If `preserveDrawingBuffer`-like behavior is required for your app to perform correctly it must be emulated in WebGPU by rendering to an intermediate color target without clearing each frame. (Use `loadOp: 'load'` in the render pass [GPURenderPassColorAttachments](../gpuweb-spec/gpuweb-spec.md#color-attachments)) This texture then need to be manually copied to the canvas’ current texture each frame.
 
 <a id="match-resolutions"></a>
 

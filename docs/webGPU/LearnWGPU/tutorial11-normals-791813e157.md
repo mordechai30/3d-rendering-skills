@@ -8,7 +8,7 @@ Source: [https://sotrh.github.io/learn-wgpu/intermediate/tutorial11-normals/](<h
 
 With just lighting, our scene is already looking pretty good. Still, our models are still overly smooth. This is understandable because we are using a very simple model. If we were using a texture that was supposed to be smooth, this wouldn't be a problem, but our brick texture is supposed to be rougher. We could solve this by adding more geometry, but that would slow our scene down, and it would be hard to know where to add new polygons. This is where normal mapping comes in.
 
-Remember when we experimented with storing instance data in a texture in [the instancing tutorial](https://sotrh.github.io/beginner/tutorial7-instancing/#a-different-way-textures)? A normal map is doing just that with normal data! We'll use the normals in the normal map in our lighting calculation in addition to the vertex normal.
+Remember when we experimented with storing instance data in a texture in [the instancing tutorial](./tutorial7-instancing-bad6afe612.md#a-different-way-textures)? A normal map is doing just that with normal data! We'll use the normals in the normal map in our lighting calculation in addition to the vertex normal.
 
 The brick texture I found came with a normal map. Let's take a look at it!
 
@@ -171,9 +171,9 @@ Parts of the scene are dark when they should be lit up, and vice versa.
 
 ## [Tangent Space to World Space](#tangent-space-to-world-space)
 
-I mentioned briefly in the [lighting tutorial](https://sotrh.github.io/intermediate/tutorial10-lighting/#the-normal-matrix) that we were doing our lighting calculation in "world space". This meant that the entire scene was oriented with respect to the *world's* coordinate system. When we pull the normal data from our normal texture, all the normals are in what's known as pointing roughly in the positive z direction. That means that our lighting calculation thinks all of the surfaces of our models are facing in roughly the same direction. This is referred to as `tangent space`.
+I mentioned briefly in the [lighting tutorial](./tutorial10-lighting-f0ddc69539.md#the-normal-matrix) that we were doing our lighting calculation in "world space". This meant that the entire scene was oriented with respect to the *world's* coordinate system. When we pull the normal data from our normal texture, all the normals are in what's known as pointing roughly in the positive z direction. That means that our lighting calculation thinks all of the surfaces of our models are facing in roughly the same direction. This is referred to as `tangent space`.
 
-If we remember the [lighting-tutorial](https://sotrh.github.io/intermediate/tutorial10-lighting/#), we used the vertex normal to indicate the direction of the surface. It turns out we can use that to transform our normals from `tangent space` into `world space`. In order to do that, we need to draw from the depths of linear algebra.
+If we remember the [lighting-tutorial](./tutorial10-lighting-f0ddc69539.md), we used the vertex normal to indicate the direction of the surface. It turns out we can use that to transform our normals from `tangent space` into `world space`. In order to do that, we need to draw from the depths of linear algebra.
 
 We can create a matrix that represents a coordinate system using three vectors that are perpendicular (or orthonormal) to each other. Basically, we define the x, y, and z axes of our coordinate system.
 

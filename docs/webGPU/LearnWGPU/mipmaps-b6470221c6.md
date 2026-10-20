@@ -365,7 +365,7 @@ Note
 
 You may have noticed that when we created the render pipeline we used the texture format `RgbaUnorm`, if we wanted to support a different format we'd need to create a separate pipeline to render to that format. All of the textures in this guide are either `RgbaUnorm` or `RgbaUnormSrgb`, so I only added support for the one.
 
-It's important that you pick a texture format that you can render to, as this method will not work otherwise. You can check out the [WebGPU specification](https://www.w3.org/TR/webgpu/#renderable) for how to tell if a format is renderable or not.
+It's important that you pick a texture format that you can render to, as this method will not work otherwise. You can check out the [WebGPU specification](../webgpu_spec/webgpu-5f71975aec.md#renderable) for how to tell if a format is renderable or not.
 
 <a id="generating-mipmaps-with-a-compute-shader"></a>
 

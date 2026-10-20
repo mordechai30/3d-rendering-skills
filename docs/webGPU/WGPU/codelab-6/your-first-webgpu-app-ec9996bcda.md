@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [7. Manage cell state](https://codelabs.developers.google.com/your-first-webgpu-app#6)
+## [7. Manage cell state](./your-first-webgpu-app-ec9996bcda.md)
 
 Next, you need to control which cells on the grid render, based on some state that's stored on the GPU. This is important for the final simulation!
 

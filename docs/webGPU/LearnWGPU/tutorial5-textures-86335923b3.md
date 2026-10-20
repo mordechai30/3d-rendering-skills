@@ -155,7 +155,7 @@ encoder.copy_buffer_to_texture(
 queue.submit(std::iter::once(encoder.finish()));
 ```
 
-The `bytes_per_row` field needs some consideration. This value needs to be a multiple of 256. Check out [the gif tutorial](https://sotrh.github.io/learn-wgpu/showcase/gifs/#how-do-we-make-the-frames) for more details.
+The `bytes_per_row` field needs some consideration. This value needs to be a multiple of 256. Check out [the gif tutorial](./gifs-455ebfbb09.md#how-do-we-make-the-frames) for more details.
 
 <a id="textureviews-and-samplers"></a>
 
@@ -318,7 +318,7 @@ render_pass.draw_indexed(0..self.num_indices, 0, 0..1);
 
 ## [PipelineLayout](#pipelinelayout)
 
-Remember the `PipelineLayout` we created back in [the pipeline section](https://sotrh.github.io/learn-wgpu/beginner/tutorial3-pipeline#how-do-we-use-the-shaders)? Now, we finally get to use it! The `PipelineLayout` contains a list of `BindGroupLayout`s that the pipeline can use. Modify `render_pipeline_layout` to use our `texture_bind_group_layout`.
+Remember the `PipelineLayout` we created back in [the pipeline section](./tutorial3-pipeline-bdec48cb25.md#how-do-we-use-the-shaders)? Now, we finally get to use it! The `PipelineLayout` contains a list of `BindGroupLayout`s that the pipeline can use. Modify `render_pipeline_layout` to use our `texture_bind_group_layout`.
 
 ```
 async fn new(...) {
@@ -438,7 +438,7 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
 }
 ```
 
-The variables `t_diffuse` and `s_diffuse` are what's known as uniforms. We'll go over uniforms more in the [cameras section](https://sotrh.github.io/beginner/tutorial6-uniforms/). For now, all we need to know is that `group()` corresponds to the 1st parameter in `set_bind_group()` and `binding()` relates to the `binding` specified when we created the `BindGroupLayout` and `BindGroup`.
+The variables `t_diffuse` and `s_diffuse` are what's known as uniforms. We'll go over uniforms more in the [cameras section](./tutorial6-uniforms-f9c2ae6e20.md). For now, all we need to know is that `group()` corresponds to the 1st parameter in `set_bind_group()` and `binding()` relates to the `binding` specified when we created the `BindGroupLayout` and `BindGroup`.
 
 <a id="the-results"></a>
 

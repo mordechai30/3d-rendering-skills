@@ -21,7 +21,7 @@ function webGLTextureFromImageUrl(gl, url, loadedCallback) {
   imgElement.src = url;
 }
 ```
-But if you go searching through the [WebGPU spec](https://gpuweb.github.io/gpuweb/), you’ll notice that loading textures from an images is a little more indirect and there isn’t anything about how to generate mipmaps. So how exactly do we load images as textures with WebGPU, and preferably how do we do it as efficiently as possible? That’s what this doc is here to tell you!
+But if you go searching through the [WebGPU spec](../gpuweb-spec/gpuweb-spec.md), you’ll notice that loading textures from an images is a little more indirect and there isn’t anything about how to generate mipmaps. So how exactly do we load images as textures with WebGPU, and preferably how do we do it as efficiently as possible? That’s what this doc is here to tell you!
 
 ## Prefer compressed formats when possible!
 
@@ -56,7 +56,7 @@ So, you have an image in one of the above formats, how do you make a WebGPU text
 
 While it can accept an `HTMLImageElement` directly, you can frequently get better results by loading as an [`ImageBitmap`](https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmap) instead. This can help with the performance of your page, because creating an `ImageBitmap` causes the image data to be decoded into a GPU-friendly format, and it does so off the main thread.
 
-Once you have an `ImageBitmap`, you can use it to set the contents of a WebGPU texture through the [`device.queue.copyExternalImageToTexture()`](https://gpuweb.github.io/gpuweb/#dom-gpuqueue-copyexternalimagetotexture) method.
+Once you have an `ImageBitmap`, you can use it to set the contents of a WebGPU texture through the [`device.queue.copyExternalImageToTexture()`](../gpuweb-spec/gpuweb-spec.md#dom-gpuqueue-copyexternalimagetotexture) method.
 
 With that in mind, if you are starting with a URL of the image that you want to load, the best way to get an `ImageBitmap` is not actually to use an `HTMLImageElement` to load the image! Instead, it’s more efficient to use the [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API to download the image as a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob)”. `Blob`s are one of the options you can pass to [`createImageBitmap()`](https://developer.mozilla.org/en-US/docs/Web/API/createImageBitmap), which makes our replacement for the code above very straightforward:
 
@@ -145,7 +145,7 @@ async function webGPUTextureFromGLTFImage(gpuDevice, gltfJson, imageIndex) {
 
 Another common place you may want to pull texture contents from is a Canvas (either an `HTMLCanvasElement` or `OffscreenCanvas`). Using the contents of a `2d` canvas as a texture can be a great way to generate textures programmatically or render text, for example.
 
-The [`GPUImageCopyExternalImage dictionary`](https://gpuweb.github.io/gpuweb/#dictdef-gpuimagecopyexternalimage) passed into `copyExternalImageToTexture()` can accept an `HTMLCanvasElement` or `OffscreenCanvas` directly, just like `ImageBitmap` and `HTMLImageElement`, which allows the content of those canvases to be copied into the texture without the need to wait for `createImageBitmap()` to complete. In fact, we can use the `webGPUTextureFromImageBitmapOrCanvas()` we defined above completely unchanged!
+The [`GPUImageCopyExternalImage dictionary`](../gpuweb-spec/gpuweb-spec.md#dictdef-gpuimagecopyexternalimage) passed into `copyExternalImageToTexture()` can accept an `HTMLCanvasElement` or `OffscreenCanvas` directly, just like `ImageBitmap` and `HTMLImageElement`, which allows the content of those canvases to be copied into the texture without the need to wait for `createImageBitmap()` to complete. In fact, we can use the `webGPUTextureFromImageBitmapOrCanvas()` we defined above completely unchanged!
 
 ```
 // Note: Unlike the other methods above this call doesn't need to be async.
@@ -158,7 +158,7 @@ The browser can take a fast path copying content from the canvas because it almo
 
 ## Creating a texture from an `HTMLVideoElement` (`<video>` tag);
 
-One final common source of textures is a video tag. As with Canvases, you *can* pass a `<video>` element to `createImageBitmap()` and populate a texture with the resulting `ImageBitmap`. And in some cases, such as if you only want to capture a single frame of the video, it’s your best option. Given that display video as a texture is such a common case, however, and by its nature requires frequent updating, a fast path specifically for video was added to WebGPU in the form of the [`device.importExternalTexture()`](https://gpuweb.github.io/gpuweb/#dom-gpudevice-importexternaltexture) method.
+One final common source of textures is a video tag. As with Canvases, you *can* pass a `<video>` element to `createImageBitmap()` and populate a texture with the resulting `ImageBitmap`. And in some cases, such as if you only want to capture a single frame of the video, it’s your best option. Given that display video as a texture is such a common case, however, and by its nature requires frequent updating, a fast path specifically for video was added to WebGPU in the form of the [`device.importExternalTexture()`](../gpuweb-spec/gpuweb-spec.md#dom-gpudevice-importexternaltexture) method.
 
 ```
 // This one is so simple it doesn't even warrant a helper function!

@@ -27,7 +27,7 @@ Okay, fine. So you probably want a few more details than that.
 
 ## What is an indirect draw?
 
-WebGPU includes the ability to execute “indirect commands” such as drawing and compute dispatches. Executed with the [`drawIndirect()`](https://gpuweb.github.io/gpuweb/#dom-gpurendercommandsmixin-drawindirect), [`drawIndexedIndirect()`](https://gpuweb.github.io/gpuweb/#dom-gpurendercommandsmixin-drawindexedindirect), and [`dispatchWorkgroupsIndirect()`](https://gpuweb.github.io/gpuweb/#dom-gpucomputepassencoder-dispatchworkgroupsindirect) commands, these operate exactly like the non-indirect versions of these methods with the critical difference that the arguments for the call are read from a `GPUBuffer` instead of being passed directly.
+WebGPU includes the ability to execute “indirect commands” such as drawing and compute dispatches. Executed with the [`drawIndirect()`](../gpuweb-spec/gpuweb-spec.md#dom-gpurendercommandsmixin-drawindirect), [`drawIndexedIndirect()`](../gpuweb-spec/gpuweb-spec.md#dom-gpurendercommandsmixin-drawindexedindirect), and [`dispatchWorkgroupsIndirect()`](../gpuweb-spec/gpuweb-spec.md#dom-gpucomputepassencoder-dispatchworkgroupsindirect) commands, these operate exactly like the non-indirect versions of these methods with the critical difference that the arguments for the call are read from a `GPUBuffer` instead of being passed directly.
 
 So this draw call:
 
@@ -52,7 +52,7 @@ device.queue.writeBuffer(drawBuffer, 0, drawArgs);
 renderPass.drawIndirect(drawBuffer, 0 /* drawBuffer Offset */);
 ```
 
-The reason that this is beneficial is because it allows the GPU to define work that needs to be done in a shader rather than explicitly communicating it from the CPU. An example of this in action is described in my [Render Bundle best practices doc](https://toji.dev/webgpu-best-practices/render-bundles#indirect-draws), which provides an example of using indirect draws to perform frustum culling in a compute shader without any CPU readback.
+The reason that this is beneficial is because it allows the GPU to define work that needs to be done in a shader rather than explicitly communicating it from the CPU. An example of this in action is described in my [Render Bundle best practices doc](../render-bundles/render-bundles-e4077fccb5.md#indirect-draws), which provides an example of using indirect draws to perform frustum culling in a compute shader without any CPU readback.
 
 <a id="why-does-the-buffer-its-in-matter"></a>
 
@@ -68,7 +68,7 @@ On devices that use our Vulkan backend, like Android, Chrome is able to rely on 
 
 On devices using our Metal backend we opted to use [“vertex pulling”](https://www.yosoygames.com.ar/wp/2018/03/vertex-formats-part-2-fetch-vs-pull/) for all of our vertex attributes, and thus can do a bounds check at the time the vertex data is fetched.
 
-On our D3D12 backend, however, we had the need to do some manual validation of the index count *and* do some data copies for each indirect draw in order to ensure that the WGSL shaders receive correct values for the [`vertex_index`](https://gpuweb.github.io/gpuweb/wgsl/#vertex-index-builtin-value) and [`instance_index`](https://gpuweb.github.io/gpuweb/wgsl/#instance-index-builtin-value) builtins. To handle these operations efficiently we inject compute dispatches that perform the necessary validations and copies at the beginning of render passes which make use of indirect draw calls.
+On our D3D12 backend, however, we had the need to do some manual validation of the index count *and* do some data copies for each indirect draw in order to ensure that the WGSL shaders receive correct values for the [`vertex_index`](../../WGSL/WGSL-95be865bb5.md#vertex-index-builtin-value) and [`instance_index`](../../WGSL/WGSL-95be865bb5.md#instance-index-builtin-value) builtins. To handle these operations efficiently we inject compute dispatches that perform the necessary validations and copies at the beginning of render passes which make use of indirect draw calls.
 
 As an optimization we try to batch these validations into as few dispatches as possible. The criteria for whether or not a particular indirect draw can be batched comes down to three things:
 

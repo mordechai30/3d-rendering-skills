@@ -1,6 +1,6 @@
 # Your first WebGPU app
 
-## [4. Draw geometry](https://codelabs.developers.google.com/your-first-webgpu-app#3)
+## [4. Draw geometry](./your-first-webgpu-app-d6db978c09.md)
 
 By the end of this section, your app will draw some simple geometry to the canvas: a colored square. Be warned now that it'll seem like a lot of work for such simple output, but that's because WebGPU is designed to render *lots* of geometry very efficiently. A side effect of this efficiency is that doing relatively simple things might feel unusually difficult, but that's the expectation if you're turning to an API like WebGPU—you want to do something a little more complex.
 
@@ -97,9 +97,9 @@ Although the diagram shows a separation between the two triangles for clarity, t
 
 The GPU cannot draw vertices with data from a JavaScript array. GPUs frequently have their own memory that is highly optimized for rendering, and so any data you want the GPU to use while it draws needs to be placed in that memory.
 
-For a lot of values, including vertex data, the GPU-side memory is managed through [`GPUBuffer`](https://gpuweb.github.io/gpuweb/#gpubuffer) objects. A buffer is a block of memory that's easily accessible to the GPU and flagged for certain purposes. You can think of it a little bit like a GPU-visible TypedArray.
+For a lot of values, including vertex data, the GPU-side memory is managed through [`GPUBuffer`](../gpuweb-spec/gpuweb-spec.md#gpubuffer) objects. A buffer is a block of memory that's easily accessible to the GPU and flagged for certain purposes. You can think of it a little bit like a GPU-visible TypedArray.
 
-1. To create a buffer to hold your vertices, add the following call to [`device.createBuffer()`](https://gpuweb.github.io/gpuweb/#dom-gpudevice-createbuffer) after the definition of your `vertices` array.
+1. To create a buffer to hold your vertices, add the following call to [`device.createBuffer()`](../gpuweb-spec/gpuweb-spec.md#dom-gpudevice-createbuffer) after the definition of your `vertices` array.
 
 <a id="index.html_14"></a>
 
@@ -119,11 +119,11 @@ Next, give a *size* for the buffer in bytes. You need a buffer with 48 bytes, wh
 
 **Note:** Get comfortable with this kind of byte-size math. Working with a GPU requires a fair amount of it!
 
-Finally, you need to specify the *usage* of the buffer. This is one or more of the [`GPUBufferUsage`](https://gpuweb.github.io/gpuweb/#buffer-usage) flags, with multiple flags being combined with the `|` ( [bitwise OR](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_OR)) operator. In this case, you specify that you want the buffer to be used for vertex data (`GPUBufferUsage.VERTEX`) and that you also want to be able to copy data into it (`GPUBufferUsage.COPY_DST`).
+Finally, you need to specify the *usage* of the buffer. This is one or more of the [`GPUBufferUsage`](../gpuweb-spec/gpuweb-spec.md#buffer-usage) flags, with multiple flags being combined with the `|` ( [bitwise OR](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_OR)) operator. In this case, you specify that you want the buffer to be used for vertex data (`GPUBufferUsage.VERTEX`) and that you also want to be able to copy data into it (`GPUBufferUsage.COPY_DST`).
 
 The buffer object that gets returned to you is opaque—you can't (easily) inspect the data it holds. Additionally, most of its attributes are immutable—you can't resize a `GPUBuffer` after it's been created, nor can you change the usage flags. What you can change are the contents of its memory.
 
-When the buffer is initially created, the memory it contains will be initialized to zero. There are several ways to change its contents, but the easiest is to call [`device.queue.writeBuffer()`](https://gpuweb.github.io/gpuweb/#dom-gpuqueue-writebuffer) with a TypedArray that you want to copy in.
+When the buffer is initially created, the memory it contains will be initialized to zero. There are several ways to change its contents, but the easiest is to call [`device.queue.writeBuffer()`](../gpuweb-spec/gpuweb-spec.md#dom-gpuqueue-writebuffer) with a TypedArray that you want to copy in.
 
 2. To copy the vertex data into the buffer's memory, add the following code:
 
@@ -143,7 +143,7 @@ device.queue.writeBuffer(vertexBuffer, /*bufferOffset=*/0, vertices);
 
 Now you have a buffer with vertex data in it, but as far as the GPU is concerned it's just a blob of bytes. You need to supply a little bit more information if you're going to draw anything with it. You need to be able to tell WebGPU more about the structure of the vertex data.
 
-- Define the vertex data structure with a [`GPUVertexBufferLayout`](https://gpuweb.github.io/gpuweb/#dictdef-gpuvertexbufferlayout) dictionary:
+- Define the vertex data structure with a [`GPUVertexBufferLayout`](../gpuweb-spec/gpuweb-spec.md#dictdef-gpuvertexbufferlayout) dictionary:
 
 <a id="index.html_16"></a>
 
@@ -166,7 +166,7 @@ The first thing you give is the *`arrayStride`*. This is the number of bytes the
 
 Next is the *`attributes`* property, which is an array. Attributes are the individual pieces of information encoded into each vertex. Your vertices only contain one attribute (the vertex position), but more advanced use cases frequently have vertices with multiple attributes in them like the color of a vertex or the direction the geometry surface is pointing. That's out of scope for this codelab, though.
 
-In your single attribute, you first define the *`format`* of the data. This comes from a list of [`GPUVertexFormat`](https://gpuweb.github.io/gpuweb/#enumdef-gpuvertexformat) types that describe each type of vertex data that the GPU can understand. Your vertices have two 32-bit floats each, so you use the format `float32x2`. If your vertex data is instead made up of four [16-bit unsigned integers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array) each, for example, you'd use `uint16x4` instead. See the pattern?
+In your single attribute, you first define the *`format`* of the data. This comes from a list of [`GPUVertexFormat`](../gpuweb-spec/gpuweb-spec.md#enumdef-gpuvertexformat) types that describe each type of vertex data that the GPU can understand. Your vertices have two 32-bit floats each, so you use the format `float32x2`. If your vertex data is instead made up of four [16-bit unsigned integers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array) each, for example, you'd use `uint16x4` instead. See the pattern?
 
 Next, the *`offset`* describes how many bytes into the vertex this particular attribute starts. You really only have to worry about this if your buffer has more than one attribute in it, which won't come up during this codelab.
 
@@ -201,7 +201,7 @@ const cellShaderModule = device.createShaderModule({
 });
 ```
 
-To create the shaders you call `device.createShaderModule()`, to which you provide an optional *`label`* and WGSL *`code`* as a string. (Note that you use backticks here to allow multi-line strings!) Once you add some valid WGSL code, the function returns a [`GPUShaderModule`](https://gpuweb.github.io/gpuweb/#gpushadermodule) object with the compiled results.
+To create the shaders you call `device.createShaderModule()`, to which you provide an optional *`label`* and WGSL *`code`* as a string. (Note that you use backticks here to allow multi-line strings!) Once you add some valid WGSL code, the function returns a [`GPUShaderModule`](../gpuweb-spec/gpuweb-spec.md#gpushadermodule) object with the compiled results.
 
 **Note:** WGSL shaders have a reasonably strict compiler in order to enforce things like strongly typed values and eliminate undefined behavior, which is important for cross-platform compatibility. As a result, you'll definitely run into shader compiler errors as you build your own WebGPU apps! Don't stress about it too much, though. Like the rest of WebGPU, the WGSL compiler prints out very detailed messages to the developer console when things go wrong.
 
@@ -392,7 +392,7 @@ const cellShaderModule = device.createShaderModule({
 
 ## **Create a render pipeline**
 
-A shader module can't be used for rendering on its own. Instead, you have to use it as part of a [`GPURenderPipeline`](https://gpuweb.github.io/gpuweb/#gpurenderpipeline), created by calling [device.createRenderPipeline()](https://gpuweb.github.io/gpuweb/#dom-gpudevice-createrenderpipeline). The render pipeline controls *how* geometry is drawn, including things like which shaders are used, how to interpret data in vertex buffers, which kind of geometry should be rendered (lines, points, triangles...), and more!
+A shader module can't be used for rendering on its own. Instead, you have to use it as part of a [`GPURenderPipeline`](../gpuweb-spec/gpuweb-spec.md#gpurenderpipeline), created by calling [device.createRenderPipeline()](../gpuweb-spec/gpuweb-spec.md#dom-gpudevice-createrenderpipeline). The render pipeline controls *how* geometry is drawn, including things like which shaders are used, how to interpret data in vertex buffers, which kind of geometry should be rendered (lines, points, triangles...), and more!
 
 The render pipeline is the most complex object in the entire API, but don't worry! Most of the values you can pass to it are optional, and you only need to provide a few to start.
 
@@ -457,11 +457,11 @@ pass.draw(vertices.length / 2); // 6 vertices
 // before pass.end()
 ```
 
-This supplies WebGPU with all the information necessary to draw your square. First, you use [**`setPipeline()`**](https://gpuweb.github.io/gpuweb/#dom-gpurendercommandsmixin-setpipeline) to indicate which pipeline should be used to draw with. This includes the shaders that are used, the layout of the vertex data, and other relevant state data.
+This supplies WebGPU with all the information necessary to draw your square. First, you use [**`setPipeline()`**](../gpuweb-spec/gpuweb-spec.md#dom-gpurendercommandsmixin-setpipeline) to indicate which pipeline should be used to draw with. This includes the shaders that are used, the layout of the vertex data, and other relevant state data.
 
-Next, you call [**`setVertexBuffer()`**](https://gpuweb.github.io/gpuweb/#dom-gpurendercommandsmixin-setvertexbuffer) with the buffer containing the vertices for your square. You call it with `0` because this buffer corresponds to the 0th element in the current pipeline's `vertex.buffers` definition.
+Next, you call [**`setVertexBuffer()`**](../gpuweb-spec/gpuweb-spec.md#dom-gpurendercommandsmixin-setvertexbuffer) with the buffer containing the vertices for your square. You call it with `0` because this buffer corresponds to the 0th element in the current pipeline's `vertex.buffers` definition.
 
-And last, you make the [**`draw()`**](https://gpuweb.github.io/gpuweb/#dom-gpurendercommandsmixin-draw) call, which seems strangely simple after all the setup that's come before. The only thing you need to pass in is the number of vertices that it should render, which it pulls from the currently set vertex buffers and interprets with the currently set pipeline. You could just hard-code it to `6`, but calculating it from the vertices array (12 floats / 2 coordinates per vertex == 6 vertices) means that if you ever decided to replace the square with, for example, a circle, there's less to update by hand.
+And last, you make the [**`draw()`**](../gpuweb-spec/gpuweb-spec.md#dom-gpurendercommandsmixin-draw) call, which seems strangely simple after all the setup that's come before. The only thing you need to pass in is the number of vertices that it should render, which it pulls from the currently set vertex buffers and interprets with the currently set pipeline. You could just hard-code it to `6`, but calculating it from the vertices array (12 floats / 2 coordinates per vertex == 6 vertices) means that if you ever decided to replace the square with, for example, a circle, there's less to update by hand.
 
 2. Refresh your screen and (finally) see the results of all your hard work: one big colored square.
 
