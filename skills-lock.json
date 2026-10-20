@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "3d-graphics": {
+      "source": "samhvw8/dot-claude",
+      "sourceType": "github",
+      "skillPath": "skills/3d-graphics/SKILL.md",
+      "computedHash": "19ff71d8671dffccdcd8216d86f3ab6b6260ff2addd190565512da288c552273"
+    },
     "camera-systems": {
       "source": "gamedev-skills/awesome-gamedev-agent-skills",
       "sourceType": "github",
@@ -42,6 +48,18 @@
       "sourceType": "github",
       "skillPath": "skills/threejs-animation/SKILL.md",
       "computedHash": "fc7bf12130f2996a2ab79c17b71381cc5f72581d4b46cc9663927c83b70ffe0e"
+    },
+    "webgl-components": {
+      "source": "flornkm/skills",
+      "sourceType": "github",
+      "skillPath": "skills/webgl-components/SKILL.md",
+      "computedHash": "5fae08b79dcfa35f0d5e9d79971c549443c1f7e2023353dd352fc8001f4b4680"
+    },
+    "webgpu-impl-instancing-indirect": {
+      "source": "impertio-studio/webgpu-claude-skill-package",
+      "sourceType": "github",
+      "skillPath": "skills/source/webgpu-impl/webgpu-impl-instancing-indirect/SKILL.md",
+      "computedHash": "e36f429f40e1f5e273e2e23b5c886ab6fccb5b5f14efa587637c3577dbbdb6ee"
     }
   }
 }
