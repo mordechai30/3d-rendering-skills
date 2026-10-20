@@ -1,0 +1,65 @@
+Source: [https://learn.microsoft.com/en-us/windows/win32/api/D3D11/ns-d3d11-d3d11_feature_data_doubles](<https://learn.microsoft.com/en-us/windows/win32/api/D3D11/ns-d3d11-d3d11_feature_data_doubles>)
+
+# D3D11_FEATURE_DATA_DOUBLES structure
+
+
+## -description
+
+Describes double data type support in the current graphics driver.
+
+## -struct-fields
+
+### -field DoublePrecisionFloatShaderOps
+
+Type: <b><a href="/windows/desktop/WinProg/windows-data-types">BOOL</a></b>
+
+Specifies whether <a href="/windows/desktop/direct3dhlsl/dx-graphics-hlsl-scalar">double</a> types are allowed. If <b>TRUE</b>, <a href="/windows/desktop/direct3dhlsl/dx-graphics-hlsl-scalar">double</a> types are allowed; otherwise <b>FALSE</b>. The runtime must set <b>DoublePrecisionFloatShaderOps</b> to  <b>TRUE</b> in order for you to use any <a href="/windows/desktop/direct3dhlsl/dx-graphics-hlsl">HLSL</a> shader that is compiled with a <a href="/windows/desktop/direct3dhlsl/dx-graphics-hlsl-scalar">double</a> type.
+
+## -remarks
+
+If the runtime sets <b>DoublePrecisionFloatShaderOps</b> to  <b>TRUE</b>, the hardware and driver support the following <a href="/windows/desktop/direct3dhlsl/d3d11-graphics-reference-sm5">Shader Model 5</a> instructions:
+
+<ul>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dadd---sm5---asm-">dadd</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dmax--sm5---asm-">dmax</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dmin--sm5---asm-">dmin</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dmul--sm5---asm-">dmul</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/deq--sm5---asm-">deq</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dge--sm5---asm-">dge</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dlt--sm5---asm-">dlt</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dne--sm5---asm-">dne</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dmov--sm5---asm-">dmov</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dmovc--sm5---asm-">dmovc</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/dtof--sm5---asm-">dtof</a>
+</li>
+<li>
+<a href="/windows/desktop/direct3dhlsl/ftod--sm5---asm-">ftod</a>
+</li>
+</ul>
+<div class="alert"><b>Note</b>  If <b>DoublePrecisionFloatShaderOps</b> is <b>TRUE</b>, the hardware and driver do not necessarily support double-precision division.</div>
+<div> </div>
+
+## -see-also
+
+<a href="/windows/desktop/direct3d11/d3d11-graphics-reference-d3d11-core-structures">Core Structures</a>

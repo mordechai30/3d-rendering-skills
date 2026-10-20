@@ -1,0 +1,40 @@
+Source: [https://learn.microsoft.com/en-us/windows/win32/api/D3D11/ne-d3d11-d3d11_blend_op](<https://learn.microsoft.com/en-us/windows/win32/api/D3D11/ne-d3d11-d3d11_blend_op>)
+
+# D3D11_BLEND_OP enumeration
+
+
+## -description
+
+RGB or alpha blending operation.
+
+## -enum-fields
+
+### -field D3D11_BLEND_OP_ADD:1
+
+Add source 1 and source 2.
+
+### -field D3D11_BLEND_OP_SUBTRACT:2
+
+Subtract source 1 from source 2.
+
+### -field D3D11_BLEND_OP_REV_SUBTRACT:3
+
+Subtract source 2 from source 1.
+
+### -field D3D11_BLEND_OP_MIN:4
+
+Find the minimum of source 1 and source 2.
+
+### -field D3D11_BLEND_OP_MAX:5
+
+Find the maximum of source 1 and source 2.
+
+## -remarks
+
+The runtime implements RGB blending and alpha blending separately. Therefore, blend state requires separate blend operations for RGB data and alpha data. These blend operations are specified in a <a href="/windows/desktop/api/d3d11/ns-d3d11-d3d11_blend_desc">blend description</a>. The two sources —source 1 and source 2— are shown in the <a href="/windows/desktop/direct3d11/d3d10-graphics-programming-guide-output-merger-stage">blending block diagram</a>.
+
+Blend state is used by the <a href="/windows/desktop/direct3d11/d3d10-graphics-programming-guide-output-merger-stage">output-merger stage</a> to determine how to blend together two RGB pixel values and two alpha values. The two RGB pixel values and two alpha values are the RGB pixel value and alpha value that the pixel shader outputs and the RGB pixel value and alpha value already in the output render target. The <a href="/windows/desktop/api/d3d11/ne-d3d11-d3d11_blend">blend option</a> controls the data source that the blending stage uses to modulate values for the pixel shader, render target, or both. The <b>blend operation</b> controls how the blending stage mathematically combines these modulated values.
+
+## -see-also
+
+<a href="/windows/desktop/direct3d11/d3d11-graphics-reference-d3d11-core-enums">Core Enumerations</a>
