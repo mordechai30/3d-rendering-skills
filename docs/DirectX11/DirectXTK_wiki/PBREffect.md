@@ -1,0 +1,223 @@
+|[[DirectXTK]]|[[Effects]]|
+|---|---|
+
+**PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
+
+**SkinnedPBREffect** extends ``PBREffect`` to support vertex skinning. The skinned effect does not support velocity buffer generation or GPU instancing.
+
+See also [[PBREffectFactory|EffectFactory]]
+
+**Related tutorials:** [[Physically-based rendering]], [[Multistream rendering and instancing]]
+
+![PBR effect](https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect.png)
+
+```mermaid
+classDiagram
+class IEffect{
+    <<Interface>>
+    +Apply()
+    +GetVertexShaderBytecode()
+}
+class IEffectMatrices{
+    <<Interface>>
+    +SetWorld()
+    +SetView()
+    +SetProjection()
+    +SetMatrices()
+}
+class IEffectLights{
+    <<Interface>>
+    +SetLightEnabled()
+    +SetLightDirection()
+    +SetLightDiffuseColor()
+    +EnableDefaultLighting()
+}
+class PBREffect{
+    +SetAlpha()
+    +SetConstantAlbedo()
+    +SetConstantMetallic()
+    +SetConstantRoughness()
+    +SetAlbedoTexture()
+    +SetNormalTexture()
+    +SetRMATexture()
+    +SetEmissiveTexture()
+    +SetSurfaceTextures()
+    +SetIBLTextures()
+    +SetBiasedVertexNormals()
+    +SetInstancingEnabled()
+    +SetVelocityGeneration()
+    +SetRenderTargetSizeInPixels()
+}
+PBREffect--|> IEffect
+PBREffect--|> IEffectMatrices
+PBREffect--|> IEffectLights
+class IEffectSkinning{
+    <<Interface>>
+    +SetWeightsPerVertex()
+    +SetBoneTransforms()
+    +ResetBoneTransforms()
+}
+class SkinnedPBREffect
+PBREffect <|-- SkinnedPBREffect
+SkinnedPBREffect --|> IEffectSkinning
+```
+
+```cpp
+class DirectX::PBREffect :
+    public DirectX::IEffect,
+    public DirectX::IEffectMatrices,
+    public DirectX::IEffectLights
+```
+
+```cpp
+class DirectX::SkinnedPBREffect :
+    public DirectX::PBREffect,
+    public DirectX::IEffectSkinning
+```
+
+# Header
+```cpp
+#include <Effects.h>
+```
+
+# Initialization
+Construction requires a Direct3D 11 device.
+
+```cpp
+std::unique_ptr<PBREffect> effect;
+effect = std::make_unique<PBREffect>(device);
+```
+
+```cpp
+std::unique_ptr<SkinnedPBREffect> effect;
+effect = std::make_unique<SkinnedPBREffect>(device);
+```
+
+For exception safety, it is recommended you make use of the C++ [RAII](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
+
+# Interfaces
+PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+
+SkinnedPBREffect also supports [[IEffectSkinning]].
+
+Fog settings are not supported by these effects.
+
+# Input layout
+These effects require ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. It does not support per-vertex color.
+
+If instancing is enabled, ``PBREffect`` also requires these vertex elements:
+
+```
+"InstMatrix",  0, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  1, DXGI_FORMAT_R32G32B32A32_FLOAT
+"InstMatrix",  2, DXGI_FORMAT_R32G32B32A32_FLOAT
+```
+
+If skinning is used, the vertex layout requires ``BLENDINDICES`` and ``BLENDWEIGHT``.
+
+# Properties
+
+* **SetAlpha**: Sets the alpha (transparency) of the effect. Defaults to 1 (fully opaque). This value is also used for binning opaque vs. transparent geometry.
+
+* **SetConstantAlbedo**, **SetConstantMetallic**, and **SetConstantRoughness**: Used to set the constant value when not using texturing for the albedo, roughness, and metalness information.
+
+* **SetAlbedoTexture**: Sets the albedo texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference. Can optionally include an alpha channel as well.
+
+* **SetNormalTexture**: Sets the normal texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+> See [[NormalMapEffect|NormalMapEffect#normal-maps]] for more details about the normal map texture.
+
+* **SetRMATexture**: Sets the roughness/metalness/ambient-occlusion (RMA) texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+> The RMA texture uses the [glTF2](https://github.com/KhronosGroup/glTF) standard order: The _metalness_ is in the B channel, _roughness_ in the G channel, and _ambient occlusion_ in the R channel. If there's no ambient occlusion, then the R channel should be set to all 1.
+
+* **SetEmissiveTexture**: Associates an emissive texture with the effect. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+* **SetSurfaceTextures**: Associates a albedo texture, normal texture, and roughness/metalness/ambient-occlusion (RMA) texture with the effect in one method. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
+
+* **SetIBLTextures**: Associates a radiance and irradiance texture with the effect. The number of miplevels in the radiance texture is also required as this is used to compute roughness. This uses the sampler in slot 1. Can be set to nullptr to remove a reference.
+
+> The _radiance_ and _irradiance_ map are special cubemaps. They are generated by tools like [AMD Cubemapgen](https://seblagarde.wordpress.com/2012/06/10/amd-cubemapgen-for-physically-based-rendering/), [cmft](https://github.com/dariomanesku/cmft)/[cmftStudio](https://github.com/dariomanesku/cmftStudio), [IBLBaker](https://github.com/derkreature/IBLBaker), and [Lys](https://www.knaldtech.com/lys/).
+
+* **SetBiasedVertexNormals**: Enables support for compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``.
+
+* **SetInstancingEnabled**: Enables support for per-vertex instancing by adding a per-vertex ``XMFLOAT3X4`` transform matrix.
+
+* **SetVelocityGeneration**: Enables the generation of a velocity buffer. If set to true, then both a Render Target 0 and Render Target 1 must be bound for rendering.
+
+> ``PBREffect`` does *not* support both instancing and velocity generation at the same time.
+
+* **SetRenderTargetSizeInPixels**: Used to set the pixel size of the render target when generating velocity buffers.
+
+# Exceptions
+
+The ctor can throw ``std::bad_alloc`` or ``std::runtime_error`` if the Direct3D feature level is lower than 10.0.
+
+The methods ``SetLightEnabled``, ``SetLightDirection``, ``SetLightDiffuseColor``, ``SetLightSpecularColor``, ``SetWeightsPerVertex``, and ``SetBoneTransforms`` can throw ``std::invalid_argument``.
+
+The ``SetInstancingEnabled`` and ``SetVelocityGeneration`` methods can throw ``std::invalid_argument`` if an attempt to enable instancing with *SkinnedPBREffect* is made.
+
+The other property methods of this implementation do not throw C++ exceptions.
+
+# Remarks
+
+These effects always performs per-pixel lighting. Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls to **SetPerPixelLighting** are ignored.
+
+The lighting modeling for PBR does not make use of an ambient or specular term as these are more directly modeled by the image-based lighting model. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
+
+These effects requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+
+<table border=0>
+ <tr>
+  <td>Albedo (base color) map</td>
+  <td>Normal map</td>
+  <td>Emissive map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_albedo.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_normal.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_emissive.png"></td>
+ <tr>
+</table>
+
+<table border=0>
+ <tr>
+  <td>Metalness (blue)</td>
+  <td>Roughness (green)</td>
+  <td>Ambient Occlusion (red)</td>
+  <td>Roughness/Metalness/Ambient-Occlusion map</td>
+ </tr>
+ <tr>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_metal.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_roughness.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_ao.png"></td>
+  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_orm.png"></td>
+ <tr>
+</table>
+
+# Feature Level Notes
+
+These effects use Shader Model 4.0 so requires Direct3D hardware feature level 10.0 or greater.
+
+> Note this means you can also count on ``DXGI_FORMAT_BC5_UNORM`` texture compression hardware support for your normal maps.
+
+[Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
+
+# Further reading
+[Basic Theory of Physically-Based Rendering](https://marmoset.co/posts/basic-theory-of-physically-based-rendering/)
+
+Burley et al. "Physically-Based Shading at Disney", SIGGRAPH 2012 Course: Practical Physically Based Shading in Film and Game Production. [Slides](https://blog.selfshadow.com/publications/s2012-shading-course/burley/s2012_pbs_disney_brdf_slides_v2.pdf)
+
+Karis. "Real Shading in Unreal Engine 4", SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice. [Slides](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_slides.pdf) [Notes](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
+
+SIGGRAPH Course: [2012](https://blog.selfshadow.com/publications/s2012-shading-course/) [2013](https://blog.selfshadow.com/publications/s2013-shading-course/) [2014](https://blog.selfshadow.com/2014/08/12/physically-based-shading-at-siggraph-2014/) [2015](https://blog.selfshadow.com/publications/s2015-shading-course/) [2016](https://blog.selfshadow.com/publications/s2016-shading-course/) [2017](https://blog.selfshadow.com/publications/s2017-shading-course/) [2020](https://blog.selfshadow.com/publications/s2020-shading-course/)
+
+Pharr, Jakob, and Humphreys, _Physically Based Rendering: From Theory to Implementation_, Morgan Kaufmann, [website](https://pbrt.org/) [code](https://github.com/mmp/pbrt-v3/)
+
+_The Comprehensive PBR Guide_, Allegorithmic [website](https://www.allegorithmic.com/pbr-guide)
+
+Christian Schüler, "Normal Mapping without Precomputed Tangents", *ShaderX 5*, Chapter 2.6, pp. 131 – 140 and [this blog post](https://www.thetenthplanet.de/archives/1180)
+
+[Art Pipeline for glTF](https://www.khronos.org/blog/art-pipeline-for-gltf)
+
+J.M.P. van Waveren and Ignacio Castaño, "Real-Time Normal Map DXT Compression", id Software, February 2008 [PDF](https://developer.download.nvidia.com/whitepapers/2008/real-time-normal-map-dxt-compression.pdf) (note: BC5 is "tangent-space 3Dc")
