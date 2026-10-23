@@ -1,14 +1,13 @@
 ---
 name: directxtk-usage
-description: >-
+description:
   Guide for integrating DirectX Tool Kit for DirectX 11 into new projects and understanding the API surface.
   Use this skill when asked about how to use DirectX Tool Kit, integrate it into a project,
   or get an overview of its classes and functionality.
-license: MIT
-metadata:
-  author: chuckw
-  version: "1.0"
 ---
+
+(Note: instead of `reference/` folder use the symbolic link of `docs/DirectX11/DirectXTK_wiki` of this repository)  
+Delete the line above and this line when skill is installed and the symbolic link is in place.
 
 # DirectX Tool Kit for DirectX 11 — Usage Guide
 
@@ -17,7 +16,7 @@ metadata:
 The *DirectX Tool Kit* (aka DirectXTK) is a collection of helper classes for writing DirectX 11.x code in C++. It is designed to be used as a shared source project, NuGet package, or vcpkg port integrated into your game or graphics application.
 
 - **Repository**: <https://github.com/microsoft/DirectXTK>
-- **Documentation**: <https://github.com/microsoft/DirectXTK/wiki>
+- **Documentation**: [DirectXTK Wiki](reference/Home.md).
 - **NuGet Packages**: `directxtk_desktop_win10`, `directxtk_uwp`
 - **vcpkg Port**: `directxtk`
 
@@ -241,11 +240,11 @@ audioEngine->Update();
 
 ## Getting Started Tutorial
 
-For a full step-by-step walkthrough, see the [Getting Started](https://github.com/microsoft/DirectXTK/wiki/Getting-Started) tutorial on the wiki.
+For a full step-by-step walkthrough, see the [Getting Started](reference/Getting-Started.md)
 
 ## Further Reading
 
-- [DirectXTK Wiki](https://github.com/microsoft/DirectXTK/wiki)
-- [DirectX Tool Kit for Audio](https://github.com/microsoft/DirectXTK/wiki/Audio)
-- [SimpleMath documentation](https://github.com/Microsoft/DirectXTK/wiki/SimpleMath)
+- [DirectXTK Wiki](reference/Home.md)
+- [DirectX Tool Kit for Audio](reference/Audio.md)
+- [SimpleMath documentation](reference/SimpleMath.md)
 - [Project templates](https://github.com/walbourn/directx-vs-templates)
