@@ -1,17 +1,17 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This is a helper for easily and efficiently drawing dynamically generated geometry using Direct3D 11 such as lines or trianges.
 
-> Dynamic submission is a highly effective pattern for drawing procedural geometry, and convenient for debug rendering, but is not nearly as efficient as static buffers which is more suited to traditional meshes where the VBs and IBs do not change every frame. Excessive dynamic submission is a common source of performance problems in apps. Therefore, you should prefer to use [[Model]], [[GeometricPrimitive]], or your own VB/IB over PrimitiveBatch unless you really need the flexibility to regenerate the topology every frame.
+> Dynamic submission is a highly effective pattern for drawing procedural geometry, and convenient for debug rendering, but is not nearly as efficient as static buffers which is more suited to traditional meshes where the VBs and IBs do not change every frame. Excessive dynamic submission is a common source of performance problems in apps. Therefore, you should prefer to use [Model](Model.md), [GeometricPrimitive](GeometricPrimitive.md), or your own VB/IB over PrimitiveBatch unless you really need the flexibility to regenerate the topology every frame.
 
 PrimitiveBatch manages the vertex and index buffers for you, using *DISCARD* and *NO_OVERWRITE* hints to avoid stalling the GPU pipeline. It automatically merges adjacent draw requests, so if you call DrawLine 100 times in a row, only a single GPU draw call will be generated.
 
-PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and primitive topology, then issuing the final draw call. Unlike the higher level [[SpriteBatch]] helper, it does not provide shaders, set the input layout, or set any state objects. PrimitiveBatch is often used in conjunction with [[BasicEffect|Effects]] and the structures from [[VertexTypes]], but it can work with any other shader or vertex formats of your own.
+PrimitiveBatch is responsible for setting the vertex buffer, index buffer, and primitive topology, then issuing the final draw call. Unlike the higher level [SpriteBatch](SpriteBatch.md) helper, it does not provide shaders, set the input layout, or set any state objects. PrimitiveBatch is often used in conjunction with [BasicEffect](Effects.md) and the structures from [VertexTypes](VertexTypes.md), but it can work with any other shader or vertex formats of your own.
 
 > PrimitiveBatch fills the same role as the legacy Direct3D 9 APIs ``DrawPrimitiveUP`` and ``DrawIndexedPrimitiveUP``.
 
-**Related tutorial:** [[Simple rendering]]
+**Related tutorial:** [Simple rendering](Simple-rendering.md)
 
 ```cpp
 template<typename TVertex>
@@ -77,7 +77,7 @@ DX::ThrowIfFailed(
         inputLayout.ReleaseAndGetAddressOf() ) );
 ```
 
-Or use [[CreateInputLayoutFromEffect|DirectXHelpers]] which wraps up this boiler-plate code into a simple template:
+Or use [CreateInputLayoutFromEffect](DirectXHelpers.md) which wraps up this boiler-plate code into a simple template:
 
 ```cpp
 ComPtr<ID3D11InputLayout> inputLayout;
@@ -87,7 +87,7 @@ DX::ThrowIfFailed(
          inputLayout.ReleaseAndGetAddressOf()));
 ```
 
-> Note that we enabled ``SetVertexColorEnabled`` on the [[BasicEffect]] before we created our input layout. This ensures the effect itself selects a shader that actually uses the per vertex color element of ``VertexPositionColor``.
+> Note that we enabled ``SetVertexColorEnabled`` on the [BasicEffect](BasicEffect.md) before we created our input layout. This ensures the effect itself selects a shader that actually uses the per vertex color element of ``VertexPositionColor``.
 
 
 ## Drawing
@@ -131,7 +131,7 @@ Until ``End`` is called on PrimitiveBatch, the various ``Draw`` statements are l
 
 # Applications
 
-Primitive batch is best used for dynamic submission, which is commonly needed for things like drawing debug shapes. See [[DebugDraw]].
+Primitive batch is best used for dynamic submission, which is commonly needed for things like drawing debug shapes. See [DebugDraw](DebugDraw.md).
 
 # Feature Level Notes
 

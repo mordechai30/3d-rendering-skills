@@ -1,6 +1,6 @@
 This provides a helper class for managing <abbr title="Multisample Anti-aliasing">MSAA</abbr> render target/depth-stencil buffers.
 
-[MSAAHelper.h](https://github.com/Microsoft/DirectXTK/wiki/MSAAHelper.h)
+[MSAAHelper.h](MSAAHelper.h)
 
 ```cpp
 class MSAAHelper
@@ -45,7 +45,7 @@ private:
 };
 ```
 
-[MSAAHelper.cpp](https://github.com/Microsoft/DirectXTK/wiki/MSAAHelper.cpp)
+[MSAAHelper.cpp](MSAAHelper.cpp)
 
 ```cpp
 #include "MSAAHelper.h"
@@ -247,7 +247,7 @@ And then add a variable declaration to the private section of your **Game** clas
 std::unique_ptr<DX::MSAAHelper> m_msaaHelper;
 ```
 
-For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, you should create the [[DeviceResources]] instance without a depth buffer (which is non-MSAA) by passing ``DXGI_FORMAT_UNKNOWN`` for the depth-buffer format. In the **Game** constructor modify:
+For MSAA rendering, you typically use a MSAA depth/stencil buffer. Therefore, you should create the [DeviceResources](DeviceResources.md) instance without a depth buffer (which is non-MSAA) by passing ``DXGI_FORMAT_UNKNOWN`` for the depth-buffer format. In the **Game** constructor modify:
 
 ```cpp
     // Depth-buffer managed by MSAAHelper.

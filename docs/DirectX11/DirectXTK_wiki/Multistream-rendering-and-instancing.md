@@ -1,4 +1,4 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson we learn how to use multistream rendering to implement GPU instancing.
@@ -7,7 +7,7 @@ In this lesson we learn how to use multistream rendering to implement GPU instan
 
 For these tutorial lessons, we've been providing a single stream of vertex data to the *input assembler*. Generally the most efficient rendering is a single vertex buffer with a stride of 16, 32, or 64 bytes, but there are times when arranging the vertex data in such a layout is expensive. The Direct3D Input Assembler can therefore pull vertex information from up to 16 (or 32 with Hardware Feature Level 11 or better) vertex buffers. This provides a lot of freedom in managing your vertex buffers.
 
-For example, if we return to a case from [[Simple rendering]], here is the 'stock' vertex input layout for ``VertexPositionNormalTexture``:
+For example, if we return to a case from [Simple rendering](Simple-rendering.md), here is the 'stock' vertex input layout for ``VertexPositionNormalTexture``:
 
 ```cpp
 const D3D11_INPUT_ELEMENT_DESC c_InputElements[] =
@@ -45,7 +45,7 @@ Note if we are using ``DrawIndexed``, then the same index value is used to retri
 
 In addition to pulling vertex data from multiple streams, the *input assembler* can also 'loop' over some streams to implement a feature called "instancing". Here the same vertex data is drawing multiple times with some per-vertex data changing "once per instance" as it loops over the other data. This allows you to efficiently render a large number of the same object in many locations, such as grass or boulders.
 
-The [[NormalMapEffect]] supports GPU instancing using a per-vertex ``XMFLOAT3X4`` matrix which can include translations, rotations, scales, etc. For example if we were using ``VertexPositionNormalTexture`` vertex data with instancing, we'd create an input layout as follows:
+The [NormalMapEffect](NormalMapEffect.md) supports GPU instancing using a per-vertex ``XMFLOAT3X4`` matrix which can include translations, rotations, scales, etc. For example if we were using ``VertexPositionNormalTexture`` vertex data with instancing, we'd create an input layout as follows:
 
 ```cpp
 // VertexPositionNormalTexture in VB#0, XMFLOAT3X4 in VB#1
@@ -65,14 +65,14 @@ Here the first vertex buffer has enough ``VertexPositionNormalTexture`` vertex d
 > GPU instancing is not supported on Direct3D Hardware Feature Level 9.1 or 9.2, and is only partially supported on 9.3. The *DirectX Tool Kit* shaders that support GPU instancing are written for Shader Model 4.0 and require Feature Level 10 or greater.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Instancing
 
-Start by saving [spnza_bricks_a.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a.DDS),
-[spnza_bricks_a_normal.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a_normal.DDS),
-[spnza_bricks_a_specular.dds](https://github.com/Microsoft/DirectXTK/wiki/media/spnza_bricks_a_specular.DDS) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "spnza_bricks_a.dds" and click "OK". Repeat for the two other files.
+Start by saving [spnza_bricks_a.dds](media/spnza_bricks_a.DDS),
+[spnza_bricks_a_normal.dds](media/spnza_bricks_a_normal.DDS),
+[spnza_bricks_a_specular.dds](media/spnza_bricks_a_specular.DDS) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "spnza_bricks_a.dds" and click "OK". Repeat for the two other files.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -222,7 +222,7 @@ m_shape->DrawInstanced(m_effect.get(), m_instanceLayout.Get(), m_instanceCount, 
 
 Build and run to see 64 spheres rendered.
 
-![Screenshot of many sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing.PNG)
+![Screenshot of many sphere](images/screenshotInstancing.PNG)
 
 # Adding animation
 
@@ -265,11 +265,11 @@ In **Game.cpp**, add to the TODO of **Render** prior to the call to ``DrawInstan
 
 Build and run to see the spheres moving individually.
 
-![Screenshot of many moving sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotInstancing2.PNG)
+![Screenshot of many moving sphere](images/screenshotInstancing2.PNG)
 
 ## Technical note
 
-The ``XMFLOAT3X4`` data type is a little different than the other **DirectXMath** / [[SimpleMath]] types used in *DirectX Tool Kit*. It's a column-major transformation matrix. Normally we use row-major in DirectX samples, and when moving to a shader we transpose it as we set it into the Constant Buffer to  fit into HLSL's default of column-major.
+The ``XMFLOAT3X4`` data type is a little different than the other **DirectXMath** / [SimpleMath](SimpleMath.md) types used in *DirectX Tool Kit*. It's a column-major transformation matrix. Normally we use row-major in DirectX samples, and when moving to a shader we transpose it as we set it into the Constant Buffer to  fit into HLSL's default of column-major.
 
 The ``XMFLOAT3X4`` data type was introduced in [DirectXMath version 3.13](https://walbourn.github.io/directxmath-3-13/) to support DirectX Raytracing which used this column-major form in the API. It's a compact way to encode a '4x3' matrix where the last column is ``0, 0, 0, 1`` (i.e. a matrix which can encode affine 3D transformations like translation, scale, and rotation but *not* perspective projection). We transpose it to column-major and it fits neatly into three ``XMVECTOR`` values as the last row is implicitly ``0 0 0 1``. As you see above, we build a row-major ``XMMATRIX`` transformation matrix and then you can use ``XMStoreFloat3x4`` which will transpose it as it's written to the buffer.
 
@@ -363,7 +363,7 @@ for (const auto& mit : instancedModel->meshes)
 }
 ```
 
-> The drawing above assumes an opaque model. If you have alpha-blending, you will need to do the drawing loop twice. See [[ModelMesh]] for details.
+> The drawing above assumes an opaque model. If you have alpha-blending, you will need to do the drawing loop twice. See [ModelMesh](ModelMesh.md) for details.
 
 ## Technical note
 
@@ -371,9 +371,9 @@ If you are trying to instance a model that contains bone indices, you need to us
 
 # More to explore
 
-* GPU instancing is also supported by [[DebugEffect]] and [[PBREffect]]
+* GPU instancing is also supported by [DebugEffect](DebugEffect.md) and [PBREffect](PBREffect.md)
 
 * While **BasicEffect** does not support instancing, you can use **NormalMapEffect** to emulate **BasicEffect** by providing texture coordinates. The **NormalMapEffect** class will use a
-[default 1x1 white](https://github.com/Microsoft/DirectXTK/wiki/media/default.dds) texture (i.e. ``DXGI_FORMAT_R8G8B8A8_UNORM`` value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](https://github.com/Microsoft/DirectXTK/wiki/media/smoothMap.dds) texture (i.e. ``DXGI_FORMAT_R8G8_UNORM`` value ``0x7F7F``).
+[default 1x1 white](media/default.dds) texture (i.e. ``DXGI_FORMAT_R8G8B8A8_UNORM`` value ``0xFFFFFFFF``) and/or a [smooth 1x1 normal map](media/smoothMap.dds) texture (i.e. ``DXGI_FORMAT_R8G8_UNORM`` value ``0x7F7F``).
 
-**Next lessons:** [[Creating custom shaders with DGSL]]
+**Next lessons:** [Creating custom shaders with DGSL](Creating-custom-shaders-with-DGSL.md)

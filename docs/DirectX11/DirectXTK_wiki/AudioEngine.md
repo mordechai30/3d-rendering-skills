@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
 This class represents an XAudio2 audio graph, device, and mastering voice. It manages XAudio2 object creation, audio engine per-frame updates, the mastering voice, and all source voices. The class optionally supports applying a *mastering limiter* and/or *environmental reverb* xAPO effects typically used in conjunction with 3D positional audio.
 
-**Related tutorial:** [[Adding audio to your project]]
+**Related tutorial:** [Adding audio to your project](Adding-audio-to-your-project.md)
 
 ```cpp
 class DirectX::AudioEngine
@@ -56,7 +56,7 @@ AudioEngine( AUDIO_ENGINE_FLAGS flags = AudioEngine_Default,
 * ``AudioEngine_ThrowOnNoAudioHW`` - By default, if there is no audio hardware available _DirectXTK for Audio_ will automatically enter 'silent mode'. If this flag is provided, a C++ exception is generated instead.
 : Note: ``AUDIO_ENGINE_FLAGS`` is used as a typed flag enum.
 
-*wfx*: Specifies the output format for the XAudio2 mastering voice (primarily the channel count and sample rate). If null, it uses the device defaults. See [[Wave Formats]].
+*wfx*: Specifies the output format for the XAudio2 mastering voice (primarily the channel count and sample rate). If null, it uses the device defaults. See [Wave Formats](Wave-Formats.md).
 
 *deviceId*: Specifies the output debug for the XAudio2 mastering voice.
 
@@ -191,15 +191,15 @@ Optionally ``AudioEngine_ReverbUseFilters`` can be used with ``AudioEngine_Envir
 
 # Voice management
 
-* **SetDefaultSampleRate**( sampleRate ) is used to control the sample rate for voices in the one-shot pool (see ``Play`` in [[SoundEffect]] and [[WaveBank]]). This should be the same rate as used by the majority of your content. It defaults to 44100 Hz. This value is never used if ``AudioEngine_DisableVoiceReuse``  was specified.
+* **SetDefaultSampleRate**( sampleRate ) is used to control the sample rate for voices in the one-shot pool (see ``Play`` in [SoundEffect](SoundEffect.md) and [WaveBank](WaveBank.md)). This should be the same rate as used by the majority of your content. It defaults to 44100 Hz. This value is never used if ``AudioEngine_DisableVoiceReuse``  was specified.
 
-* **TrimVoicePool** can be used to free up any source voices in the 'idle' list for one-shots, and will cause all non-playing [[SoundEffectInstance]] objects to release their source voice. This is used for keeping the total source voice count under a limit for performance or when switching sections where audio content formats change dramatically.
+* **TrimVoicePool** can be used to free up any source voices in the 'idle' list for one-shots, and will cause all non-playing [SoundEffectInstance](SoundEffectInstance.md) objects to release their source voice. This is used for keeping the total source voice count under a limit for performance or when switching sections where audio content formats change dramatically.
 
 > One-shots voices must have completely stopped playing before they are put into the idle pool. You should
 > therefore ensure ``Update`` is called twice with some delay between them before calling ``TrimVoicePool`` for
 > maximum effectiveness.
 
-* **SetMaxVoicePool** ( maxOneShots, maxInstances ) can be used to set a limit on the number of one-shot source voices allocated and/or to put a limit on the source voices available for [[SoundEffectInstance]]. If there are insufficient one-shot voices, those sounds will not be heard. If there are insufficient voices for a SoundEffectInstance to play, then a C++ exception is thrown. These values default to 'unlimited'.
+* **SetMaxVoicePool** ( maxOneShots, maxInstances ) can be used to set a limit on the number of one-shot source voices allocated and/or to put a limit on the source voices available for [SoundEffectInstance](SoundEffectInstance.md). If there are insufficient one-shot voices, those sounds will not be heard. If there are insufficient voices for a SoundEffectInstance to play, then a C++ exception is thrown. These values default to 'unlimited'.
 
 # Mastering volume limiter
 
@@ -219,7 +219,7 @@ audEngine = std::make_unique<AudioEngine>( eflags );
 
 # Statistics
 
-The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [[SoundEffect]] and [[WaveBank]] objects, size of buffers used for streaming in [[SoundStreamInstance]] objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
+The **GetStatistics** function returns information on the number of playing sounds, allocated instances, audio bytes in loaded [SoundEffect](SoundEffect.md) and [WaveBank](WaveBank.md) objects, size of buffers used for streaming in [SoundStreamInstance](SoundStreamInstance.md) objects, and XAudio2 source voices allocated for various purposes. These values do not rely on debug faculties to be enabled.
 
 ```cpp
 auto stats = engine->GetStatistics();
@@ -233,7 +233,7 @@ printf( "\nPlaying: %zu / %zu; Instances %zu; Voices %zu / %zu / %zu / %zu;"
 
 # Properties
 
-* **GetOutputFormat**: Returns the format consumed by the mastering voice (which is the same as the device output if defaults are used) as a ``WAVEFORMATEXTENSIBLE``.  See [[Wave Formats]].
+* **GetOutputFormat**: Returns the format consumed by the mastering voice (which is the same as the device output if defaults are used) as a ``WAVEFORMATEXTENSIBLE``.  See [Wave Formats](Wave-Formats.md).
 
 * **GetChannelMask**: Returns the output channel mask
 

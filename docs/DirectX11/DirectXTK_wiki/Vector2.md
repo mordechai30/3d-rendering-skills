@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 Two component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector2``) math library.
@@ -78,4 +78,4 @@ Vector2 can freely convert to and from a ``XMFLOAT2`` and ``XMVECTOR`` (the z an
 
 # See also
 
-[[Vector3]], [[Vector4]], [[Matrix]]
+[Vector3](Vector3.md), [Vector4](Vector4.md), [Matrix](Matrix.md)

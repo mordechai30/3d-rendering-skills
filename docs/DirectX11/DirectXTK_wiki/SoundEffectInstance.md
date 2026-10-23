@@ -1,13 +1,13 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
-SoundEffectInstance is an instance of a sound from a [[SoundEffect]] or a in-memory [[WaveBank]]. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
+SoundEffectInstance is an instance of a sound from a [SoundEffect](SoundEffect.md) or a in-memory [WaveBank](WaveBank.md). It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
 
 Note that the SoundEffectInstance does not copy the wave data and instead refers to the data 'owned' by the SoundEffect / WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
 > The `SoundEffectInstance` implementation is very light-weight. All the audio data is owned by a `SoundEffect` or `WaveBank`. The XAudio2 voice is actually 'owned' by the `AudioEngine` which manages voice reuse for you.
 
-**Related tutorials:** [[Creating and playing sounds]], [[Making use of wave banks]], [[Using positional audio]]
+**Related tutorials:** [Creating and playing sounds](Creating-and-playing-sounds.md), [Making use of wave banks](Making-use-of-wave-banks.md), [Using positional audio](Using-positional-audio.md)
 
 ```mermaid
 classDiagram
@@ -76,7 +76,7 @@ if ( !effect )
     // Index not found in wave bank
 ```
 
-Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
+Or use 3D positional audio with reverb effects (if [AudioEngine](AudioEngine.md) was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
 ```cpp
 auto effect = soundEffect->CreateInstance(
@@ -126,7 +126,7 @@ This is a combination of sound effect instance flags. It defaults to ``SoundEffe
 
 * **Play** ( bool loop = false ): Starts the playback of the sound. If loops is set to true, it loops continuously either the entire buffer or using the authored loop points (if any). If paused, it resumes playback.
 
-> Note if a source voice limit is in effect (see [[AudioEngine]]), then a C++ exception can be generated from
+> Note if a source voice limit is in effect (see [AudioEngine](AudioEngine.md)), then a C++ exception can be generated from
 > this method if there are too many source voices already allocated.
 
 * **Stop** ( bool immediate = true ): Stops the playback of the voice. If immediate is true, the sound is immediately halted. Otherwise the current loop is exited (if looping) and any 'tails' are played. The sound still not completely stop playing until a future point so the state will remain ``PLAYING`` for a while.
@@ -167,7 +167,7 @@ The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter
 emitter.EnableDefaultMultiChannel( m_effect->GetChannelCount() );
 ```
 
-See [[AudioListener]], [[AudioEmitter]]
+See [AudioListener](AudioListener.md), [AudioEmitter](AudioEmitter.md)
 
 
 ## Coordinate systems
@@ -194,7 +194,7 @@ If you want to have the same sound playing multiple times and be 3D positioned, 
 
 By default the number of XAudio2 source voices that can be allocated is 'unlimited'. You can set a specific limit using ``AudioEngine::SetMaxVoicePool`` which will be enforced by generating a C++ exception if there are too many allocated source voices when ``Play`` is called.
 
-See [[AudioEngine]] for more details.
+See [AudioEngine](AudioEngine.md) for more details.
 
 # Properties
 

@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This abstract interface controls directional lighting. Settings for this interface can influence the choice of shader permutation and input layout signature. This interface is implemented by _BasicEffect_, _DGSLEffect_, _EnvironmentMapEffect_, _NormalMapEffect_, _PBREffect_, and _SkinningEffect_.
@@ -26,7 +26,7 @@ static const XMVECTORF32 light { 0.f, -1.f, 0.f, 0.f };
 effect->SetLightDirection( 0, light );
 ```
 
-For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
+For more general cases where a number of effect classes can be in use (such as [Model](Model.md) which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
 ```cpp
 std::shared_ptr<IEffect> effect;

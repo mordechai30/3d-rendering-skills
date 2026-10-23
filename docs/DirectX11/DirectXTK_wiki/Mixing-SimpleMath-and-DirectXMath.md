@@ -1,4 +1,4 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson discusses how to make use of more advanced math functions provided in the DirectXMath library using existing SimpleMath types.
@@ -23,7 +23,7 @@ m_proj = XMMatrixPerspectiveFovLH( XM_PI / 4.f,
     float(backBufferWidth) / float(backBufferHeight), 0.1f, 10.f);
 ```
 
-> See [[SimpleMath]] for a complete list of Matrix methods that are 'handed'.
+> See [SimpleMath](SimpleMath.md) for a complete list of Matrix methods that are 'handed'.
 
 Many 'handed' _DirectX Tool Kit_ functions take a bool parameter _rhcoords_ that defaults to true. You should pass false when using left-handed view coordinates.
 
@@ -89,7 +89,7 @@ for ( size_t h = 0; h < height; ++h )
 
 [DirectXMath Library Internals](https://docs.microsoft.com/windows/win32/dxmath/pg-xnamath-internals)
 
-**Next lesson:** [[Adding the DirectX Tool Kit for Audio]]
+**Next lesson:** [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md)
 
 # Further reading
 

@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This is a native Direct3D 11 implementation of the built-in DualTextureEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.DualTextureEffect``) which supports two layer multi-texturing (for [light maps](https://wikipedia.org/wiki/Lightmap) or detail textures), vertex color, and fogging.
 
-![Dual texture map](https://github.com/Microsoft/DirectXTK/wiki/images/DualTextureEffect.png)
+![Dual texture map](images/DualTextureEffect.png)
 
 ```mermaid
 classDiagram
@@ -63,7 +63,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-DualTextureEffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectFog]]
+DualTextureEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), and [IEffectFog](IEffectFog.md)
 
 Does not support lighting as it is assumed to be 'baked' into one of the two textures.
 
@@ -92,9 +92,9 @@ The property methods of this implementation do not throw C++ exceptions.
 
 # Remarks
 
-This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+This effect requires a texture sampler in both slots 0 and 1. [GeometricPrimitive](GeometricPrimitive.md) and [SpriteBatch](SpriteBatch.md) only set a texture sampler in slot 0 by default, [Model](Model.md) sets a sampler in slots 0 and 1.
 
-[[GeometricPrimitive]], [[Model]] loaded from ``VBO`` or ``CMO``, and [[SpriteBatch]] only define a single set of texture coordinates in their vertex buffers so they can't be used with DualTextureEffect.
+[GeometricPrimitive](GeometricPrimitive.md), [Model](Model.md) loaded from ``VBO`` or ``CMO``, and [SpriteBatch](SpriteBatch.md) only define a single set of texture coordinates in their vertex buffers so they can't be used with DualTextureEffect.
 
 <table border=0>
  <tr>
@@ -102,8 +102,8 @@ This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimiti
   <td>Light map</td>
  </tr>
  <tr>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/lightmap.png"></td>
+  <td><img src="images/diffusemap.png"></td>
+  <td><img src="images/lightmap.png"></td>
  <tr>
 </table>
 

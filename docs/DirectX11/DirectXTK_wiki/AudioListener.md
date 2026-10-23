@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
-AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_listener) that can be used by the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
+AudioListener is a helper object derived from [X3DAUDIO_LISTENER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_listener) that can be used by the **Apply3D** method of [SoundEffectInstance](SoundEffectInstance.md), [SoundStreamInstance](SoundStreamInstance.md), and [DynamicSoundEffectInstance](DynamicSoundEffectInstance.md).
 
-See [[AudioEmitter]].
+See [AudioEmitter](AudioEmitter.md).
 
-**Related tutorial:** [[Using positional audio]]
+**Related tutorial:** [Using positional audio](Using-positional-audio.md)
 
 ```mermaid
 classDiagram

@@ -19,7 +19,7 @@ https://go.microsoft.com/fwlink/?LinkId=248929
 ![GitHub Actions Workflow using VCPKG](https://img.shields.io/github/actions/workflow/status/Microsoft/DirectXTK/vcpkg.yml?style=for-the-badge&label=VCPKG)
 ![GitHub Actions Workflow Super-Linter](https://img.shields.io/github/actions/workflow/status/Microsoft/DirectXTK/lint.yml?style=for-the-badge&label=LINT)
 
-![DirectX Logo](https://github.com/Microsoft/DirectXTK/wiki/X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
+![DirectX Logo](X_jpg.jpg)The **DirectX Tool Kit** (aka **DirectXTK**) is a collection of helper classes for writing **DirectX 11.x** code in C++.
 
 For an overview of the project, see these blog posts: [March 2012](https://walbourn.github.io/directxtk/), [January 2013](https://walbourn.github.io/directxtk-update/), [September 2014](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/), [August 2015](https://walbourn.github.io/directx-tool-kit-keyboard-and-mouse-support/), [July 2016](https://walbourn.github.io/directx-tool-kit-for-directx-12/), [September 2021](https://walbourn.github.io/latest-news-on-directx-tool-kit/), and [October 2021](https://walbourn.github.io/directx-tool-kit-vertex-skinning-update/).
 
@@ -27,23 +27,23 @@ For an overview of *DirectX Tool Kit for Audio*, see these blog posts: [December
 
 For some recent changes to this project, see [this blog post](https://walbourn.github.io/github-project-updates-2025/).
 
-[[Getting Started]]
+[Getting Started](Getting-Started.md)
 
-[[Integration]]
+[Integration](Integration.md)
 
-[[DirectXTK]] for DirectX 11 library
+[DirectXTK](DirectXTK.md) for DirectX 11 library
 
-[[MakeSpriteFont]] utility
+[MakeSpriteFont](MakeSpriteFont.md) utility
 
-[[XWBTool]] utility
+[XWBTool](XWBTool.md) utility
 
-[[Samples]]
+[Samples](Samples.md)
 
-[[Game Gallery]]
+[Game Gallery](Game-Gallery.md)
 
-[[Resources]]
+[Resources](Resources.md)
 
-[[Utilities]]
+[Utilities](Utilities.md)
 
 # DirectX 11
 DirectX 11 is supported on Windows 7, Windows 8.1, Windows 10, and Windows 11. Use of DirectX 11 for beginners is highly recommended.
@@ -66,7 +66,7 @@ DirectX Tool Kit is also available from the NuGet Gallery:
 DirectX Tool Kit has a vcpkg installation [port](https://github.com/microsoft/vcpkg/tree/master/ports/directxtk) as well.
 
 # Porting from D3DX
-See [this post](https://aka.ms/Kfsdiu) for a complete listing of D3DX equivalents.
+See [this post](living-without-d3dx.md) for a complete listing of D3DX equivalents.
 
 # Support
 
@@ -99,7 +99,7 @@ When you submit a pull request, a CLA bot will automatically determine whether y
 
 Tests for new features should also be submitted as a PR to the [Test Suite](https://github.com/walbourn/directxtktest/wiki) repository.
 
-Information on coding-style can be found [[here|Implementation]].
+Information on coding-style can be found [here](Implementation.md).
 
 # Code of Conduct
 

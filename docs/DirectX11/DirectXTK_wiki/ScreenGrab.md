@@ -1,4 +1,4 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 A Direct3D 11 2D texture save routine for generating a "screenshot" from a render target texture. There is a function that will dump the 2D texture to a ``.DDS`` file, and another that will write using WIC (``BMP``, ``JPEG``, ``PNG``, ``TIFF``, ``GIF``, JPEG-XR / HD Photo, or other WIC supported file container).

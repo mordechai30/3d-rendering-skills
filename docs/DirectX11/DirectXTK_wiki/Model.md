@@ -1,19 +1,19 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 ﻿This is a class hierarchy for drawing meshes with support for loading models from Visual Studio 3D Starter Kit ``.CMO`` files, legacy DirectX SDK ``.SDKMESH`` files, and ``.VBO`` files. It is an implementation of a mesh renderer similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics``) Model, ModelMesh, ModelMeshPart, ModelBone design.
 
-A Model consists of one or more [[ModelMesh]] instances. The ModelMesh instances can be shared by multiple instances of Model. A ModelMesh instance consists of one or more ModelMeshPart instances.
+A Model consists of one or more [ModelMesh](ModelMesh.md) instances. The ModelMesh instances can be shared by multiple instances of Model. A ModelMesh instance consists of one or more ModelMeshPart instances.
 
-Each [[ModelMeshPart]] references an index buffer, a vertex buffer, an input layout, an [[Effects]] instance, and includes various metadata for drawing the geometry. Each ModelMeshPart represents a single material to be drawn at the same time (i.e. a submesh).
+Each [ModelMeshPart](ModelMeshPart.md) references an index buffer, a vertex buffer, an input layout, an [Effects](Effects.md) instance, and includes various metadata for drawing the geometry. Each ModelMeshPart represents a single material to be drawn at the same time (i.e. a submesh).
 
-A Model can optionally have an array of [[ModelBone]] data. This data can be used for rigid-body animation of meshes, skinned animations, and/or for runtime metadata.
+A Model can optionally have an array of [ModelBone](ModelBone.md) data. This data can be used for rigid-body animation of meshes, skinned animations, and/or for runtime metadata.
 
-![Screenshot](https://github.com/Microsoft/DirectXTK/wiki/images/ModelExample.png)
+![Screenshot](images/ModelExample.png)
 
-See also [[EffectFactory]]
+See also [EffectFactory](EffectFactory.md)
 
-**Related tutorials:** [[Rendering a model]], [[Animating using model bones]], [[Using skinned models]]
+**Related tutorials:** [Rendering a model](Rendering-a-model.md), [Animating using model bones](Animating-using-model-bones.md), [Using skinned models](Using-skinned-models.md)
 
 ```mermaid
 classDiagram
@@ -64,7 +64,7 @@ class DirectX::Model
 # Usage
 
 ## Initialization
-Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [[IEffectFactory|EffectFactory]] instance to facilitate the sharing of Effects and textures between models. The default _EffectFactory_ always returns built-in [[BasicEffect]], [[SkinnedEffect]], [[DualTextureEffect]], or [[NormalMapEffect]] instances. The _DGSLEffectFactory_ can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through [[DGSLEffect]] instances.
+Model instances can be loaded from either ``.CMO``, ``.SDKMESH``, or ``.VBO`` files, or from custom file formats. The Model loaders take an [IEffectFactory](EffectFactory.md) instance to facilitate the sharing of Effects and textures between models. The default _EffectFactory_ always returns built-in [BasicEffect](BasicEffect.md), [SkinnedEffect](SkinnedEffect.md), [DualTextureEffect](DualTextureEffect.md), or [NormalMapEffect](NormalMapEffect.md) instances. The _DGSLEffectFactory_ can be used with ``.CMO`` files to load Visual Studio Shader Designer (DGSL) shaders through [DGSLEffect](DGSLEffect.md) instances.
 
 Visual Studio 2012 - Visual Studio 2022 (17.9.2) include a built-in content pipeline that can generate ``.CMO`` files from an Autodesk ``.FBX``, as well as ``.DDS`` texture files from various bitmap image formats, as part of the build process. See the Visual Studio 3D Starter Kit for details ([Windows 8.1](https://aka.ms/vs3dkitwin), [Windows 8.0](https://aka.ms/vs3dkitwin80)).
 
@@ -108,7 +108,7 @@ tiny->Draw( context, states, local, view, projection );
 There are optional parameters for rendering in wireframe and to provide a custom state override callback.
 
 ## Rigid-body animation
-There is an overload of **Draw** which takes an array of transformation matrices. The *boneIndex* in each ModelMesh is used to index into this array to combine with the _world_ matrix for positioning. This is typically used for rigid-body animation using [[ModelBone]] data.
+There is an overload of **Draw** which takes an array of transformation matrices. The *boneIndex* in each ModelMesh is used to index into this array to combine with the _world_ matrix for positioning. This is typically used for rigid-body animation using [ModelBone](ModelBone.md) data.
 
 ```cpp
 auto tank = Model::CreateFromSDKMESH(device, L"tank.sdkmesh", *m_fx, ModelLoader_IncludeBones);
@@ -151,7 +151,7 @@ tank->Draw(context, states, nbones, bones.get(), world, view, projection);
 ```
 
 ## Skinned animation drawing
-The **DrawSkinned** method is used to draw with skinned effects--i.e. with effects that support the [[IEffectSkinning]] interface. This is typically used for skinned animation using [[ModelBone]] data.
+The **DrawSkinned** method is used to draw with skinned effects--i.e. with effects that support the [IEffectSkinning](IEffectSkinning.md) interface. This is typically used for skinned animation using [ModelBone](ModelBone.md) data.
 
 ```cpp
 auto soldier = Model::CreateFromSDKMESH(device, L"soldier.sdkmesh", *m_fx, ModelLoader_IncludeBones);
@@ -174,11 +174,11 @@ soldier->DrawSkinned(context, states, nbones, bones.get(), world, view, projecti
 ```
 
 # Advanced drawing
-Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the _Model::meshes_ collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [[ModelMesh]] for an example.
+Rather than using the standard Draw, the ``ModelMesh::Draw`` method can be used on each mesh in turn listed in the _Model::meshes_ collection. ``ModelMesh::Draw`` can be used to draw all the opaque parts or the alpha parts individually. The ``ModelMesh::PrepareForRendering`` method can be used as a helper to setup common render state, or the developer can set up the state directly before calling ``ModelMesh::Draw``. See [ModelMesh](ModelMesh.md) for an example.
 
 _``ModelMesh::PrepareForRendering`` sets the blend state, depth stencil state, raster state, and sets a pixel shader sampler._
 
-More detailed control over rendering can be had by skipping the use of ``Model::Draw`` and ``ModelMesh::Draw`` in favor of the ``ModelMeshPart::Draw`` method. Each _Model::meshes_ collection can be scanned for each _ModelMesh::meshParts_ collection to enumerate all ModelMeshPart instances. For this version of draw, the _ModelMeshPart::effect_ and _ModelMeshPart::inputLayout_ can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ``ModelMeshPart::CreateInputLayout``). See [[ModelMeshPart]] for an example.
+More detailed control over rendering can be had by skipping the use of ``Model::Draw`` and ``ModelMesh::Draw`` in favor of the ``ModelMeshPart::Draw`` method. Each _Model::meshes_ collection can be scanned for each _ModelMesh::meshParts_ collection to enumerate all ModelMeshPart instances. For this version of draw, the _ModelMeshPart::effect_ and _ModelMeshPart::inputLayout_ can be used, or a custom effect override can be used instead (be sure to create the appropriate matching input layout for the custom effect beforehand using ``ModelMeshPart::CreateInputLayout``). See [ModelMeshPart](ModelMeshPart.md) for an example.
 
 # Effects control
 The Model loaders create an appropriate Effects instance for each ModelMeshPart in a mesh. Generally all effects in a mesh should use the same lighting and fog settings, which is facilitated by the **Model::UpdateEffects** method. This calls back for each unique effect in the ModelMesh once.
@@ -207,10 +207,10 @@ It is also possible to change the Effects instance used by a given part (such as
 
 Be sure to call **Model::Modified** on all Model instances that reference the impacted ModelMesh instance to ensure the cache used by ``UpdateEffects`` is correctly updated. ``Model::Modified`` should also be called whenever a Model::meshes or _ModelMesh::meshParts_ collection is modified.
 
-As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the _ModelMeshPart::effect_ directly. See [[ModelMeshPart]] for an example.
+As noted above, it is also possible to render part or all of a model using a custom effect as an override, rather than changing the effect referenced by the _ModelMeshPart::effect_ directly. See [ModelMeshPart](ModelMeshPart.md) for an example.
 
 # Alpha blending
-Proper drawing of alpha-blended models can be a complicated procedure. Each ModelMeshPart has a bool value to indicate if the associated part is fully opaque (_isAlpha_ is false), or has some level of alpha transparency (_isAlpha_ is true). The ``Model::Draw`` routine handles some basic logic for the rendering, first rendering the opaque parts, then rendering the alpha parts.  More detailed control is provided by the ``ModelMesh::Draw`` method which can be used to draw all opaque parts of all meshes first, then go back and draw all alpha parts of all meshes second. See [[ModelMesh]] for an example.
+Proper drawing of alpha-blended models can be a complicated procedure. Each ModelMeshPart has a bool value to indicate if the associated part is fully opaque (_isAlpha_ is false), or has some level of alpha transparency (_isAlpha_ is true). The ``Model::Draw`` routine handles some basic logic for the rendering, first rendering the opaque parts, then rendering the alpha parts.  More detailed control is provided by the ``ModelMesh::Draw`` method which can be used to draw all opaque parts of all meshes first, then go back and draw all alpha parts of all meshes second. See [ModelMesh](ModelMesh.md) for an example.
 
 To indicate the use of 'straight' alpha vs. 'premultiplied' alpha blending modes, _ModelMesh::pmalpha_ is set by the various loaders functions controlled by a default parameter (which defaults false to indicate the texture files are using 'straight' alpha). If you make use of DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool with the ``--premultiplied-alpha`` switch, you should use _pmalpha=true_ instead.
 
@@ -283,7 +283,7 @@ If any ModelMeshPart uses adjacency (i.e. ModelMeshPart::primitiveType equals ``
 
 Keep in mind that there are maximum primitive count limits per ModelMeshPart based on feature level as well (65535 for Feature Level 9.1, 1048575 or Feature Level 9.2 and 9.3, and 4294967295 for Feature Level 10.0 or greater).
 
-See [[EffectFactory]] for more Feature Level notes.
+See [EffectFactory](EffectFactory.md) for more Feature Level notes.
 
 [Direct3D feature levels](https://aka.ms/Apsgrj)
 
@@ -374,7 +374,7 @@ Error reporting using standard C++ exceptions ``std::exception``, ``std::invalid
 The mesh file loaders can also throw ``std::overflow_error`` or ``std::system_error``.
 
 # Threading model
-The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is 'free threaded'. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not 'free threaded'. See [[EffectFactory]] for some additional notes.
+The ModelMeshPart is tied to a device, but not a device context. This means that Model creation/loading is 'free threaded'. Drawing can be done on the immediate context or by a deferred context, but keep in mind device contexts are not 'free threaded'. See [EffectFactory](EffectFactory.md) for some additional notes.
 
 # State management
 
@@ -395,7 +395,7 @@ Model makes use of the following states:
 * Vertex buffer (slot 0)
 * Vertex shader
 
-> If you used [[DGSLEffectFactory|EffectFactory]] for the model then ``Draw`` will make use of additional state as outlined in [[Effects]]
+> If you used [DGSLEffectFactory](EffectFactory.md) for the model then ``Draw`` will make use of additional state as outlined in [Effects](Effects.md)
 
 The Model class assumes you've already set the Render Target view, Depth Stencil view, and Viewport.
 

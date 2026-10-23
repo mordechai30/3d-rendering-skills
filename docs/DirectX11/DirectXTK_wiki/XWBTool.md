@@ -1,15 +1,15 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 [![xwbtool.exe](https://img.shields.io/github/downloads/Microsoft/DirectXTK/latest/xwbtool.exe?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest/download/xwbtool.exe)
 
 The XWBTool is a command-line utility for building XACT-style wave banks for use with the _DirectXTK for Audio_ Wave Bank class.
 
-See [[Audio]], [[WaveBank]]
+See [Audio](Audio.md), [WaveBank](WaveBank.md)
 
 > The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
 
-**Related tutorial**: [[Making use of wave banks]]
+**Related tutorial**: [Making use of wave banks](Making-use-of-wave-banks.md)
 
 # Installation
 
@@ -72,7 +72,7 @@ The file _wavebank.xwb_ is generated from the three input ``.wav`` files.
 The file _test.xwb_ is generated from all the ``.wav`` files in the ``C:\Windows\Media`` directory.
 
 # Wave bank types
-XACT-style wave banks come in two forms: _in-memory_ and _streaming_. The _in-memory_ form is intended to have the whole wave bank loaded into memory at once for use. This allows wave banks to be organized by use and efficiently loaded with minimal memory fragmentation. For use with [[SoundEffectInstance]] and as one-shots with [[WaveBank]]'s Play method, use the in-memory form.
+XACT-style wave banks come in two forms: _in-memory_ and _streaming_. The _in-memory_ form is intended to have the whole wave bank loaded into memory at once for use. This allows wave banks to be organized by use and efficiently loaded with minimal memory fragmentation. For use with [SoundEffectInstance](SoundEffectInstance.md) and as one-shots with [WaveBank](WaveBank.md)'s Play method, use the in-memory form.
 
 The _streaming_ form is laid out such that each individual wave in the bank is aligned to 4K boundaries for use with async I/O. Only the metadata is loaded into memory, with all the wave data read on-demand from the remainder of the file. See the _XAudio2AsyncStream_ sample code on [GitHub](https://github.com/walbourn/directx-sdk-samples) for an example of using the streaming wave bank form.
 

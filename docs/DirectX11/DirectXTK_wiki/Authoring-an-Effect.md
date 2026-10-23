@@ -1,17 +1,17 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
-This lesson covers writing your own [[IEffect|Effects]] implementation, specifically a custom effect for rendering a [skybox](https://wikipedia.org/wiki/Skybox_%28video_games%29) with a cubemap.
+This lesson covers writing your own [IEffect](Effects.md) implementation, specifically a custom effect for rendering a [skybox](https://wikipedia.org/wiki/Skybox_%28video_games%29) with a cubemap.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Writing a skybox shader
 
-A skybox is a shape like a sphere or a cube that surrounds the render scene giving the appearance of the distant sky, horizon, and/or surroundings. In our implementation we are going to be using a cubemap (i.e. 6-faced texture) to provide the texture information on the sky. For the geometry, we'll make use of [[GeometricPrimitive]], and the shaders we are using for the **SkyboxEffect** are as follows:
+A skybox is a shape like a sphere or a cube that surrounds the render scene giving the appearance of the distant sky, horizon, and/or surroundings. In our implementation we are going to be using a cubemap (i.e. 6-faced texture) to provide the texture information on the sky. For the geometry, we'll make use of [GeometricPrimitive](GeometricPrimitive.md), and the shaders we are using for the **SkyboxEffect** are as follows:
 
-[SkyboxEffect_Common.hlsli](https://github.com/Microsoft/DirectXTK/wiki/shaders/SkyboxEffect_Common.hlsli)
+[SkyboxEffect_Common.hlsli](shaders/SkyboxEffect_Common.hlsli)
 ```cpp
 cbuffer SkyboxConstants : register(b0)
 {
@@ -25,7 +25,7 @@ struct VSOutput
 };
 ```
 
-[SkyboxEffect_VS.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/SkyboxEffect_VS.hlsl)
+[SkyboxEffect_VS.hlsl](shaders/SkyboxEffect_VS.hlsl)
 ```cpp
 VSOutput main(float4 position : SV_Position)
 {
@@ -39,7 +39,7 @@ VSOutput main(float4 position : SV_Position)
 }
 ```
 
-[SkyboxEffect_PS.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/SkyboxEffect_PS.hlsl)
+[SkyboxEffect_PS.hlsl](shaders/SkyboxEffect_PS.hlsl)
 ```cpp
 TextureCube<float4> CubeMap : register(t0);
 SamplerState Sampler        : register(s0);
@@ -62,7 +62,7 @@ Build and run your project. It will have the same blank scene as before, but sho
 
 # Implementing the SkyboxEffect
 
-Save the file [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "ReadData.h" and hit "OK".
+Save the file [ReadData.h](ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "ReadData.h" and hit "OK".
 
 Create a new file **SkyboxEffect.h** in your project:
 
@@ -147,7 +147,7 @@ Build and make sure it compiles.
 
 # Adding camera settings
 
-While we've implemented the basic effect, we are missing a key bit of information. The *vertex shader* makes use of a constant buffer to provide the transformation matrix. While we could just add another effect-specific method to control this, we will instead add the standard [[IEffectMatrices]] interface to our skybox effect.
+While we've implemented the basic effect, we are missing a key bit of information. The *vertex shader* makes use of a constant buffer to provide the transformation matrix. While we could just add another effect-specific method to control this, we will instead add the standard [IEffectMatrices](IEffectMatrices.md) interface to our skybox effect.
 
 In **SkyboxEffect.h**, modify your class's declaration to add the additional interface:
 
@@ -286,7 +286,7 @@ At this point, build to ensure everything compiles and we now have a fully imple
 
 # Rendering the sky
 
-Save the files [lobbycube.dds](https://github.com/Microsoft/DirectXTK/wiki/media/lobbycube.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK".
+Save the files [lobbycube.dds](media/lobbycube.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "lobbycube.dds" and hit "OK".
 
 Add to the **Game.h** file after the other includes:
 
@@ -437,7 +437,7 @@ m_sky->Draw(m_effect.get(), m_skyInputLayout.Get());
 
 Build and run to see the skybox. Plug in a Xbox game controller and use the left stick to adjust the view to look around.
 
-> If you prefer to use mouse & keyboard controls, use the control scheme in [[Mouse and keyboard input]].
+> If you prefer to use mouse & keyboard controls, use the control scheme in [Mouse and keyboard input](Mouse-and-keyboard-input.md).
 
 You may notice that the text in the lobby-cube image appears backwards. The environment mapping in the shader assumes the cubemap 'surrounds' the scene, which means we are looking 'through' it which is what makes it seem backwards. If you want to flip it, just edit the *vertex shader* code in ``SkyboxEffect_VS.hlsl``:
 
@@ -458,9 +458,9 @@ VSOutput main(float4 position : SV_Position)
 
 # More to explore
 
-* Usable versions of the **SkyboxEffect** class can be downloaded from here: [.cpp](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.cpp) / [.h](https://raw.githubusercontent.com/wiki/microsoft/DirectXTK/SkyboxEffect.h), and you will need the three shader files above as well.
+* Usable versions of the **SkyboxEffect** class can be downloaded from here: [.cpp](SkyboxEffect.cpp) / [.h](SkyboxEffect.h), and you will need the three shader files above as well.
 
-**Next lessons:** [[Using HDR rendering]]
+**Next lessons:** [Using HDR rendering](Using-HDR-rendering.md)
 
 # Further reading
 

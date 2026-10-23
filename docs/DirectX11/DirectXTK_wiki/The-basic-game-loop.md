@@ -1,7 +1,7 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
-The first lesson in the [[Getting Started]] guide is to create a basic game loop which creates a Direct3D device, swap chain, and update/render loop.
+The first lesson in the [Getting Started](Getting-Started.md) guide is to create a basic game loop which creates a Direct3D device, swap chain, and update/render loop.
 
 # Setup
 Our starting point is to use the **Direct3D Win32 Game** or the **Direct3D <abbr title="Universal Windows Platform">UWP</abbr> Game** project template. Install the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX on your development system, and then start (or restart) Visual Studio.
@@ -35,26 +35,26 @@ The basic rendering setup for Direct3D 11 consists of the following interface ob
 * Optional: Check "Place solution and project in the same directory" to keep the directory structure as bit flatter.
 * Select "Create".
 
-![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProject2019.png)
+![Create New Project](images/CreateNewProject2019.png)
 
 ## Windows SDK Selection
 The UWP templates use the Windows SDK, so the project wizard will trigger this dialog to select the Windows SDK version to use.
 
-![Windows SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+![Windows SDK Selection](images/Windows10SDKSelect.png)
 
 For Win32 projects, the default is to use the latest installed Windows SDK.
 
 ## Newly Created Project
 The newly created project contains the following files:
 
-![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCpp.png)
+![Open Game Cpp](images/OpenGameCpp.png)
 
 * Precompiled header files
   * pch.h
   * pch.cpp
 * Main application entry-point and classic Windows procedure function or CoreWindow class
   * Main.cpp
-* [[Timer|StepTimer]] helper class
+* [Timer](StepTimer.md) helper class
   * StepTimer.h
 * The Game class
   * Game.h
@@ -93,7 +93,7 @@ Visual Studio will default to the _x64_ platform / _Debug_ configuration which b
 
 Press F5 to build and run the application It displays the following window:
 
-![Running Project ](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
+![Running Project ](images/RunningProject.png)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If the base template fails to start, there are a few possibilities:
@@ -111,7 +111,7 @@ for your operating system.</li></ul></p></details>
 For now, we'll focus on the content of ``Game.cpp`` (which is open by default).
 
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want **StepTimer** in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](StepTimer.md) in the 'variable length' mode. You uncomment the code if you want **StepTimer** in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
 ```cpp
 // Initialize the Direct3D resources required to run.
@@ -157,7 +157,7 @@ void Game::CreateResources()
 }
 ```
 
-> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These [DXGI](https://docs.microsoft.com/windows/win32/direct3ddxgi/dx-graphics-dxgi) swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. Use of these newer 'flip' style modes are also recommended for Win32 desktop applications on Windows 10 (see [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/)). See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) and [[DeviceResources]] for more details.
+> Universal Windows Platform (UWP) apps require the use of 'flip' style swap effects, either ``DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL`` or ``DXGI_SWAP_EFFECT_FLIP_DISCARD``. These [DXGI](https://docs.microsoft.com/windows/win32/direct3ddxgi/dx-graphics-dxgi) swap chains cannot be created with an ``DXGI_FORMAT_x_UNORM_SRGB`` format or use MSAA (aka ``SampleDesc.Count`` > 1). Both sRGB gamma-correction and MSAA require special handling. Use of these newer 'flip' style modes are also recommended for Win32 desktop applications on Windows 10 (see [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/)). See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/) and [DeviceResources](DeviceResources.md) for more details.
 
 ## Update
 The **Update** method is intended to handle game-world state modification which is typically driven by time passing, simulation, and/or user-input. By default, ``Update`` is called once per 'frame' and can have an arbitrary delta-time. This is called a 'variable-step' mode.
@@ -254,7 +254,7 @@ The template includes a number of message handlers that are called for process s
 
 > For Win32 desktop, the **OnSuspending** / **OnResuming** messages are triggered when (a) the window is minimized/unminimized or (b) in reaction to the ``WM_POWERBROADCAST`` message. On other platforms, this is driven by Process Lifecycle Management ([PLM](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle)).
 
-Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
+Since we are using [ComPtr](ComPtr.md), most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
 ```cpp
 void Game::OnDeviceLost()
@@ -268,12 +268,12 @@ void Game::OnDeviceLost()
 > You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just <kbd>Alt</kbd>+<kbd>TAB</kbd> away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
 # Smart-pointer
-We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [[ComPtr]] and [Microsoft Docs](https://docs.microsoft.com/windows/win32/prog-dx-with-com) for more information and usage.
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [ComPtr](ComPtr.md) and [Microsoft Docs](https://docs.microsoft.com/windows/win32/prog-dx-with-com) for more information and usage.
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
 
-The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
+The Win32 game template makes use of the helper function [ThrowIfFailed](ThrowIfFailed.md) in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
 
 ```cpp
 DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
@@ -283,7 +283,7 @@ DX::ThrowIfFailed(m_d3dDevice->CreateTexture2D(&depthStencilDesc,
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
 # Gamma
-For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffer format. This does not give gamma-correct results, but is easier to set up. If you want to implement linear-space rendering which would use ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``, see [[DeviceResources]].
+For these tutorials, we make use of the ``DXGI_FORMAT_B8G8R8A8_UNORM`` backbuffer format. This does not give gamma-correct results, but is easier to set up. If you want to implement linear-space rendering which would use ``DXGI_FORMAT_B8G8R8A8_UNORM_SRGB``, see [DeviceResources](DeviceResources.md).
 
 [Linear-Space Lighting (i.e. Gamma)](https://filmicworlds.com/blog/linear-space-lighting-i-e-gamma/)   
 [Chapter 24. The Importance of Being Linear](https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-24-importance-being-linear), GPU Gems 3   
@@ -318,7 +318,7 @@ This ensures that all pending Win32 messages are consumed before updating/render
 
 For UWP, the equivalent thing is done inside the ``ViewProvider`` **Run** method.
 
-**Next lesson**: [[Using DeviceResources]]
+**Next lesson**: [Using DeviceResources](Using-DeviceResources.md)
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  

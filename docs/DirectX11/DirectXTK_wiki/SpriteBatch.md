@@ -1,11 +1,11 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This is a native Direct3D 11 implementation of the SpriteBatch helper from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteBatch``), providing the same functionality and API.
 
-![Sprite Batch Example](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteBatchExample.png)
+![Sprite Batch Example](images/SpriteBatchExample.png)
 
-**Related tutorials:** [[Sprites and textures]], [[More tricks with sprites]], [[Writing custom shaders]]
+**Related tutorials:** [Sprites and textures](Sprites-and-textures.md), [More tricks with sprites](More-tricks-with-sprites.md), [Writing custom shaders](Writing-custom-shaders.md)
 
 ```cpp
 class DirectX::SpriteBatch
@@ -74,7 +74,7 @@ spriteBatch->Begin(SpriteSortMode_Deferred, m_states->NonPremultiplied() );
 
 > If you need to provide custom blend factors or sample mask, use the *setCustomShaders* callback to call the device context's ``OMSetBlendState`` directly instead.
 
-> [[SpriteFont]] is designed to work with premultiplied alpha, so if you need to draw both text and straight-alpha content, you should submit them in two different ``Begin`` / ``End`` batches. Alternatively, you can use [[MakeSpriteFont]] to generate 'straight-alpha' ``.spritefont`` files using the ``/NoPremultiply`` switch.
+> [SpriteFont](SpriteFont.md) is designed to work with premultiplied alpha, so if you need to draw both text and straight-alpha content, you should submit them in two different ``Begin`` / ``End`` batches. Alternatively, you can use [MakeSpriteFont](MakeSpriteFont.md) to generate 'straight-alpha' ``.spritefont`` files using the ``/NoPremultiply`` switch.
 
 # Custom render states
 By default SpriteBatch uses premultiplied alpha blending, no depth buffer, counter clockwise culling, and linear filtering with clamp texture addressing. You can change this by passing custom state objects to ``SpriteBatch::Begin``.
@@ -101,7 +101,7 @@ spriteBatch->Begin(SpriteSortMode_Deferred, nullptr, nullptr, nullptr, nullptr, 
 # Pixel centers
 In Direct3D 11, the 'pixel center' is at the '.5, .5' coordinate rather than Direct3D 9's integer coordinates being considered the pixel center. If doing 'nearest-point' filtering (such as ``CommonStates::PointClamp`` or ``CommonStates::PointWrap``), then the sampled pixel is going to be the one that touces the pixel center based on the sprite location. This means that the position has to move from, say, "1.5" to "1.6" to get the pixel sample to change.
 
-If you want to achieve something more like Direct3D 9's integer coordinates are pixel centers, then you should use DirectMath (or [[SimpleMath]]) to adjust your positions provided to SpriteBatch accordingly.
+If you want to achieve something more like Direct3D 9's integer coordinates are pixel centers, then you should use DirectMath (or [SimpleMath](SimpleMath.md)) to adjust your positions provided to SpriteBatch accordingly.
 
 ```
 XMVECTOR pos = XMLoadFloat2(&m_position);
@@ -150,7 +150,7 @@ To use a custom vertex shader with SpriteBatch, you'll need to create an input l
 * The vertex u, v coordinates are generated.
 * The vertex color is the tint color ``SpriteBatch::Draw`` parameter, which defaults to White (1,1,1,1).
 
-Here's an example using [[Effects]].
+Here's an example using [Effects](Effects.md).
 
 ```cpp
 void const* shaderByteCode;
@@ -237,13 +237,13 @@ spriteBatch->Begin(SpriteSortMode_Deferred,
 The same set of techniques that were used with XNA Game Studio's SpriteBatch can be adapted to the DirectXTK implementation.
 
 ## Animated sprites
-The [[AnimatedTexture]] class demonstrates drawing an animated sprite.
+The [AnimatedTexture](AnimatedTexture.md) class demonstrates drawing an animated sprite.
 
 ## Scrolling background
-The [[ScrollingBackground]] class demonstrates drawing a scrolling background.
+The [ScrollingBackground](ScrollingBackground.md) class demonstrates drawing a scrolling background.
 
 ## Sprite Sheet
-The [[SpriteSheet]] class demonstrates drawing sprites from a sprite sheet (aka "texture atlas") to more efficiently use texture memory.
+The [SpriteSheet](SpriteSheet.md) class demonstrates drawing sprites from a sprite sheet (aka "texture atlas") to more efficiently use texture memory.
 
 ## Post processing effects
 The techniques described for XNA Game Studio will work with the C++ SpriteBatch.
@@ -253,7 +253,7 @@ The techniques described for XNA Game Studio will work with the C++ SpriteBatch.
 [Postprocessing effects on WP7, Part II](https://www.catalinzima.com/2012/10/postprocessing-effects-on-wp7-part-ii/)  
 [Postprocessing effects on WP7, Part III](https://www.catalinzima.com/2012/10/postprocessing-effects-on-wp7-part-iii/)  
 
-> For Direct3D Feature Level 10.0 or better hardware, these are better done using [[PostProcess]]
+> For Direct3D Feature Level 10.0 or better hardware, these are better done using [PostProcess](PostProcess.md)
 
 ## Normal-mapped sprites
 The techniques described in the ``SpriteEffects`` sample for XNA Game Studio also work with the C++ SpriteBatch.

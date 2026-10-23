@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
 DynamicSoundEffectInstance is an instance of a sound which plays buffers submitted from the application. This can be used to implement procedural audio generation or to implement streaming. It can be played with 3D positional audio effects, volume and panning control, and pause/resume control. Looping is not supported.
@@ -48,7 +48,7 @@ effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
     SoundEffectInstance_Use3D );
 ```
 
-Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
+Or use 3D positional audio with reverb effects (if [AudioEngine](AudioEngine.md) was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
 ```cpp
 effect = std::make_unique<DynamicSoundEffectInstance>( audEngine.get(),
@@ -84,7 +84,7 @@ stream->SetVolume(0.5f);
 
 This is a combination of sound effect instance flags. It defaults to ``SoundEffectInstance_Default``.
 
-See [[Instance flags|SoundEffectInstance#instance-flags]]
+See [Instance flags](SoundEffectInstance.md#instance-flags)
 
 #  Playback control
 
@@ -97,7 +97,7 @@ See [[Instance flags|SoundEffectInstance#instance-flags]]
 * **Pause**: Pauses the sound playback. Note that for a 'game' pause, you should use ``AudioEngine::Suspend`` / ``Resume`` instead of 'pausing' the sounds individually.
 
 # Audio data submission
-Unlike [[SoundEffectInstance]] which obtains the audio data from a [[SoundEffect]] or a [[WaveBank]], this class only plays data provided directly to the class via **SubmitBuffer**.
+Unlike [SoundEffectInstance](SoundEffectInstance.md) which obtains the audio data from a [SoundEffect](SoundEffect.md) or a [WaveBank](WaveBank.md), this class only plays data provided directly to the class via **SubmitBuffer**.
 
 ```cpp
 std::vector<uint8_t> audioBytes;
@@ -151,7 +151,7 @@ void GenerateSineWave( _Out_writes_(sampleRate) int16_t* data,
 ```
 
 > This sample is somewhat contrived and is only for illustrative purposes. If the audio data is static, it's more
-> efficient to use a [[SoundEffect]] and then create a [[SoundEffectInstance]] from it to play it as a looped
+> efficient to use a [SoundEffect](SoundEffect.md) and then create a [SoundEffectInstance](SoundEffectInstance.md) from it to play it as a looped
 > sound. Dynamic cases will have different audio data in the buffer on each call to ``SubmitBuffer``. This
 > requires some additional complexity to ensure that each buffer is freed or reused only after it has
 > completed playing.
@@ -172,7 +172,7 @@ The **Apply3D** method computes and applies positional effects, if the instance 
 
 The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources.
 
-See [[Positional 3D audio|SoundEffectInstance#positional-3d-audio]].
+See [Positional 3D audio](SoundEffectInstance.md#positional-3d-audio).
 
 # Voice management
 
@@ -180,7 +180,7 @@ A SoundStreamInstance will allocate a XAudio2 source voice when played, and will
 
 By default the number of XAudio2 source voices that can be allocated is 'unlimited'. You can set a specific limit using ``AudioEngine::SetMaxVoicePool`` which will be enforced by generating a C++ exception if there are too many allocated source voices when ``Play`` is called.
 
-See [[AudioEngine]] for more details.
+See [AudioEngine](AudioEngine.md) for more details.
 
 # Properties
 

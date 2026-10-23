@@ -11,39 +11,39 @@ using namespace DirectX;
 > The Xbox One exclusive application *XBoxDDSTextureLoader* functions are in the **Xbox** C++ namespace.
 
 # Modules
-* [[Audio]] - low-level audio API using XAudio2
-     * [[AudioEngine]], [[SoundEffect]], [[SoundEffectInstance]], [[SoundStreamInstance]], [[DynamicSoundEffectInstance]], [[WaveBank]], [[AudioListener]], [[AudioEmitter]]
-* [[BufferHelpers]] - C++ helpers for creating D3D resources from CPU data
-* [[CommonStates]] - factory providing commonly used D3D state objects
-* [[DDSTextureLoader]] - light-weight DDS file texture loader
-* [[DirectXHelpers]] - misc C++ helpers for D3D programming
-* [[Effects]] - set of built-in shaders for common rendering tasks
-     * [[IEffectFactory|EffectFactory]], [[EffectFactory]], [[PBREffectFactory|EffectFactory]], [[NPREffectFactory|EffectFactory]], [[DGSLEffectFactory|EffectFactory]]
-     * [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], [[IEffectSkinning]]
-     * [[AlphaTestEffect]], [[BasicEffect]], [[DualTextureEffect]], [[EnvironmentMapEffect]], [[SkinnedEffect]]
-     * [[NormalMapEffect]], [[SkinnedNormalMapEffect|NormalMapEffect]]
-     * [[PBREffect]], [[SkinnedPBREffect|PBREffect]]
-     * [[NPREffect]], [[SkinnedNPREffect|NPREffect]]
-     * [[DebugEffect]]
-     * [[DGSLEffect]], [[SkinnedDGSLEffect|DGSLEffect]]
-* [[GamePad]] - gamepad controller helper using XInput or Windows.Gaming.Input
-* [[GeometricPrimitive]] - draws basic shapes such as cubes and spheres
-* [[GraphicsMemory]] - helper for managing dynamic graphics memory allocation
-* [[Keyboard]] - keyboard state tracking helper
-* [[Model]] - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files
-     * [[ModelMesh]], [[ModelMeshPart]], [[ModelBone]]
-* [[Mouse]] - mouse helper
-* [[PostProcess]] - set of built-in shaders for common post-processing operations
-     * [[BasicPostProcess]], [[DualPostProcess]], [[ToneMapPostProcess]]
-* [[PrimitiveBatch]] - simple and efficient way to draw user primitives
-* [[ScreenGrab]] - light-weight screen shot saver
-* [[SimpleMath]] - simplified C++ wrapper for DirectXMath
-     * [[Rectangle]], [[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]], [[Quaternion]], [[Plane]], [[Ray]], [[Color]], [[Viewport]]
-* [[SpriteBatch]] - simple & efficient 2D sprite rendering
-* [[SpriteFont]] - bitmap based text rendering
-* [[VertexTypes]] - structures for commonly used vertex data formats
-* [[WICTextureLoader]] - WIC-based image file texture loader
-* [[XboxDDSTextureLoader]] - DDSTextureLoader variant for Xbox One exclusive app developers
+* [Audio](Audio.md) - low-level audio API using XAudio2
+     * [AudioEngine](AudioEngine.md), [SoundEffect](SoundEffect.md), [SoundEffectInstance](SoundEffectInstance.md), [SoundStreamInstance](SoundStreamInstance.md), [DynamicSoundEffectInstance](DynamicSoundEffectInstance.md), [WaveBank](WaveBank.md), [AudioListener](AudioListener.md), [AudioEmitter](AudioEmitter.md)
+* [BufferHelpers](BufferHelpers.md) - C++ helpers for creating D3D resources from CPU data
+* [CommonStates](CommonStates.md) - factory providing commonly used D3D state objects
+* [DDSTextureLoader](DDSTextureLoader.md) - light-weight DDS file texture loader
+* [DirectXHelpers](DirectXHelpers.md) - misc C++ helpers for D3D programming
+* [Effects](Effects.md) - set of built-in shaders for common rendering tasks
+     * [IEffectFactory](EffectFactory.md), [EffectFactory](EffectFactory.md), [PBREffectFactory](EffectFactory.md), [NPREffectFactory](EffectFactory.md), [DGSLEffectFactory](EffectFactory.md)
+     * [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), [IEffectLights](IEffectLights.md), [IEffectFog](IEffectFog.md), [IEffectSkinning](IEffectSkinning.md)
+     * [AlphaTestEffect](AlphaTestEffect.md), [BasicEffect](BasicEffect.md), [DualTextureEffect](DualTextureEffect.md), [EnvironmentMapEffect](EnvironmentMapEffect.md), [SkinnedEffect](SkinnedEffect.md)
+     * [NormalMapEffect](NormalMapEffect.md), [SkinnedNormalMapEffect](NormalMapEffect.md)
+     * [PBREffect](PBREffect.md), [SkinnedPBREffect](PBREffect.md)
+     * [NPREffect](NPREffect.md), [SkinnedNPREffect](NPREffect.md)
+     * [DebugEffect](DebugEffect.md)
+     * [DGSLEffect](DGSLEffect.md), [SkinnedDGSLEffect](DGSLEffect.md)
+* [GamePad](GamePad.md) - gamepad controller helper using XInput or Windows.Gaming.Input
+* [GeometricPrimitive](GeometricPrimitive.md) - draws basic shapes such as cubes and spheres
+* [GraphicsMemory](GraphicsMemory.md) - helper for managing dynamic graphics memory allocation
+* [Keyboard](Keyboard.md) - keyboard state tracking helper
+* [Model](Model.md) - draws simple meshes loaded from .CMO, .SDKMESH, or .VBO files
+     * [ModelMesh](ModelMesh.md), [ModelMeshPart](ModelMeshPart.md), [ModelBone](ModelBone.md)
+* [Mouse](Mouse.md) - mouse helper
+* [PostProcess](PostProcess.md) - set of built-in shaders for common post-processing operations
+     * [BasicPostProcess](BasicPostProcess.md), [DualPostProcess](DualPostProcess.md), [ToneMapPostProcess](ToneMapPostProcess.md)
+* [PrimitiveBatch](PrimitiveBatch.md) - simple and efficient way to draw user primitives
+* [ScreenGrab](ScreenGrab.md) - light-weight screen shot saver
+* [SimpleMath](SimpleMath.md) - simplified C++ wrapper for DirectXMath
+     * [Rectangle](Rectangle.md), [Vector2](Vector2.md), [Vector3](Vector3.md), [Vector4](Vector4.md), [Matrix](Matrix.md), [Quaternion](Quaternion.md), [Plane](Plane.md), [Ray](Ray.md), [Color](Color.md), [Viewport](Viewport.md)
+* [SpriteBatch](SpriteBatch.md) - simple & efficient 2D sprite rendering
+* [SpriteFont](SpriteFont.md) - bitmap based text rendering
+* [VertexTypes](VertexTypes.md) - structures for commonly used vertex data formats
+* [WICTextureLoader](WICTextureLoader.md) - WIC-based image file texture loader
+* [XboxDDSTextureLoader](XboxDDSTextureLoader.md) - DDSTextureLoader variant for Xbox One exclusive app developers
 
 # Building
 This code is designed to build with Visual Studio 2022 or later. It requires the Windows SDK (19041) or later for functionality such as the DirectXMath library and the DXGI 1.2 headers.
@@ -87,7 +87,7 @@ DirectXTK makes use of C++ exception handling which should be enabled by the app
 * [How to: Break When an Exception is Thrown](https://docs.microsoft.com/visualstudio/debugger/managing-exceptions-with-the-debugger)
 * [Dual-use Coding Techniques for Games](https://aka.ms/Fo3su4)
 * [Resource Acquisition Is Initialization](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization)
-* [[ThrowIfFailed]]
+* [ThrowIfFailed](ThrowIfFailed.md)
 
 _Visual Studio Express editions have limited exception handling debugging support, so consider using VS Community or Pro+ instead._
 
@@ -96,7 +96,7 @@ DirectXTK encourages and makes use of a number of smart-pointers to simplify res
 
 * ``std::unique_ptr`` - A smart-pointer that has exactly one 'owner' of the memory
 * ``std::shared_ptr`` - A smart-pointer that tracks memory use with reference counting
-* ``Microsoft::WRL::ComPtr`` - A [[COM smart-pointer|ComPtr]] for reference count management very similar to ATL's CComPtr
+* ``Microsoft::WRL::ComPtr`` - A [COM smart-pointer](ComPtr.md) for reference count management very similar to ATL's CComPtr
 
 * [Smart Pointers (Modern C++)](https://docs.microsoft.com/cpp/cpp/smart-pointers-modern-cpp)
 * [Managing the Lifetime of an Object](https://docs.microsoft.com/windows/win32/learnwin32/managing-the-lifetime-of-an-object)
@@ -104,6 +104,6 @@ DirectXTK encourages and makes use of a number of smart-pointers to simplify res
 * [Reference Counting (Direct3D 10)](https://docs.microsoft.com/windows/win32/direct3d10/d3d10-graphics-programming-guide-api-features-reference-counting)
 
 # Additional information
-[[Integration]]
+[Integration](Integration.md)
 
-[[Implementation]]
+[Implementation](Implementation.md)

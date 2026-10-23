@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
-**NormalMapEffect** effect extends [[BasicEffect]] to support normal-mapping and an optional specular map. It supports texture mapping, vertex coloring, directional per-pixel lighting, fog, and GPU instancing.
+**NormalMapEffect** effect extends [BasicEffect](BasicEffect.md) to support normal-mapping and an optional specular map. It supports texture mapping, vertex coloring, directional per-pixel lighting, fog, and GPU instancing.
 
 **SkinnedNormalMapEffect** extends *NormalMapEffect* to support vertex skinning. The skinned effect does not support per-vertex colors or GPU instancing.
 
-**Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
+**Related tutorials:** [Using advanced shaders](Using-advanced-shaders.md), [Multistream rendering and instancing](Multistream-rendering-and-instancing.md)
 
 ```mermaid
 classDiagram
@@ -103,9 +103,9 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-NormalMapEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
+NormalMapEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), [IEffectLights](IEffectLights.md), and [IEffectFog](IEffectFog.md)
 
-SkinnedNormalMapEffect also supports [[IEffectSkinning]]
+SkinnedNormalMapEffect also supports [IEffectSkinning](IEffectSkinning.md)
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vertex colors are enabled, it also requires ``COLOR``.
@@ -180,7 +180,7 @@ Calls to ``SetLightingEnabled(false);`` will generate a C++ exception, and calls
 
 For *SkinnedNormalMapEffect*, calls to ``SetInstancingEnabled(true);`` or ``SetVertexColorEnabled(true);`` will generate a C++ exception.
 
-This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the texture, and (0.5, 0.5) for the normal map (i.e. a 'smooth' surface). This is useful when using GPU instancing which is not supported by [[BasicEffect]].
+This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the texture, and (0.5, 0.5) for the normal map (i.e. a 'smooth' surface). This is useful when using GPU instancing which is not supported by [BasicEffect](BasicEffect.md).
 
 <table border=0>
  <tr>
@@ -189,9 +189,9 @@ This effect always performs texturing, so if 'untextured' rendering is desired y
   <td>Specular map</td>
  </tr>
  <tr>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/diffusemap.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/normalmap.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/specularmap.png"></td>
+  <td><img src="images/diffusemap.png"></td>
+  <td><img src="images/normalmap.png"></td>
+  <td><img src="images/specularmap.png"></td>
  <tr>
 </table>
 

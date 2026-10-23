@@ -1,8 +1,8 @@
-This is an example of a C++ port of the C# [XNA Game Studio sample](https://docs.microsoft.com/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)) class for drawing an animated 2D sprite using [[SpriteBatch]]. The sprite animation is assumed to be laid out horizontally.
+This is an example of a C++ port of the C# [XNA Game Studio sample](https://docs.microsoft.com/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)) class for drawing an animated 2D sprite using [SpriteBatch](SpriteBatch.md). The sprite animation is assumed to be laid out horizontally.
 
-**Related tutorial**: [[More tricks with sprites]]
+**Related tutorial**: [More tricks with sprites](More-tricks-with-sprites.md)
 
-[AnimatedTexture.h](https://github.com/Microsoft/DirectXTK/wiki/AnimatedTexture.h)
+[AnimatedTexture.h](AnimatedTexture.h)
 
 ```cpp
 class AnimatedTexture
@@ -122,9 +122,9 @@ private:
 ```
 
 # Example
-This example uses a sprite sheet that has 4 frames of animation ([shipanimated.dds](https://github.com/Microsoft/DirectXTK/wiki/media/shipanimated.dds))
+This example uses a sprite sheet that has 4 frames of animation ([shipanimated.dds](media/shipanimated.dds))
 
-![Ship Animated](https://github.com/Microsoft/DirectXTK/wiki/images/shipanimated.png)
+![Ship Animated](images/shipanimated.png)
 
 ```cpp
 #include "DDSTextureLoader.h"

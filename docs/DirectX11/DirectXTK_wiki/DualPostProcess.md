@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[PostProcess]]|
+|[DirectXTK](DirectXTK.md)|[PostProcess](PostProcess.md)|
 |---|---|
 
 Performs basic post-processing with a built-in set of shaders which operate using two input textures.
@@ -27,7 +27,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 DualPostProcess can be configured to use various pixel shaders by calling ``SetEffect``:
 
 * **Merge**: Combines two images using provided weights.
-* **BloomCombine**: Combines the bloom texture produced by [[BasicPostProcess]] in a final pass with the original scene texture.
+* **BloomCombine**: Combines the bloom texture produced by [BasicPostProcess](BasicPostProcess.md) in a final pass with the original scene texture.
 
 # Properties
 

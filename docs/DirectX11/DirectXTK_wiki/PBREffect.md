@@ -1,15 +1,15 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 **PBREffect** implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer ([PBR](https://wikipedia.org/wiki/Physically_based_rendering)) effect using Image-Based Lighting ([IBL](https://wikipedia.org/wiki/Image-based_lighting)) in combination with up to three directional lights. This effect also supports GPU instancing.
 
 **SkinnedPBREffect** extends ``PBREffect`` to support vertex skinning. The skinned effect does not support velocity buffer generation or GPU instancing.
 
-See also [[PBREffectFactory|EffectFactory]]
+See also [PBREffectFactory](EffectFactory.md)
 
-**Related tutorials:** [[Physically-based rendering]], [[Multistream rendering and instancing]]
+**Related tutorials:** [Physically-based rendering](Physically-based-rendering.md), [Multistream rendering and instancing](Multistream-rendering-and-instancing.md)
 
-![PBR effect](https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect.png)
+![PBR effect](images/pbreffect.png)
 
 ```mermaid
 classDiagram
@@ -96,9 +96,9 @@ effect = std::make_unique<SkinnedPBREffect>(device);
 For exception safety, it is recommended you make use of the C++ [RAII](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
-PBREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+PBREffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), and [IEffectLights](IEffectLights.md).
 
-SkinnedPBREffect also supports [[IEffectSkinning]].
+SkinnedPBREffect also supports [IEffectSkinning](IEffectSkinning.md).
 
 Fog settings are not supported by these effects.
 
@@ -125,7 +125,7 @@ If skinning is used, the vertex layout requires ``BLENDINDICES`` and ``BLENDWEIG
 
 * **SetNormalTexture**: Sets the normal texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
-> See [[NormalMapEffect|NormalMapEffect#normal-maps]] for more details about the normal map texture.
+> See [NormalMapEffect](NormalMapEffect.md#normal-maps) for more details about the normal map texture.
 
 * **SetRMATexture**: Sets the roughness/metalness/ambient-occlusion (RMA) texture. This uses the sampler in slot 0. Can be set to nullptr to remove a reference.
 
@@ -165,7 +165,7 @@ These effects always performs per-pixel lighting. Calls to ``SetLightingEnabled(
 
 The lighting modeling for PBR does not make use of an ambient or specular term as these are more directly modeled by the image-based lighting model. Calls to **SetAmbientLightColor** and **SetLightSpecularColor** are ignored.
 
-These effects requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+These effects requires a texture sampler in both slots 0 and 1. [GeometricPrimitive](GeometricPrimitive.md) and [SpriteBatch](SpriteBatch.md) only set a texture sampler in slot 0 by default, [Model](Model.md) sets a sampler in slots 0 and 1.
 
 <table border=0>
  <tr>
@@ -174,9 +174,9 @@ These effects requires a texture sampler in both slots 0 and 1. [[GeometricPrimi
   <td>Emissive map</td>
  </tr>
  <tr>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_albedo.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_normal.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_emissive.png"></td>
+  <td><img src="images/pbreffect_albedo.png"></td>
+  <td><img src="images/pbreffect_normal.png"></td>
+  <td><img src="images/pbreffect_emissive.png"></td>
  <tr>
 </table>
 
@@ -188,10 +188,10 @@ These effects requires a texture sampler in both slots 0 and 1. [[GeometricPrimi
   <td>Roughness/Metalness/Ambient-Occlusion map</td>
  </tr>
  <tr>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_metal.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_roughness.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_ao.png"></td>
-  <td><img src="https://github.com/Microsoft/DirectXTK/wiki/images/pbreffect_orm.png"></td>
+  <td><img src="images/pbreffect_metal.png"></td>
+  <td><img src="images/pbreffect_roughness.png"></td>
+  <td><img src="images/pbreffect_ao.png"></td>
+  <td><img src="images/pbreffect_orm.png"></td>
  <tr>
 </table>
 

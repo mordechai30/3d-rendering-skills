@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 This is a helper for simplified keyboard state tracking modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) Keyboard class.
 
-![Microsoft Wireless Keyboard 800](https://github.com/Microsoft/DirectXTK/wiki/images/wirelesskeyboard.jpg)
+![Microsoft Wireless Keyboard 800](images/wirelesskeyboard.jpg)
 
-**Related tutorial**: [[Mouse and keyboard input]]
+**Related tutorial**: [Mouse and keyboard input](Mouse-and-keyboard-input.md)
 
 ```cpp
 class DirectX::Keyboard
@@ -218,7 +218,7 @@ The **IsConnected** method can be used to test if a keyboard device is present o
 # International layouts
 Keep in mind when designing the keyboard controls for your game the different layouts of standard keyboards.  In particularly, note the red keys which are in different locations for international keyboards than the traditional English <kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd><kbd>R</kbd><kbd>T</kbd><kbd>Y</kbd> keyboard.
 
-![International Keyboard Layout](https://github.com/Microsoft/DirectXTK/wiki/images/KeyboardInternational.png)
+![International Keyboard Layout](images/KeyboardInternational.png)
 
 The Keyboard class makes use of virtual keys and not scancodes so your code has to be aware of these layout differences.
 

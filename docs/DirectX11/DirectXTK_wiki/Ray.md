@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 Ray class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Ray``) math library.
@@ -27,7 +27,7 @@ Ray( Vector3(1,2,3), Vector3(0,1,0 ); // Creates a ray at 1,2,3
 
 # Methods
 * Comparison operators: ``==`` and ``!=``
-* **Intersects**: Performs intersection tests of the ray against a collision type, a triangle, or a [[Plane]].
+* **Intersects**: Performs intersection tests of the ray against a collision type, a triangle, or a [Plane](Plane.md).
 
 # Exceptions
 

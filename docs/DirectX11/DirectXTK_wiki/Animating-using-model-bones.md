@@ -1,22 +1,22 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson we learn how to use model bones for rigid-body animation.
 
 # Setup
 
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Background
 
-Most 3D modeling packages (a.k.a. <abbr title="Digital Content Creation">DCC</abbr> tools) create a relationship between the different parts of 3D models. The process of assigning this hierarchy is  called *rigging* the model for animation. This hierarchy can be exported to runtime geometry formats like ``SDKMESH``, then loaded into *DirectX Tool Kit* as an array of [[ModelBone]] structures that link to the parent, children, and siblings of each bone. There's also a local transformation matrix associated with each bone.
+Most 3D modeling packages (a.k.a. <abbr title="Digital Content Creation">DCC</abbr> tools) create a relationship between the different parts of 3D models. The process of assigning this hierarchy is  called *rigging* the model for animation. This hierarchy can be exported to runtime geometry formats like ``SDKMESH``, then loaded into *DirectX Tool Kit* as an array of [ModelBone](ModelBone.md) structures that link to the parent, children, and siblings of each bone. There's also a local transformation matrix associated with each bone.
 
 These 'bone' locations can be used as simple metadata for placing dynamic lights, collision geometry, or other game-related logic in an art-driven fashion. They can also be used to implement rigid-body animation, which is what we will implement in this lesson.
 
 # Rendering a test scene
 
-Start by saving [tank.sdkmesh](https://github.com/Microsoft/DirectXTK/wiki/media/tank.sdkmesh), [engine_diff_tex.dds](https://github.com/Microsoft/DirectXTK/wiki/media/engine_diff_tex.dds), and [turret_alt_diff_tex.dds](https://github.com/Microsoft/DirectXTK/wiki/media/turret_alt_diff_tex.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "tank.sdkmesh" and click "OK". Then repeat for the two ``DDS`` texture files.
+Start by saving [tank.sdkmesh](media/tank.sdkmesh), [engine_diff_tex.dds](media/engine_diff_tex.dds), and [turret_alt_diff_tex.dds](media/turret_alt_diff_tex.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "tank.sdkmesh" and click "OK". Then repeat for the two ``DDS`` texture files.
 
 > If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``tank.sdkmesh`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
@@ -80,9 +80,9 @@ m_world = XMMatrixRotationY(time * 0.1f);
 
 Build an run to see... well, something:
 
-![Screenshot of messed up tank model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTank1.png)
+![Screenshot of messed up tank model](images/screenshotTank1.png)
 
-> This is more or less the same setup as [[Rendering a model]] with the addition of ``ModelLoader_IncludeBones``.
+> This is more or less the same setup as [Rendering a model](Rendering-a-model.md) with the addition of ``ModelLoader_IncludeBones``.
 
 # Rendering with model bones
 
@@ -148,7 +148,7 @@ for (const auto& it : m_model->bones)
 
 Now if you build and run, the model is back in the center and actually looks like a tank.
 
-![Screenshot of tank model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTank2.png)
+![Screenshot of tank model](images/screenshotTank2.png)
 
 # Moving individual bones
 
@@ -252,7 +252,7 @@ m_animBones[m_hatchBone] = XMMatrixMultiply(mat,
 
 Now if you build and run, the tank wheels are rolling, the turret is swinging back & forth, and other parts of the model animate as well.
 
-![Screenshot of moving tank model](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTank3.png)
+![Screenshot of moving tank model](images/screenshotTank3.png)
 
 ### Technical notes
 
@@ -264,7 +264,7 @@ Now if you build and run, the tank wheels are rolling, the turret is swinging ba
 
 * The ``CopyAbsoluteBoneTransforms`` method computes the final matrices using the bone hierarchy given the input local matrices for each bone.
 
-**Next lesson:** [[Using skinned models]]
+**Next lesson:** [Using skinned models](Using-skinned-models.md)
 
 # Credits
 

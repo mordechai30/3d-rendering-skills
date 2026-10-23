@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This effect provides a way to visualize normals, tangents, and binormals/bitangents for debugging purposes. This effect also supports GPU instancing.
 
-**Related tutorials:** [[Using advanced shaders]], [[Multistream rendering and instancing]]
+**Related tutorials:** [Using advanced shaders](Using-advanced-shaders.md), [Multistream rendering and instancing](Multistream-rendering-and-instancing.md)
 
 ```mermaid
 classDiagram
@@ -62,7 +62,7 @@ effect = std::make_unique<DebugEffect>(device);
 For exception safety, it is recommended you make use of the C++ [RAII](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
-PBREffect supports [[IEffect]] and [[IEffectMatrices]].
+PBREffect supports [IEffect](IEffect.md) and [IEffectMatrices](IEffectMatrices.md).
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL``, and ``TEXCOORD0``. If per-vertex colors are enabled, it also requires ``COLOR``.

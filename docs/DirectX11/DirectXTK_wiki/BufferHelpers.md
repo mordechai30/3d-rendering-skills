@@ -1,4 +1,4 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 Helpers functions for creating Direct3D resources from CPU data.
@@ -57,7 +57,7 @@ DX::ThrowIfFailed(
   );
 ```
 
-When creating from an array using [[VertexTypes]], a template simplifies this to:
+When creating from an array using [VertexTypes](VertexTypes.md), a template simplifies this to:
 
 ```cpp
 ComPtr<ID3D11Buffer> vb;
@@ -82,7 +82,7 @@ DX::ThrowIfFailed(
 
 > Note that using ``std::vector<uint32_t> indices;`` requires Direct3D Feature level 9.2 or better.
 
-See [[Model]] for creating vertex buffers/index buffers from disk files.
+See [Model](Model.md) for creating vertex buffers/index buffers from disk files.
 
 # Creating textures
 
@@ -146,7 +146,7 @@ DX::ThrowIfFailed(
     );
 ```
 
-See [[DDSTextureLoader]] and [[WICTextureLoader]] for creating textures from disk files.
+See [DDSTextureLoader](DDSTextureLoader.md) and [WICTextureLoader](WICTextureLoader.md) for creating textures from disk files.
 
 # Constant buffers
 
@@ -178,7 +178,7 @@ deviceContext->VSSetConstantBuffers(0, 1, &buffer);
 deviceContext->PSSetConstantBuffers(0, 1, &buffer);
 ```
 
-For Xbox One XDK, the ``ConstantBuffer`` class supports "11.X fast semantics", requiring a slightly different calling pattern when rendering. Each time you call ``SetData`` the [[GraphicsMemory]] class is used to allocate video memory.
+For Xbox One XDK, the ``ConstantBuffer`` class supports "11.X fast semantics", requiring a slightly different calling pattern when rendering. Each time you call ``SetData`` the [GraphicsMemory](GraphicsMemory.md) class is used to allocate video memory.
 
 ```cpp
 void *grfxMemory;

@@ -1,8 +1,8 @@
-This is an example of a C++ port of the C# XNA Game Studio sample class for drawing a scrolling background using [[SpriteBatch]].
+This is an example of a C++ port of the C# XNA Game Studio sample class for drawing a scrolling background using [SpriteBatch](SpriteBatch.md).
 
-**Related tutorial**: [[More tricks with sprites]]
+**Related tutorial**: [More tricks with sprites](More-tricks-with-sprites.md)
 
-[ScrollingBackground.h](https://github.com/Microsoft/DirectXTK/wiki/ScrollingBackground.h)
+[ScrollingBackground.h](ScrollingBackground.h)
 
 ```cpp
 class ScrollingBackground
@@ -109,9 +109,9 @@ private:
 
 # Example
 
-Displays a top-to-bottom scrolling background of a starfield ([starfield.dds](https://github.com/Microsoft/DirectXTK/wiki/media/starfield.dds))
+Displays a top-to-bottom scrolling background of a starfield ([starfield.dds](media/starfield.dds))
 
-![Starfield](https://github.com/Microsoft/DirectXTK/wiki/images/starfield.png)
+![Starfield](images/starfield.png)
 
 ```cpp
 #include "DDSTextureLoader.h"

@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Model]]|
+|[DirectXTK](DirectXTK.md)|[Model](Model.md)|
 |---|---|
 
-This class is part of the [[Model]] hierarchy. The purpose of this structure is to define a hierarchy of transformation matrices used for rigid-body animation, skinning animation, or as metadata for locations associated with a model for runtime insertion of dynamic lights, particle effects, etc.
+This class is part of the [Model](Model.md) hierarchy. The purpose of this structure is to define a hierarchy of transformation matrices used for rigid-body animation, skinning animation, or as metadata for locations associated with a model for runtime insertion of dynamic lights, particle effects, etc.
 
 The use of ModelBone is optional. Therefore the ``Model::bones`` array can be empty, and both ``boneMatrices`` and  ``invBindPoseMatrices`` can be null.
 
-**Related tutorials:** [[Animating using model bones]], [[Using skinned models]]
+**Related tutorials:** [Animating using model bones](Animating-using-model-bones.md), [Using skinned models](Using-skinned-models.md)
 
 ```cpp
 class DirectX::ModelBone

@@ -1,20 +1,20 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 ``SimpleMath.h`` wraps the [DirectXMath](https://walbourn.github.io/introducing-directxmath/) SIMD vector/matrix math API with an easier to use C++ interface. It provides the following types, with similar names, methods, and operator overloads to the XNA Game Studio math API:
 
-* [[Vector2]]
-* [[Vector3]]
-* [[Vector4]]
-* [[Matrix]]
-* [[Quaternion]]
-* [[Plane]]
-* [[Ray]]
-* [[Rectangle]]
-* [[Color]]
-* [[Viewport]]
+* [Vector2](Vector2.md)
+* [Vector3](Vector3.md)
+* [Vector4](Vector4.md)
+* [Matrix](Matrix.md)
+* [Quaternion](Quaternion.md)
+* [Plane](Plane.md)
+* [Ray](Ray.md)
+* [Rectangle](Rectangle.md)
+* [Color](Color.md)
+* [Viewport](Viewport.md)
 
-**Related tutorials:** [[Using the SimpleMath library]], [[Basic game math]], [[Collision detection]], [[Mixing SimpleMath and DirectXMath]]
+**Related tutorials:** [Using the SimpleMath library](Using-the-SimpleMath-library.md), [Basic game math](Basic-game-math.md), [Collision detection](Collision-detection.md), [Mixing SimpleMath and DirectXMath](Mixing-SimpleMath-and-DirectXMath.md)
 
 ```mermaid
 classDiagram
@@ -196,7 +196,7 @@ SimpleMath as with DirectXMath uses [row-major ordering](https://wikipedia.org/w
 
 HLSL as noted on [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3dhlsl/dx-graphics-hlsl-per-component-math#matrix-ordering) defaults to using _column-major ordering_ as this makes for slightly more efficient shader matrix multiplies. Therefore, if a ``Matrix`` is going to be copied into a HLSL _constant buffer_, it is usually [transposed](https://wikipedia.org/wiki/Transpose) to flip the ordering to ``_11``, ``_21``, ``_31``, ``_41_``, ``_12``, ``_22``, etc. as part of updating the constant buffer.
 
-With the built-in [[Effects]] this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` in your HLSL shader source, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``.
+With the built-in [Effects](Effects.md) this is done internally, but if writing your own shaders and managing your own constant buffers, you will need to ensure you pass in your matrix data in the correct order for your HLSL shader settings. This means sticking with the HLSL default by transposing your matrices as you update the constant buffer, using `` #pragma pack_matrix(row_major)`` in your HLSL shader source, or compiling your shaders with ``D3DCOMPILE_PACK_MATRIX_ROW_MAJOR`` / ``/Zpr``.
 
 # Windows Store apps
 A number of Windows Store samples include a ``BasicMath.h`` header that includes some very simplistic math types:

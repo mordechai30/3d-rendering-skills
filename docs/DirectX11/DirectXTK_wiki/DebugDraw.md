@@ -1,8 +1,8 @@
-This provides a set of helpers that use [[PrimitiveBatch]] to draw common debug shapes like boxes, spheres, frustums, etc. They are drawn as simple lines which makes them ideally suited for visualizing bounding volumes, collision data, etc.
+This provides a set of helpers that use [PrimitiveBatch](PrimitiveBatch.md) to draw common debug shapes like boxes, spheres, frustums, etc. They are drawn as simple lines which makes them ideally suited for visualizing bounding volumes, collision data, etc.
 
-![Collision Sample](https://github.com/Microsoft/DirectXTK/wiki/images/DebugDraw.PNG)
+![Collision Sample](images/DebugDraw.PNG)
 
-[DebugDraw.h](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.h)
+[DebugDraw.h](DebugDraw.h)
 
  ```cpp
 #include <DirectXColors.h>
@@ -47,7 +47,7 @@ void XM_CALLCONV DrawQuad(DirectX::PrimitiveBatch<DirectX::VertexPositionColor>*
     DirectX::HXMVECTOR color = DirectX::Colors::White);    
 ```
 
-[DebugDraw.cpp](https://github.com/Microsoft/DirectXTK/wiki/DebugDraw.cpp)
+[DebugDraw.cpp](DebugDraw.cpp)
 
 ```cpp
 #include "DebugDraw.h"
@@ -348,7 +348,7 @@ void XM_CALLCONV DX::DrawQuad(PrimitiveBatch<VertexPositionColor>* batch,
 
 # Example (DirectX 11)
 
-To use the debug draw routines in your application, set up drawing with ``PrimitiveBatch`` per the usual setup (see [[Simple rendering]] for more details).
+To use the debug draw routines in your application, set up drawing with ``PrimitiveBatch`` per the usual setup (see [Simple rendering](Simple-rendering.md) for more details).
 
 ```cpp
 m_states = std::make_unique<CommonStates>(device);

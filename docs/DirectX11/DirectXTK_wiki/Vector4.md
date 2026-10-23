@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 Four component vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Vector4``) math library.
@@ -85,4 +85,4 @@ Vector4 color = Colors::White.v;
 
 # See also
 
-[[Vector2]], [[Vector3]], [[Matrix]], [[Quaternion]]
+[Vector2](Vector2.md), [Vector3](Vector3.md), [Matrix](Matrix.md), [Quaternion](Quaternion.md)

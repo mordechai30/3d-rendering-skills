@@ -1,15 +1,15 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 This lesson covers the basics of High-Dynamic Range (HDR) rendering, tone-mapping, and optionally adding HDR10 wide color gamut (a.k.a. Ultra HD) rendering with _DirectX Tool Kit_.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Setting up an HDR render target
 
-Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+Save the files [RenderTexture.h](RenderTexture.h) and [RenderTexture.cpp](RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
 
 Add to the **Game.h** file to the ``#include`` section:
 
@@ -165,7 +165,7 @@ m_colorScale = 1.f + cosf(time);
 
 Build and run to see the scene with a teapot. The color scales between black and white which for now is full saturated.
 
-![Screenshot of passthrough](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRCopy.PNG)
+![Screenshot of passthrough](images/screenshotHDRCopy.PNG)
 
 # Adding tone mapping
 
@@ -179,7 +179,7 @@ m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
 
 Build and run to see the colors less intense white.
 
-![Screenshot of Reinhard](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRReinhard.PNG)
+![Screenshot of Reinhard](images/screenshotHDRReinhard.PNG)
 
 For a better overall color treatment, you may want to use an [ACES](https://github.com/ampas/aces-dev) [Filmic operator](https://knarkowicz.wordpress.com/2016/01/06/aces-filmic-tone-mapping-curve/) instead. In **Game.cpp**, modify the **CreateDeviceDependentResources**:
 
@@ -191,7 +191,7 @@ m_toneMap->SetTransferFunction(ToneMapPostProcess::SRGB);
 
 Build and run to see a slightly different handling.
 
-![Screenshot of ACES Filmic](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHDRACES.PNG)
+![Screenshot of ACES Filmic](images/screenshotHDRACES.PNG)
 
 # Using HDR10 display output
 
@@ -199,7 +199,7 @@ Next we'll add support for HDR10 wide color gamut rendering.
 
 > HDR10 display output requires a 4k UHD monitor connected with HDMI 2.0 to a PC running Windows 10 Creators Update. The code has to be built with the Windows 10 Creators Update SDK (15063) or later.
 
-In the **Game.cpp** constructor, modify it as follows to use the ``c_EnableHDR`` option of [[DeviceResources]]:
+In the **Game.cpp** constructor, modify it as follows to use the ``c_EnableHDR`` option of [DeviceResources](DeviceResources.md):
 
 ```cpp
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_R10G10B10A2_UNORM,
@@ -292,12 +292,12 @@ graph TD;
 
 # More to explore
 
-* The same technique used here for tone-mapping and HDR10 color conversion can be used for other post-processing effects. See [[PostProcess]], [[BasicPostProcess]] and [[DualPostProcess]].
+* The same technique used here for tone-mapping and HDR10 color conversion can be used for other post-processing effects. See [PostProcess](PostProcess.md), [BasicPostProcess](BasicPostProcess.md) and [DualPostProcess](DualPostProcess.md).
 
-* For HDR10 output, you can select different colorspace transformations for different color grading effects such as using DCI-P3-D65 instead of Rec.709 colorspace as your source or target color primaries. You can also provide a custom color primary rotation matrix. See [[ToneMapPostProcess]] for details.
+* For HDR10 output, you can select different colorspace transformations for different color grading effects such as using DCI-P3-D65 instead of Rec.709 colorspace as your source or target color primaries. You can also provide a custom color primary rotation matrix. See [ToneMapPostProcess](ToneMapPostProcess.md) for details.
 
-**Next lesson:** [[Physically-based rendering]]
+**Next lesson:** [Physically-based rendering](Physically-based-rendering.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[PostProcess]], [[ToneMapPostProcess]], and [[RenderTexture]]
+DirectX Tool Kit docs [PostProcess](PostProcess.md), [ToneMapPostProcess](ToneMapPostProcess.md), and [RenderTexture](RenderTexture.md)

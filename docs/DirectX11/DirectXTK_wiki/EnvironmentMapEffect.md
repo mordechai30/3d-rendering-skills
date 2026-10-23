@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This is a native Direct3D 11 implementation of the built-in EnvironmentMapEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.EnvironmentMapEffect``) which supports environment mapping with texture mapping, vertex or per-pixel lighting, and fogging.
 
-![Environment map](https://github.com/Microsoft/DirectXTK/wiki/images/EnvMapEffect.png)
+![Environment map](images/EnvMapEffect.png)
 
-**Related tutorials:** [[Using advanced shaders]]
+**Related tutorials:** [Using advanced shaders](Using-advanced-shaders.md)
 
 ```mermaid
 classDiagram
@@ -88,7 +88,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-EnvironmentMapEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
+EnvironmentMapEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), [IEffectLights](IEffectLights.md), and [IEffectFog](IEffectFog.md)
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL`` and ``TEXCOORD``.
@@ -146,17 +146,17 @@ For the sphere and dual-parabolic mapping modes, per-pixel lighting is always in
 
 This effect always performs texturing, so if 'untextured' rendering is desired you must provide texture coordinates, and a sampler in slot 0. The class will default to a 1x1 texture with white (1,1,1,1) for the base texture. An environment texture map must always be provided.
 
-This effect requires a texture sampler in both slots 0 and 1. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1.
+This effect requires a texture sampler in both slots 0 and 1. [GeometricPrimitive](GeometricPrimitive.md) and [SpriteBatch](SpriteBatch.md) only set a texture sampler in slot 0 by default, [Model](Model.md) sets a sampler in slots 0 and 1.
 
 ## Cubic Environment Map
 
-![Cubic Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/cubicenvmap.png)
+![Cubic Environment Map](images/cubicenvmap.png)
 
 See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d9/cubic-environment-mapping)
 
 ## Spherical Environment Map
 
-![Sphere Environment Map](https://github.com/Microsoft/DirectXTK/wiki/images/sphereenvmap.png)
+![Sphere Environment Map](images/sphereenvmap.png)
 
 See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d9/spherical-environment-mapping)
 

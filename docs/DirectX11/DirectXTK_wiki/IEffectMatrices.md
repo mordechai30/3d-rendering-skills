@@ -1,7 +1,7 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
-This abstract interface allows setting rendering matrices. This interface is implemented by all built-in effects, but is not required for all effects (i.e. a valid effect can implement [[IEffect]] and not implement _IEffectMatrices_).
+This abstract interface allows setting rendering matrices. This interface is implemented by all built-in effects, but is not required for all effects (i.e. a valid effect can implement [IEffect](IEffect.md) and not implement _IEffectMatrices_).
 
 ```cpp
 class IEffectMatrices
@@ -29,7 +29,7 @@ If you are setting all three matrices at once, you can use:
 effect->SetMatrices(world, view, projection);
 ```
 
-For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
+For more general cases where a number of effect classes can be in use (such as [Model](Model.md) which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
 ```cpp
 std::shared_ptr<IEffect> effect;
@@ -56,7 +56,7 @@ Most _BasicEffect_ shaders make no particular distinction between the _view_, an
 
 The _BasicEffect_ shaders require the _world_ matrix to be distinct from the _view_ and _projection_ matrices for doing proper transforms of normals into world coordinates.
 
-Some complex shaders such as [[DGSLEffect]] where the HLSL shader is given access to both local->world and local->projected transforms could make a distinction between _view_ and _projection_ as well, which requires the three matrices to be set independently to get correct results.
+Some complex shaders such as [DGSLEffect](DGSLEffect.md) where the HLSL shader is given access to both local->world and local->projected transforms could make a distinction between _view_ and _projection_ as well, which requires the three matrices to be set independently to get correct results.
 
 # Implementing the interface
 

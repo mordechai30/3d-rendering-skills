@@ -1,10 +1,10 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson will cover the basics of 3D transformations for graphics.
 
 # Positioning the camera
-We've already used a simple camera setup in the [[3D shapes]] lesson.
+We've already used a simple camera setup in the [3D shapes](3D-shapes.md) lesson.
 
 In the Game class we added variables for the projection matrix and the view matrix:
 
@@ -32,7 +32,7 @@ These two matrices handle transforming objects positioned in _world_ coordinates
 
 # Positioning an object
 
-The [[3D shapes]] lesson also provides an example of positioning an object.
+The [3D shapes](3D-shapes.md) lesson also provides an example of positioning an object.
 
 In the Game class we added a variable for the world matrix for our 3D shape:
 
@@ -66,7 +66,7 @@ The ``m_world`` matrix transforms the object's _local_ (also known as _model_) c
 
 # Composing transformations
 
-The power of affine transformation is that you can compose them by multiplying them together. In our [[3D shapes]] lesson, we can modify the **Update**: to get more interesting motion for the planet earth.
+The power of affine transformation is that you can compose them by multiplying them together. In our [3D shapes](3D-shapes.md) lesson, we can modify the **Update**: to get more interesting motion for the planet earth.
 
 For example if you modified **Update** as follows
 
@@ -105,7 +105,7 @@ Vector3 newPoint = Vector3::Transform( point, matrix );
 > Note: In our example we are only transforming a single point which means we are doing 3 matrix multiplies and 1 vector-matrix multiply. For a single point it might have been better to do 3 vector-matrix multiplies, but for most usage cases we are likely to transform more than just a single point. Ideally we'd use the array version of *Transform* to transform many points at once.
 
 # Moving the camera
-We can animate the camera's position as well as the object's. In the [[3D shapes]] lesson, we will change **Update** as follows:
+We can animate the camera's position as well as the object's. In the [3D shapes](3D-shapes.md) lesson, we will change **Update** as follows:
 
 ```cpp
 float time = float(timer.GetTotalSeconds());
@@ -120,11 +120,11 @@ m_effect->SetView(m_view);
 
 Build and run to see the camera moving up and down while still looking at the planet earth as the center of focus.
 
-**Next lesson:** [[Collision detection]]
+**Next lesson:** [Collision detection](Collision-detection.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[SimpleMath]]  
+DirectX Tool Kit docs [SimpleMath](SimpleMath.md)  
 [Radian](https://wikipedia.org/wiki/Radian)  
 [Graphical projection](https://wikipedia.org/wiki/Graphical_projection)  
 [Essential Math for Games Programmers (GDC)](https://www.essentialmath.com/)

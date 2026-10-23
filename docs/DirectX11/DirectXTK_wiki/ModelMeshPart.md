@@ -1,7 +1,7 @@
-|[[DirectXTK]]|[[Model]]|
+|[DirectXTK](DirectXTK.md)|[Model](Model.md)|
 |---|---|
 
-This class is part of the [[Model]] hierarchy. The purpose of this class is to be container for a 'submesh' which is referenced by an instance of the [[ModelMesh]] class. A 'submesh' is a portion of a mesh that is all drawn using the same 'material' settings as reflected by an [[Effects]] instance. A submesh is drawn in a single Direct3D 11 ``Draw`` call using a single effect.
+This class is part of the [Model](Model.md) hierarchy. The purpose of this class is to be container for a 'submesh' which is referenced by an instance of the [ModelMesh](ModelMesh.md) class. A 'submesh' is a portion of a mesh that is all drawn using the same 'material' settings as reflected by an [Effects](Effects.md) instance. A submesh is drawn in a single Direct3D 11 ``Draw`` call using a single effect.
 
 > ModelMesh uses a collection of ``std::unique_ptr`` instances to ModelMeshPart since submeshes are not typically shared between mesh instances. Submeshes can easily share Direct3D 11 resources (index buffers, vertex buffers, effects, etc.) which are individually reference counted.
 
@@ -44,7 +44,7 @@ All members of ModelMeshPart are public to facilitate writing custom model loade
 
 * _inputLayout_ - COM smart pointer to the input layout associated with this submesh. This is used when calling Direct3D11's [IASetInputLayout](https://docs.microsoft.com/windows/win32/api/d3d11/nf-d3d11-id3d11devicecontext-iasetinputlayout) method. This must correctly match the signature of the effect and match the vertex data format in the vertex buffer.
 
-* _effect_ - An [[IEffect|Effects]] instance which is used to set up the proper constant buffer and shader states before drawing the submesh.
+* _effect_ - An [IEffect](Effects.md) instance which is used to set up the proper constant buffer and shader states before drawing the submesh.
 
 # Metadata
 The _ModelMeshPart::isAlpha_ boolean indicates if the ModelMeshPart instance's effect makes use of alpha-blending. This information is used by ModelMesh::Draw to ensure that opaque effects are applied before transparent effects, and the depth buffer is used accordingly.
@@ -55,7 +55,7 @@ The _ModelMeshPart::vbDecl_ contains the input layout element descriptor needed 
 Use the ``Model::Draw`` function which will call ``ModelMesh::Draw`` on all the meshes it contains, which in turn will call **ModelMeshPart::Draw** on each submesh part.
 
 # Advanced drawing
-The **ModelMeshPart::Draw** method is used to draw each individual submesh. **ModelMeshPart::Draw** can be used to implement complex 'scene graph' policies (such as sorting all ModelMeshPart instance in a scene by [[Effects]] to minimize draw overhead or rough-sorting by bounding volume front-to-back for opaque parts and back-to-front for alpha blended parts), or can be used to temporarily override the effect instance being used to draw the mesh (for example when drawing shadows).
+The **ModelMeshPart::Draw** method is used to draw each individual submesh. **ModelMeshPart::Draw** can be used to implement complex 'scene graph' policies (such as sorting all ModelMeshPart instance in a scene by [Effects](Effects.md) to minimize draw overhead or rough-sorting by bounding volume front-to-back for opaque parts and back-to-front for alpha blended parts), or can be used to temporarily override the effect instance being used to draw the mesh (for example when drawing shadows).
 
 ```cpp
 void Draw(ID3D11DeviceContext* deviceContext,
@@ -130,10 +130,10 @@ for(const auto& mit : model->meshes)
 }
 ```
 
-> The ``ModelMesh::PrepareForRendering`` helper will only set up a texture sampler in slots 0 and 1. If you are using an [[Effects]] instance with more two textures, you need to set additional samplers manually.
+> The ``ModelMesh::PrepareForRendering`` helper will only set up a texture sampler in slots 0 and 1. If you are using an [Effects](Effects.md) instance with more two textures, you need to set additional samplers manually.
 
 # Effects Control
-A Model loader is responsible for creating [[Effects]] instances via an [[IEffectFactory|EffectFactory]] so that the loaded Model is fully initialized. However, a developer may want to modify a Model's effect after it has been loaded. All the members of ModelMeshPart are public so this can be done directly, but must be done carefully.
+A Model loader is responsible for creating [Effects](Effects.md) instances via an [IEffectFactory](EffectFactory.md) so that the loaded Model is fully initialized. However, a developer may want to modify a Model's effect after it has been loaded. All the members of ModelMeshPart are public so this can be done directly, but must be done carefully.
 
 If the effect instance is changed, the _inputLayout_ must be updated as well. Furthermore, Model maintains a cache of unique effect instances in all ModelMesh instances it contains, so any change to the ModelMeshPart instances must invalidate this cache. This is done by calling ``Model::Modified``. Keep in mind that since ModelMesh instances are shared, modification can impact multiple instances of a Model and all impacted Model instances need to have their effect cache invalidated to avoid crashes or lingering references to the wrong effect instances.
 

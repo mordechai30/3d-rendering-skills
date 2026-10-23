@@ -1,16 +1,16 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers adding the _DirectX Tool Kit for Audio_ library and headers to your project.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 > If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources) and [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit). In this case, the only thing to do in this lesson is adding ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**.
 
 # NuGet package manager
-If you used [NuGet](https://docs.microsoft.com/nuget/what-is-nuget) when [[Adding the DirectX Tool Kit]], then you already have support for _DirectX Tool Kit for Audio._.
+If you used [NuGet](https://docs.microsoft.com/nuget/what-is-nuget) when [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md), then you already have support for _DirectX Tool Kit for Audio._.
 
 <table>
  <tr>
@@ -67,7 +67,7 @@ or for DirectX 12, use the *directxtk12* port:
 
 # CMake projects
 
-The *DirectX Tool Kit* CMake projects have a build option for different XAudio2 versions. The [vcpkg](https://vcpkg.io/) port for **directxtk** includes three different features: ``[xaudio2redist]``, ``[xaudio2-9]``, and ``[xaudio2-8]``. See [this page](https://github.com/microsoft/DirectXTK/wiki/Audio#using-the-vcpkg-c-library-manager) for details.
+The *DirectX Tool Kit* CMake projects have a build option for different XAudio2 versions. The [vcpkg](https://vcpkg.io/) port for **directxtk** includes three different features: ``[xaudio2redist]``, ``[xaudio2-9]``, and ``[xaudio2-8]``. See [this page](Audio.md#using-the-vcpkg-c-library-manager) for details.
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If using the MinGW toolset, you will likely get unresolved link errors for <code>KSCATEGORY_AUDIO</code>. You should explicitly link to <code>ksguid.lib</code> to fix this.</p></details>
@@ -133,10 +133,10 @@ If you are using XAudio 2.8, then your application has a dependency on Windows 8
 
 If you are using the XAudio2 Redistributable, then you will need to include the ``XAUDIO2_9REDIST.DLL`` from the NuGet package as part of your application.
 
-**Next lesson:** [[Adding audio to your project]]
+**Next lesson:** [Adding audio to your project](Adding-audio-to-your-project.md)
 
 # Further reading
-DirectX Tool Kit docs [[Audio]]
+DirectX Tool Kit docs [Audio](Audio.md)
 
 [DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)
 

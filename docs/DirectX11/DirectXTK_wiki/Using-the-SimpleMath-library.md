@@ -1,4 +1,4 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson introduces the reader to the SimpleMath game and graphics math library.
@@ -114,17 +114,17 @@ An analogous thing can be done in 2D with a 3x3 transformation matrix and 2 vect
 ```
 
 # Bounding Volumes
-The **BoundingBox**, **BoudingOrientedBox**, **BoundingFrustum**, **BoundingSphere**, **Plane**, and **Ray** classes provides for representing simplified versions of geometry for the purpose of efficient collision and hit testing. These classes have methods for checking for intersection and containment with each other. See the [[Collision detection]] tutorial for more details.
+The **BoundingBox**, **BoudingOrientedBox**, **BoundingFrustum**, **BoundingSphere**, **Plane**, and **Ray** classes provides for representing simplified versions of geometry for the purpose of efficient collision and hit testing. These classes have methods for checking for intersection and containment with each other. See the [Collision detection](Collision-detection.md) tutorial for more details.
 
 # Precision and Performance
 The SimpleMath types are single-precision. This means that the primitives and operations contained in this library use 32-bit floating-point numbers to achieve a balance between precision and efficiency when performing large numbers of calculations.
 
 A 32-bit floating-point number ranges from ``–3.402823e38`` to ``+3.402823e38``. The 32 bits store the sign, mantissa, and exponent of the number that yields seven digits of floating-point precision. Some numbers—for example π, 1/3, or the square root of two—can be approximated only with seven digits of precision, so be aware of rounding errors when using a binary representation of a floating-point number.
 
-**Next lesson:** [[Basic game math]]
+**Next lesson:** [Basic game math](Basic-game-math.md)
 
 # Further reading
-DirectX Tool Kit docs [[SimpleMath]]  
+DirectX Tool Kit docs [SimpleMath](SimpleMath.md)  
 
 [SimpleMath - a simplified wrapper for DirectXMath](https://www.shawnhargreaves.com/blog/simplemath-a-simplified-wrapper-for-directxmath.html)
 

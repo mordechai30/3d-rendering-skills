@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This is a native Direct3D 11 implementation of the built-in SkinnedEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SkinnedEffect``) which supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex. It supports texture mapping, directional vertex lighting, directional per-pixel lighting, and fog.
 
-**Related tutorial:** [[Using skinned models]]
+**Related tutorial:** [Using skinned models](Using-skinned-models.md)
 
 ```mermaid
 classDiagram
@@ -86,7 +86,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-SkinnedEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], [[IEffectFog]], and [[IEffectSkinning]]
+SkinnedEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), [IEffectLights](IEffectLights.md), [IEffectFog](IEffectFog.md), and [IEffectSkinning](IEffectSkinning.md)
 
 # Input layout
 This effect requires ``NORMAL``, ``TEXCOORD0``, ``BLENDINDICES`` and ``BLENDWEIGHT``.

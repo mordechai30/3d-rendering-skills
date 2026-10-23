@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[PostProcess]]|
+|[DirectXTK](DirectXTK.md)|[PostProcess](PostProcess.md)|
 |---|---|
 
 These built-in post-processing shaders are designed to perform tone-mapping of High Dynamic Range (HDR) images for presentation on traditional monitors, as well as the signal generation for HDR10 when outputting to 4k UHD wide gamut displays.
 
-**Related tutorial:** [[Using HDR rendering]]
+**Related tutorial:** [Using HDR rendering](Using-HDR-rendering.md)
 
 ```cpp
 class DirectX::ToneMapPostProcess : public DirectX::IPostProcess

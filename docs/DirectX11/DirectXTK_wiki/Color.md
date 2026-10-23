@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 Four component color vector class modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Color``) math library.

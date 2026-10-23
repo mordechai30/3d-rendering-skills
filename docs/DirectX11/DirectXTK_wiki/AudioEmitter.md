@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
-AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [[SoundEffectInstance]], [[SoundStreamInstance]], and [[DynamicSoundEffectInstance]].
+AudioEmitter is a helper object derived from [X3DAUDIO_EMITTER](https://docs.microsoft.com/windows/win32/api/x3daudio/ns-x3daudio-x3daudio_emitter) that can be used with the **Apply3D** method of [SoundEffectInstance](SoundEffectInstance.md), [SoundStreamInstance](SoundStreamInstance.md), and [DynamicSoundEffectInstance](DynamicSoundEffectInstance.md).
 
-See [[AudioListener]].
+See [AudioListener](AudioListener.md).
 
-**Related tutorial:** [[Using positional audio]]
+**Related tutorial:** [Using positional audio](Using-positional-audio.md)
 
 ```mermaid
 classDiagram

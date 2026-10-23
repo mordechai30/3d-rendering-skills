@@ -67,7 +67,7 @@ namespace DX
 
 # Enhancements
 
-The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [[DeviceResources]] variants of the [Direct3D Win32 Game](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/) templates).
+The templates all include the basic implementation above, but production use might want to utilize a slightly improved version as follows (which are included in the [DeviceResources](DeviceResources.md) variants of the [Direct3D Win32 Game](https://walbourn.github.io/direct3d-game-visual-studio-templates-redux/) templates).
 
 ```cpp
 #include <exception>

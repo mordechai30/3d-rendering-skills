@@ -1,4 +1,4 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers performing picking in 3D.
@@ -15,7 +15,7 @@ Also remember that the default view coordinates for *DirectX Tool Kit* is "right
 
 You can also review the Direct3D 10 era "picking" sample from the [legacy DirectX SDK](https://github.com/walbourn/directx-sdk-legacy-samples/tree/main/Direct3D10/Pick10).
 
-**Next lesson**: [[Mixing SimpleMath and DirectXMath]]
+**Next lesson**: [Mixing SimpleMath and DirectXMath](Mixing-SimpleMath-and-DirectXMath.md)
 
 # Further reading
 

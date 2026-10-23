@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 A [rotation represented as a four component vector](https://wikipedia.org/wiki/Quaternion) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Quaternion``) math library.
@@ -65,7 +65,7 @@ Quaternion q(arr);                // Creates a quaternion [0, 0, 0, 1]
 
 > The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z)  for the parameters, but the application of the rotations is in the same order.
 
-* **CreateFromRotationMatrix**: Converts the upper 3x3 rotation in a [[Matrix]] to a quaternion.
+* **CreateFromRotationMatrix**: Converts the upper 3x3 rotation in a [Matrix](Matrix.md) to a quaternion.
 
 * **Concatenate**: Concatenates two quaternion rotations. _Note: ``Concatenate(q1,q2)`` is equivalent to ``q2*q1``_.
 
@@ -104,4 +104,4 @@ Ken Shoemake, "Quaternions", Department of Computer and Information Science, Uni
 
 # See also
 
-[[Vector2]], [[Vector3]], [[Vector4]], [[Matrix]]
+[Vector2](Vector2.md), [Vector3](Vector3.md), [Vector4](Vector4.md), [Matrix](Matrix.md)

@@ -1,15 +1,15 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers the basics of playing sounds with _DirectX Tool Kit for Audio_.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md), then [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md), [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md), and finally [Adding audio to your project](Adding-audio-to-your-project.md) which we will use for this lesson.
 
-> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [[Adding audio to your project]]
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [Adding audio to your project](Adding-audio-to-your-project.md)
 # Sounds
 
-Save the following files to your new project's folder: [Explo1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo1.wav), [Explo2.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo2.wav), [Explo3.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo3.wav), [Explo4.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo4.wav), [NightAmbienceSimple_02.wav](https://github.com/Microsoft/DirectXTK/wiki/media/NightAmbienceSimple_02.wav). Use the top menu and select **Project / Add Existing Item**.... Select each ``.wav`` file in turn and hit "OK".
+Save the following files to your new project's folder: [Explo1.wav](media/Explo1.wav), [Explo2.wav](media/Explo2.wav), [Explo3.wav](media/Explo3.wav), [Explo4.wav](media/Explo4.wav), [NightAmbienceSimple_02.wav](media/NightAmbienceSimple_02.wav). Use the top menu and select **Project / Add Existing Item**.... Select each ``.wav`` file in turn and hit "OK".
 
 > These ``.wav`` files are from the _XNA Game Studio_ [SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)  which provides a small collection of sounds under the [MS-PL](https://opensource.org/licenses/MS-PL) license.
 
@@ -172,10 +172,10 @@ m_nightLoop->SetVolume( nightVolume );
 
 Build and run. The looping night ambient sound will slowly decrease and increase volume over time.
 
-**Next lesson:** [[Making use of wave banks]]
+**Next lesson:** [Making use of wave banks](Making-use-of-wave-banks.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[SoundEffect]], [[SoundEffectInstance]]  
+DirectX Tool Kit docs [SoundEffect](SoundEffect.md), [SoundEffectInstance](SoundEffectInstance.md)  
 
 [XAudio2BasicSound](https://github.com/walbourn/directx-sdk-samples/tree/main/XAudio2/XAudio2BasicSound), [SimplePlaySound (UWP)](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlaySoundUWP), [SimplePlaySound (GDK)](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/Audio/SimplePlaySound) samples

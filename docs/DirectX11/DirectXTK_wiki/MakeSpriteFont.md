@@ -1,15 +1,15 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 [![MakeSpriteFont.exe](https://img.shields.io/github/downloads/Microsoft/DirectXTK/latest/MakeSpriteFont.exe?style=for-the-badge)](https://github.com/microsoft/DirectXTK/releases/latest/download/MakeSpriteFont.exe)
 
 The MakeSpriteFont tool can process any TrueType font that is installed on your system (using GDI+ to rasterize them into a bitmap) or it can import character glyphs from a specially formatted bitmap file. This latter option allows you to create multicolored fonts, drawing special effects such as gradients or drop shadows directly into your glyph textures.
 
-See [[SpriteFont]]
+See [SpriteFont](SpriteFont.md)
 
 **Note:** The command-line tools in the DirectXTK package are only built by the _DirectXTK_Desktop_201x_ solutions since they are Win32 desktop applications.
 
-**Related tutorial:** [[Drawing text]]
+**Related tutorial:** [Drawing text](Drawing-text.md)
 
 # Installation
 
@@ -35,7 +35,7 @@ For importing the font from a bitmap file, characters should be arranged in a gr
 
 For example, this is the sprite font for the Xbox 360 Common Controller buttons.
 
-![Xbox Controller Sprite Font](https://github.com/Microsoft/DirectXTK/wiki/images/xboxControllerSpriteFont.png)
+![Xbox Controller Sprite Font](images/xboxControllerSpriteFont.png)
 
 Open a _Command Prompt_, and change to the directory containing ``MakeSpriteFont.exe`` (i.e. ``...\DirectXTK\MakeSpriteFont\bin\Release``)
 
@@ -43,7 +43,7 @@ Enter the following command-line after changing to the appropriate directory
 
     MakeSpriteFont xboxControllerSpriteFont.png xboxController.spritefont
 
-The file _xboxController.spritefont_ is generated from the [xboxControllerSpriteFont.png](https://github.com/Microsoft/DirectXTK/wiki/images/xboxControllerSpriteFont.png) image.
+The file _xboxController.spritefont_ is generated from the [xboxControllerSpriteFont.png](images/xboxControllerSpriteFont.png) image.
 
 **Note:** _The MakeSpriteFont tool only supports importing from ``.bmp``, ``.png``, or ``.gif`` images. If you are using a ``.tga`` source file, then you use should DirectXTex's **texconv** utility to convert it:_
 
@@ -137,7 +137,7 @@ The MakeSpriteFont tool will generate warnings if the resulting sprite sheet tex
 
 # SpriteFont files
 
-To aid in debugging, here is a [simple console program](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/spritefontdump.cpp) for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/main/Src/dds.h) header in the DirectXTK library to build.
+To aid in debugging, here is a [simple console program](spritefontdump.cpp) for dumping out the content of a ``.spritefont`` header in a human-readable form along with a ``DDS`` file for the sprite sheet texture. It requires the [dds.h](https://raw.githubusercontent.com/Microsoft/DirectXTK/main/Src/dds.h) header in the DirectXTK library to build.
 
 # Further reading
 

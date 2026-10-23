@@ -1,10 +1,10 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers the basics of adding the use of *DirectX Tool Kit for Audio*'s audio engine to your project.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], and finally [[Adding the DirectX Tool Kit for Audio]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md), then [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md), and finally [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md) which we will use for this lesson.
 
 > If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), and finally add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**.
 
@@ -233,11 +233,11 @@ case WM_DEVICECHANGE:
 
 > **Universal Windows Platform apps:** Since there is no Win32 message loop for these applications, you'd make use of the WinRT class ``DeviceWatcher`` in the ``Windows.Device.Enumeration`` namespace. See [DeviceEnumerationAndPairing](https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/DeviceEnumerationAndPairing), and the [DirectX Tool Kit Simple Sample for UWP](https://github.com/walbourn/directxtk-samples/blob/main/SimpleSampleWindows10/Main.cpp)
 
-**Next lesson:** [[Creating and playing sounds]]
+**Next lesson:** [Creating and playing sounds](Creating-and-playing-sounds.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[Audio]], [[AudioEngine]]
+DirectX Tool Kit docs [Audio](Audio.md), [AudioEngine](AudioEngine.md)
 
 [DirectX Tool Kit for Audio](https://walbourn.github.io/directx-tool-kit-for-audio/)
 [Learning XAudio2](https://walbourn.github.io/learning-xaudio2/)

@@ -1,13 +1,13 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
-SoundStreamInstance is an instance for playing waves from a streaming [[WaveBank]] making use of non-buffered asynchronous I/O. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
+SoundStreamInstance is an instance for playing waves from a streaming [WaveBank](WaveBank.md) making use of non-buffered asynchronous I/O. It can be played with 3D positional audio effects, volume and panning control, looping, and pause/resume control.
 
-For each playing stream, only a small portion of memory is required (~3 seconds of audio data) and the stream is constantly refreshed via asynchronous I/O requests from disk. This allows very large audio files to be played without consuming large amounts of memory. This does require that the ``Update`` method for [[AudioEngine]] is called on a regular frequency to allow servicing the stream instances, but no additional CPU threads are created.
+For each playing stream, only a small portion of memory is required (~3 seconds of audio data) and the stream is constantly refreshed via asynchronous I/O requests from disk. This allows very large audio files to be played without consuming large amounts of memory. This does require that the ``Update`` method for [AudioEngine](AudioEngine.md) is called on a regular frequency to allow servicing the stream instances, but no additional CPU threads are created.
 
 Note that the SoundStreamInstance refers to data 'owned' by the WaveBank. Therefore, the parent object must be kept "live" until all sounds playing from it are finished.
 
-**Related tutorial:** [[Making use of wave banks]]
+**Related tutorial:** [Making use of wave banks](Making-use-of-wave-banks.md)
 
 ```mermaid
 classDiagram
@@ -61,7 +61,7 @@ if ( !stream )
     // Index not found in wave bank
 ```
 
-Or use 3D positional audio with reverb effects (if [[AudioEngine]] was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
+Or use 3D positional audio with reverb effects (if [AudioEngine](AudioEngine.md) was created using ``AudioEngine_EnvironmentalReverb`` | ``AudioEngine_ReverbUseFilters``):
 
 ```cpp
 auto stream = wb->CreateStreamInstance( 2,
@@ -70,7 +70,7 @@ if ( !stream )
     // Index not found in wave bank
 ```
 
-> Only 'streaming' WaveBanks are supported. Attempts to create a SoundStreamInstance from an 'in-memory' wavebank will result in a C++ exception. The 'streaming' Wavebank produced by [[xwbtool]] is properly aligned to allow very efficient [non-buffered](https://docs.microsoft.com/windows/win32/fileio/file-buffering) [asynchronous I/O](https://docs.microsoft.com/windows/win32/fileio/synchronous-and-asynchronous-i-o) requests.
+> Only 'streaming' WaveBanks are supported. Attempts to create a SoundStreamInstance from an 'in-memory' wavebank will result in a C++ exception. The 'streaming' Wavebank produced by [xwbtool](XWBTool.md) is properly aligned to allow very efficient [non-buffered](https://docs.microsoft.com/windows/win32/fileio/file-buffering) [asynchronous I/O](https://docs.microsoft.com/windows/win32/fileio/synchronous-and-asynchronous-i-o) requests.
 
 ## Playing the sound
 
@@ -98,13 +98,13 @@ stream->SetVolume(0.5f);
 
 This is a combination of sound effect instance flags. It defaults to ``SoundEffectInstance_Default``.
 
-See [[Instance flags|SoundEffectInstance#instance-flags]]
+See [Instance flags](SoundEffectInstance.md#instance-flags)
 
 # Playback control
 
 * **Play** ( bool loop = false ): Starts the playback of the sound. If loops is set to true, it loops continuously. If paused, it resumes playback.
 
-> Note if a source voice limit is in effect (see [[AudioEngine]]), then a C++ exception can be generated from
+> Note if a source voice limit is in effect (see [AudioEngine](AudioEngine.md)), then a C++ exception can be generated from
 > this method if there are too many source voices already allocated.
 
 * **Stop** ( bool immediate = true ): Stops the playback of the voice. If immediate is true, the sound is immediately halted. Otherwise the current loop is exited (if looping) and any 'tails' are played. The sound still not completely stop playing until a future point so the state will remain ``PLAYING`` for a while.
@@ -129,7 +129,7 @@ The **Apply3D** method computes and applies positional effects, if the instance 
 
 The **GetChannelCount** method is provided to simplify setting up ``AudioEmitter`` instances for multi-channel sources.
 
-See [[Positional 3D audio|SoundEffectInstance#positional-3d-audio]].
+See [Positional 3D audio](SoundEffectInstance.md#positional-3d-audio).
 
 # Voice management
 
@@ -137,7 +137,7 @@ A SoundStreamInstance will allocate a XAudio2 source voice when played, and will
 
 By default the number of XAudio2 source voices that can be allocated is 'unlimited'. You can set a specific limit using ``AudioEngine::SetMaxVoicePool`` which will be enforced by generating a C++ exception if there are too many allocated source voices when ``Play`` is called.
 
-See [[AudioEngine]] for more details.
+See [AudioEngine](AudioEngine.md) for more details.
 
 # Properties
 

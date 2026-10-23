@@ -1,12 +1,12 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers the basics of playing sounds with _DirectX Tool Kit for Audio_ using of XACT-style wave banks.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md), then [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md), [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md), and finally [Adding audio to your project](Adding-audio-to-your-project.md) which we will use for this lesson.
 
-> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [[Adding audio to your project]]
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [Adding audio to your project](Adding-audio-to-your-project.md)
 
 # Background
 
@@ -18,7 +18,7 @@ _DirectX Tool Kit for Audio_ supports "wave banks" which were created for the Cr
 
 * Download the [XWBTool.exe](https://github.com/microsoft/DirectXTK/releases/latest/download/XWBTool.exe) from the _DirectX Tool Kit_ site and extract the EXE into your project's folder.
 * Alternatively, use ``winget install Microsoft.DirectX.ToolKit.XWBTool`` to obtain the tool.
-* Download these media files to your project's folder [Explo1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo1.wav), [Explo2.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo2.wav), [Explo3.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo3.wav), [Explo4.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Explo4.wav), [NightAmbienceSimple_02.wav](https://github.com/Microsoft/DirectXTK/wiki/media/NightAmbienceSimple_02.wav).
+* Download these media files to your project's folder [Explo1.wav](media/Explo1.wav), [Explo2.wav](media/Explo2.wav), [Explo3.wav](media/Explo3.wav), [Explo4.wav](media/Explo4.wav), [NightAmbienceSimple_02.wav](media/NightAmbienceSimple_02.wav).
 * Open a Command Prompt and then change to your project's folder.
 
 > These ``.wav`` files are from the _XNA Game Studio_ [SoundLab](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/SoundLab)  which provides a small collection of sounds under the [MS-PL](https://opensource.org/licenses/MS-PL) license.
@@ -29,7 +29,7 @@ Run the following command-line:
 XWBTool -f -o sounds.xwb Explo1.wav Explo2.wav Explo3.wav Explo4.wav NightAmbienceSimple_02.wav
 ```
 
-Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [sounds.xwb](https://github.com/Microsoft/DirectXTK/wiki/media/sounds.xwb) and click "OK".
+Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [sounds.xwb](media/sounds.xwb) and click "OK".
 
 > If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``sounds.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
@@ -163,13 +163,13 @@ enum XACT_WAVEBANK_SOUNDS : unsigned int
 
 In the previous section we generated 'in-memory' wave banks where the data is all loaded into RAM. XACT wave banks also support 'streaming' wave banks which are arranged on disk to support non-buffered asynchronous I/O.
 
-Download these media files to your project's folder [Electro_1.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Electro_1.wav). Run the following command-line:
+Download these media files to your project's folder [Electro_1.wav](media/Electro_1.wav). Run the following command-line:
 
 ```
 xwbtool -o music.xwb -s Electro_1.wav
 ```
 
-Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [music.xwb](https://github.com/Microsoft/DirectXTK/wiki/media/music.xwb) and click "OK".
+Then from the top menu in Visual Studio select **Project / Add Existing Item**.... Select [music.xwb](media/music.xwb) and click "OK".
 
 If you are using a Universal Windows Platform app or Xbox One project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``music.xwb`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
@@ -232,7 +232,7 @@ Build and run to hear a looping music track added to the other sounds.
 
 ## Technical notes
 
-You can create both in-memory and streaming wave banks using ADPCM, xWMA, or XMA2. For example, download this xWMA compressed version of [Electro_1_xwma.wav](https://github.com/Microsoft/DirectXTK/wiki/media/Electro_1_xwma.wav) and create the music wave bank:
+You can create both in-memory and streaming wave banks using ADPCM, xWMA, or XMA2. For example, download this xWMA compressed version of [Electro_1_xwma.wav](media/Electro_1_xwma.wav) and create the music wave bank:
 
 ```
 xwbtool -o music.xwb -y -s Electro_1_xwma.wav
@@ -242,10 +242,10 @@ xwbtool -o music.xwb -y -s Electro_1_xwma.wav
 
 > Note: This will fail to run if you are using XAudio 2.8 which only supports ADPCM, but not xWMA. It will run with XAudio 2.9, XAudio 2.7, or the XAudio2Redist.
 
-**Next lesson:** [[Using positional audio]]
+**Next lesson:** [Using positional audio](Using-positional-audio.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[SoundEffectInstance]], [[SoundStreamInstance]], [[WaveBank]]
+DirectX Tool Kit docs [SoundEffectInstance](SoundEffectInstance.md), [SoundStreamInstance](SoundStreamInstance.md), [WaveBank](WaveBank.md)
 
 [XAudio2AsyncStream](https://github.com/walbourn/directx-sdk-samples/tree/main/XAudio2/XAudio2AsyncStream), [SimplePlaySoundStream (UWP)](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlaySoundStreamUWP), [SimplePlaySoundStream (GDK)](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/Audio/SimplePlaySoundStream) samples

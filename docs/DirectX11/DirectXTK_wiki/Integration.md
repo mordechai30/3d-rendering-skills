@@ -36,13 +36,13 @@ In your application's solution, right-click on the Solution and use **Add \ Exis
 
 In your application's project, right-click on the **Project** and use "References...", then "Add New Reference...", and then check the DirectXTK project name and click OK. For a Universal Windows Platform (UWP) app or Xbox One solution, you may need to set _Reference Assembly Output_ to false since DirectXTK is a static C++ library and not a WinRT component.
 
-![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsROA.PNG)
+![Settings dialog](images/settingsROA.PNG)
 
 In your application's project settings, on the "C++ / General" page set Configuration to "All Configurations", set Platform to "All Platforms", and then add the relative path to `DirectXTK\inc;`--assuming you have the DirectXTK folder in the same directory as your ``sln`` file, it should be `$(SolutionDir)\DirectXTK\inc;`--to the _Additional Include Directories_ properties. Click Apply.
 
-![Settings dialog](https://github.com/Microsoft/DirectXTK/wiki/images/settingsAID.PNG)
+![Settings dialog](images/settingsAID.PNG)
 
-See [[Audio]] for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
+See [Audio](Audio.md) for additional information when setting up Windows desktop projects to use _DirectXTK for Audio_.
 
 See also the [Visual C+ Team Blog](https://devblogs.microsoft.com/cppblog/flexible-project-to-project-references/)
 
@@ -123,7 +123,7 @@ target_link_libraries(foo Microsoft::DirectXTK)
 
 If using *vcpkg C++ Package Manager*, then you add the ``CMAKE_TOOLCHAIN_FILE`` path to ``vcpkg\scripts\buildsystems\vcpkg.cmake``. If not using *vcpkg*, you need to provide a per-configuration path to the installed location in the ``directxtk_DIR`` variable. Otherwise the ``find_package`` will fail.
 
-![vcpkg toolchain setting](https://github.com/Microsoft/DirectXTK/wiki/images/cmakevcpkg.png)
+![vcpkg toolchain setting](images/cmakevcpkg.png)
 
 With Visual Studio 2022 Update 6 or later, VCPKG is available via **Microsoft.VisualStudio.Component.Vcpkg**. Use of 'manifest-mode' is recommended.
 

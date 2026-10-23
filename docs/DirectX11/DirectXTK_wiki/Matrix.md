@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[SimpleMath]]|
+|[DirectXTK](DirectXTK.md)|[SimpleMath](SimpleMath.md)|
 |---|---|
 
 A four by four row-major [matrix](https://wikipedia.org/wiki/Matrix_(mathematics)) modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Matrix``) math library.
@@ -68,7 +68,7 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * Binary operators: ``+``, ``-``, ``*``, ``/``
 
-* **Decompose**: Decomposes the matrix into rotation (a [[Quaternion]]), scaling, and translation components. Returns ``false`` if the matrix can't be decomposed.
+* **Decompose**: Decomposes the matrix into rotation (a [Quaternion](Quaternion.md)), scaling, and translation components. Returns ``false`` if the matrix can't be decomposed.
 
 * **Transpose**: Computes the [transpose](https://wikipedia.org/wiki/Transpose) of the matrix. Note that for a pure rotation matrix, this is the same as the inverse.
 
@@ -104,13 +104,13 @@ Matrix m( arr );           // Creates a matrix [1 2 3 0
 
 * **CreateFromQuaternion**: Converts a quaternion to a matrix.
 
-* **CreateFromYawPitchRoll**: Rotates about y-axis (yaw), then x-axis (pitch), then z-axis (roll) by given angles in radians. There is an overload which takes [[Vector3]] which provides x, y, and z angles in radians.
+* **CreateFromYawPitchRoll**: Rotates about y-axis (yaw), then x-axis (pitch), then z-axis (roll) by given angles in radians. There is an overload which takes [Vector3](Vector3.md) which provides x, y, and z angles in radians.
 
 > The original D3DXmath library took the rotations in the the Yaw, Pitch, Roll order and that order was replicated in *XNA Game Studio*. In DirectXMath, the order was normalized to Roll (X), Pitch (Y), Yaw (Z) for the parameters, but the application of the rotations is in the same order.
 
-* **CreateShadow**: Creates transform that flattens geometry into a specified [[Plane]] as if casting a shadow from a specified light source
+* **CreateShadow**: Creates transform that flattens geometry into a specified [Plane](Plane.md) as if casting a shadow from a specified light source
 
-* **CreateReflection**: Creates transform that reflects the coordinate system about a specified [[Plane]].
+* **CreateReflection**: Creates transform that reflects the coordinate system about a specified [Plane](Plane.md).
 
 * **Lerp**: Linearly interpolates two matrices element-wise (useful for blending transformations).
 
@@ -131,4 +131,4 @@ You can copy or assign a Matrix from a ``XMFLOAT3X3`` or ``XMFLOAT4X3``.
 
 # See also
 
-[[Vector2]], [[Vector3]], [[Vector4]], [[Quaternion]]
+[Vector2](Vector2.md), [Vector3](Vector3.md), [Vector4](Vector4.md), [Quaternion](Quaternion.md)

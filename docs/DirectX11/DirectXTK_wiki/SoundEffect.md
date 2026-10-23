@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Audio]]|
+|[DirectXTK](DirectXTK.md)|[Audio](Audio.md)|
 |---|---|
 
-SoundEffect is a container class for wave sample data. This data can then be played back as a one-shot sound or via a [[SoundEffectInstance]].
+SoundEffect is a container class for wave sample data. This data can then be played back as a one-shot sound or via a [SoundEffectInstance](SoundEffectInstance.md).
 
 > The `SoundEffect` objects always owns the audio data. It must be kept 'alive' until all playing sound using it have been stopped.
 
-**Related tutorial:** [[Creating and playing sounds]]
+**Related tutorial:** [Creating and playing sounds](Creating-and-playing-sounds.md)
 
 ```cpp
 class DirectX::SoundEffect
@@ -107,7 +107,7 @@ auto effect = soundEffect->CreateInstance(
     SoundEffectInstance_Use3D | SoundEffectInstance_ReverbUseFilters);
 ```
 
-See [[SoundEffectInstance]].
+See [SoundEffectInstance](SoundEffectInstance.md).
 
 # Properties
 
@@ -119,7 +119,7 @@ See [[SoundEffectInstance]].
 
 * **GetSampleDurationMS**: Returns the wave data duration in milliseconds. This does not include any loops.
 
-* **GetFormat**: Returns ``WAVEFORMATEX`` structure that describes the wave data format. See [[Wave Formats]].
+* **GetFormat**: Returns ``WAVEFORMATEX`` structure that describes the wave data format. See [Wave Formats](Wave-Formats.md).
 
 > At least 64 bytes is recommended as this is large enough to contain ``WAVEFORMAT``, ``PCMWAVEFORMAT``, ``WAVEFORMATEX``, ``ADPCMWAVEFORMAT`` with coefficients,  ``WAVEFORMATEXTENSIBLE``, or a ``XMA2WAVEFORMATEX``.
 
@@ -158,6 +158,6 @@ To compress to XMA2 ``.wav`` files, use ``xma2encode.exe`` from the Xbox One XDK
 
 # WAV File Format
 
-To aid in debugging, here is a [simple console program](https://github.com/Microsoft/DirectXTK/wiki/wavdump.cpp) for dumping out the content of a ``.wav`` in a human-readable form.
+To aid in debugging, here is a [simple console program](wavdump.cpp) for dumping out the content of a ``.wav`` in a human-readable form.
 
 [Resource Interchange File Format (RIFF)](https://docs.microsoft.com/windows/win32/xaudio2/resource-interchange-file-format--riff-)

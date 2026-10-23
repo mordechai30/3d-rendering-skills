@@ -1,18 +1,18 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson, we will explore more things you can do with sprites.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Animating sprites
 In addition to moving the sprite's position, sprites themselves can be made to move using 'flip-book' style animation.
 
-First, start by saving the file [AnimatedTexture.h](https://github.com/Microsoft/DirectXTK/wiki/AnimatedTexture.h) to your new project's directory--see [[AnimatedTexture]] for more information. Then go to the top menu and select **Project** / **Add Existing Item...**. Select "AnimatedTexture.h" and click "OK".
+First, start by saving the file [AnimatedTexture.h](AnimatedTexture.h) to your new project's directory--see [AnimatedTexture](AnimatedTexture.md) for more information. Then go to the top menu and select **Project** / **Add Existing Item...**. Select "AnimatedTexture.h" and click "OK".
 
-Next save [shipanimated.png](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/shipanimated.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "shipanimated.png" and click "OK".
+Next save [shipanimated.png](images/shipanimated.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "shipanimated.png" and click "OK".
 
 Add to the top of **Game.h** the following after the other ``#include`` statements:
 
@@ -78,15 +78,15 @@ m_ship->Update(elapsedTime);
 
 Build and run to see our ship at the bottom with animated thrust.
 
-![Screenshot of Ship](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotShip1.png)
+![Screenshot of Ship](images/screenshotShip1.png)
 
 # Creating a scrolling background
 
 What really 'sells the shot' for a side-scroller style game is the moving background to give the ship a sense of movement.
 
-First, start saving the file [ScrollingBackground.h](https://github.com/Microsoft/DirectXTK/wiki/ScrollingBackground.h) to your new project's directory--see [[ScrollingBackground]] for more information. Then go to the top menu and select **Project** / **Add Existing Item...**. Select "ScrollingBackground.h" and click "OK".
+First, start saving the file [ScrollingBackground.h](ScrollingBackground.h) to your new project's directory--see [ScrollingBackground](ScrollingBackground.md) for more information. Then go to the top menu and select **Project** / **Add Existing Item...**. Select "ScrollingBackground.h" and click "OK".
 
-Next save [starfield.png](https://github.com/Microsoft/DirectXTK/wiki/images/starfield.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "starfield.png" and click "OK".
+Next save [starfield.png](images/starfield.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "starfield.png" and click "OK".
 
 Add to the top of **Game.h** the following after the other ``#include`` statements:
 
@@ -143,7 +143,7 @@ m_stars->Update(elapsedTime * 500 );
 
 Build and run to see our ship in space!
 
-![Screenshot of Ship in Space](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotShip2.png)
+![Screenshot of Ship in Space](images/screenshotShip2.png)
 
 # More to explore
 
@@ -155,7 +155,7 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 
 * SpriteBatch can 'flip' the texture image at runtime using ``SpriteEffects_FlipHorizontally``, ``SpriteEffects_FlipVertically``, or ``SpriteEffects_FlipBoth``. The default *effects* parameter for ``Draw`` is ``SpriteEffects_None``.
 
-* When drawing lots of different sprites, having to load hundreds of individual texture files is inefficient and potentially wastes video memory.  One solution is to pack the sprite images into a single (or a few) textures and then render parts of them using *sourceRectangle* for ``Draw``. For more on implementing this technique, see [[SpriteSheet]].
+* When drawing lots of different sprites, having to load hundreds of individual texture files is inefficient and potentially wastes video memory.  One solution is to pack the sprite images into a single (or a few) textures and then render parts of them using *sourceRectangle* for ``Draw``. For more on implementing this technique, see [SpriteSheet](SpriteSheet.md).
 
 * The SpriteBatch class has a 'rotation mode' setting which can be used to handle device orientation changes for Universal Windows Platform (UWP) apps, or just for special effects. You call **SetRotation** with one of the ``DXGI_MODE_ROTATION`` settings which controls the final view transformation to flip the output an extra 90 degrees, 180 degrees, or 270 degrees. It defaults to no extra rotation with ``DXGI_MODE_ROTATION_IDENTITY``.
 
@@ -163,10 +163,10 @@ These lessons on SpriteBatch only begin to show the many techniques you can impl
 
 * The *transformationMatrix* parameter to ``Begin`` lets you provide a custom transformation for the sprite renderering. This is combined with the viewport-based final view transform, but if you use ``SetRotation( DXGI_MODE_ROTATION_UNSPECIFIED )`` this will be disabled. The default value for this parameter is the _identity matrix_.
 
-* You can use [custom sampler states](https://github.com/Microsoft/DirectXTK/wiki/SpriteBatch#custom-render-states) for special effects utilizing [texture addressing](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_texture_address_mode). You can also achieve a 'pixel art' look by using ``CommonStates::PointClamp``.
+* You can use [custom sampler states](SpriteBatch.md#custom-render-states) for special effects utilizing [texture addressing](https://docs.microsoft.com/windows/win32/api/d3d11/ne-d3d11-d3d11_texture_address_mode). You can also achieve a 'pixel art' look by using ``CommonStates::PointClamp``.
 
-**Next lesson:** [[Drawing text]]
+**Next lesson:** [Drawing text](Drawing-text.md)
 
 # Further reading
 
-DirectX Tool Kit docs - [[SpriteBatch]]
+DirectX Tool Kit docs - [SpriteBatch](SpriteBatch.md)

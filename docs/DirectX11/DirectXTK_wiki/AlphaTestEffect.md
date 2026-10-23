@@ -1,9 +1,9 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This is a native Direct3D 11 implementation of the built-in AlphaTestEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.AlphaTestEffect``) which supports per-pixel alpha testing, vertex color, and fogging.
 
-See also [[Effects]]
+See also [Effects](Effects.md)
 
 ```mermaid
 classDiagram
@@ -64,7 +64,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-AlphaTestEffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectFog]]
+AlphaTestEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), and [IEffectFog](IEffectFog.md)
 
 # Input layout
 This effect requires ``SV_Position`` and ``TEXCOORD0``. It also requires ``COLOR`` if per-vertex colors are enabled,

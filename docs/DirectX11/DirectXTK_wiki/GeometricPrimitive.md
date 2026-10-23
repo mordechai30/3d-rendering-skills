@@ -1,4 +1,4 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This is a helper for drawing simple geometric shapes including texture coordinates and surface normals.
@@ -14,9 +14,9 @@ This is a helper for drawing simple geometric shapes including texture coordinat
 * Tetrahedron (a.k.a. triangular pyramid)
 * Torus (a.k.a. a [doughnut](https://en.wikipedia.org/wiki/Torus))
 
-![GeometricPrimitive Example](https://github.com/Microsoft/DirectXTK/wiki/images/GeometricPrimitiveExample.png)
+![GeometricPrimitive Example](images/GeometricPrimitiveExample.png)
 
-**Related tutorial:** [[3D shapes]]
+**Related tutorial:** [3D shapes](3D-shapes.md)
 
 ```cpp
 class DirectX::GeometricPrimitive
@@ -63,7 +63,7 @@ For exception safety, the factory functions return a ``std::unique_ptr``.
 
 # Type aliases
 
-* **GeometricPrimitive::VertexType** is an alias for [[VertexPositionNormalTexture|VertexTypes]]
+* **GeometricPrimitive::VertexType** is an alias for [VertexPositionNormalTexture](VertexTypes.md)
 
 * **GeometricPrimitive::VertexCollection** is an alias for ``std::vector<VertexType>``.
 
@@ -97,10 +97,10 @@ shape->Draw(world, view, projection, Colors::White, catTexture, false, [=]
 });
 ```
 
-This makes use of a [[BasicEffect|Effects]] shared by all geometric primitives drawn on that device context.
+This makes use of a [BasicEffect](Effects.md) shared by all geometric primitives drawn on that device context.
 
 # Advanced drawing
-This form of drawing makes use of a custom [[IEffect|Effects]] instance. The caller is responsible for using an input layout that matches the effect.
+This form of drawing makes use of a custom [IEffect](Effects.md) instance. The caller is responsible for using an input layout that matches the effect.
 
 ```cpp
 IEffect* myeffect = ...
@@ -113,7 +113,7 @@ shape->Draw( myeffect, inputLayout.Get() );
 
 This takes an optional parameter for enabling alpha-blending, wireframe, and a callback function which can be used to override the default rendering state.
 
-The **Draw** operation will only set up a texture sampler in slot 0. If you are using an [[IEffect|Effects]] instance with more than a single texture, you need to set additional samplers manually (perhaps via ``setCustomState`` callbacks). For example, if using _EnvironmentMapEffect_:
+The **Draw** operation will only set up a texture sampler in slot 0. If you are using an [IEffect](Effects.md) instance with more than a single texture, you need to set additional samplers manually (perhaps via ``setCustomState`` callbacks). For example, if using _EnvironmentMapEffect_:
 
 ```cpp
 shape->Draw( myeffect, inputLayout.Get(), false, false, [=]
@@ -124,8 +124,8 @@ shape->Draw( myeffect, inputLayout.Get(), false, false, [=]
 });
 ```
 
-> GeometricPrimitive shapes define a single set of texture coordinates, which works well with [[BasicEffect]], [[DebugEffect]],
-[[EnvironmentMapEffect]], [[NormalMapEffect]], or [[PBREffect]]. They don't include two sets of texture coordinates, so you can't use them with [[DualTextureEffect]]. They do not include tangents or bi-normals, so they don't work with [[DGSLEffect]]. They don't include skinning weights and bone indices, so they aren't suited for use with [[SkinnedEffect]].
+> GeometricPrimitive shapes define a single set of texture coordinates, which works well with [BasicEffect](BasicEffect.md), [DebugEffect](DebugEffect.md),
+[EnvironmentMapEffect](EnvironmentMapEffect.md), [NormalMapEffect](NormalMapEffect.md), or [PBREffect](PBREffect.md). They don't include two sets of texture coordinates, so you can't use them with [DualTextureEffect](DualTextureEffect.md). They do not include tangents or bi-normals, so they don't work with [DGSLEffect](DGSLEffect.md). They don't include skinning weights and bone indices, so they aren't suited for use with [SkinnedEffect](SkinnedEffect.md).
 
 # Coordinate systems
 These geometric primitives (based on the XNA Game Studio conventions) use right-handed coordinates. They can be used with left-handed coordinates by setting the _rhcoords_ parameter on the factory methods to 'false' to reverse the winding ordering (the parameter defaults to 'true').
@@ -201,7 +201,7 @@ customBox = GeometricPrimitive::CreateCustom( deviceContext, vertices, indices )
 
 # Instancing
 
-If you create a [[NormalMapEffect]], [[PBREffect]], or [[DebugEffect]] effect that supports GPU instancing, you can use the following input layout in combination with the **DrawInstanced** method:
+If you create a [NormalMapEffect](NormalMapEffect.md), [PBREffect](PBREffect.md), or [DebugEffect](DebugEffect.md) effect that supports GPU instancing, you can use the following input layout in combination with the **DrawInstanced** method:
 
 ```cpp
 static const D3D11_INPUT_ELEMENT_DESC s_InputElements[] =

@@ -1,4 +1,4 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 This lesson covers drawing text using bitmap fonts and the sprite renderer.
@@ -8,8 +8,8 @@ This lesson covers drawing text using bitmap fonts and the sprite renderer.
 > Note that Windows Phone 8.0 and the Xbox XDK/GDK do not support Direct2D/DirectWrite. UWP on the Xbox device family does support it.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Creating a font
 
@@ -23,7 +23,7 @@ Run the following command-line
 
     MakeSpriteFont "Courier New" myfile.spritefont /FontSize:32
 
-Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [myfile.spritefont](https://github.com/Microsoft/DirectXTK/wiki/myfile.spritefont) and click "OK".
+Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [myfile.spritefont](myfile.spritefont) and click "OK".
 
 > If you are using a Universal Windows Platform (UWP) app, Windows Store, or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``myfile.spritefont`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build for *All Configurations* and *All Platforms*.
 
@@ -116,7 +116,7 @@ m_spriteBatch->End();
 
 Build and run to see our text string centered in the middle of the rendering window:
 
-![Screenshot Hello World](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHelloWorld.PNG)
+![Screenshot Hello World](images/screenshotHelloWorld.PNG)
 
 # Using ``std::wstring`` for text
 
@@ -195,7 +195,7 @@ m_spriteBatch->End();
 
 Build and run to see our text string centered in the middle of the rendering window but with a drop-shadow:
 
-![Screenshot Hello World with shadow](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHelloWorld2.PNG)
+![Screenshot Hello World with shadow](images/screenshotHelloWorld2.PNG)
 
 # Outline effect
 
@@ -225,18 +225,18 @@ m_spriteBatch->End();
 
 Build and run to see our text string centered in the middle of the rendering window but with an outline:
 
-![Screenshot Hello World with outline](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotHelloWorld3.PNG)
+![Screenshot Hello World with outline](images/screenshotHelloWorld3.PNG)
 
 # More to explore
 
-* If you are wanting to render text similar to how a classic 'console' application does, see [[TextConsole]].
+* If you are wanting to render text similar to how a classic 'console' application does, see [TextConsole](TextConsole.md).
 
-* If you want to render Xbox controller button artwork composed with standard text, see [[ControllerFont]].
+* If you want to render Xbox controller button artwork composed with standard text, see [ControllerFont](ControllerFont.md).
 
 * If you want to make use of *DirectWrite* for vector-based fonts on Windows, see [Microsoft Docs](https://docs.microsoft.com/windows/win32/directwrite/getting-started-with-directwrite).
 
-**Next lesson:** [[Simple rendering]]
+**Next lesson:** [Simple rendering](Simple-rendering.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[SpriteBatch]], [[SpriteFont]], [[MakeSpriteFont]]
+DirectX Tool Kit docs [SpriteBatch](SpriteBatch.md), [SpriteFont](SpriteFont.md), [MakeSpriteFont](MakeSpriteFont.md)

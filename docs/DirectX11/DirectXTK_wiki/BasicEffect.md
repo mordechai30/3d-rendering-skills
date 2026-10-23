@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This is a native Direct3D 11 implementation of the built-in BasicEffect from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.BasicEffect``) which supports texture mapping, vertex coloring, directional vertex lighting, directional per-pixel lighting, and fog.
 
-![BasicEffect image](https://github.com/Microsoft/DirectXTK/wiki/images/BasicEffect.png)
+![BasicEffect image](images/BasicEffect.png)
 
-**Related tutorials:** [[Simple rendering]], [[Line drawing and anti-aliasing]], [[3D shapes]]
+**Related tutorials:** [Simple rendering](Simple-rendering.md), [Line drawing and anti-aliasing](Line-drawing-and-anti-aliasing.md), [3D shapes](3D-shapes.md)
 
 ```mermaid
 classDiagram
@@ -83,7 +83,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-BasicEffect supports [[IEffect]], [[IEffectMatrices]], [[IEffectLights]], and [[IEffectFog]]
+BasicEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), [IEffectLights](IEffectLights.md), and [IEffectFog](IEffectFog.md)
 
 # Input layout
 This effect requires ``SV_Position``, ``NORMAL`` if lighting is enabled, ``COLOR`` if per-vertex colors are enabled, and  ``TEXCOORD0`` if texturing is enabled.

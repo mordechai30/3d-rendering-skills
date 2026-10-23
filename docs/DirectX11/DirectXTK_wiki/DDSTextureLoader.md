@@ -1,4 +1,4 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is the traditional texture file container for DirectX. This loader performs no pixel data conversions (see _Remarks_ for more details). This is ideal for runtime usage, and supports the full complement of Direct3D 11 texture resources (1D, 2D, volume maps, cubemaps, mipmap levels, texture arrays, cubemap arrays, Block Compressed formats, etc.). It supports both legacy ``DDPIXELFORMAT`` and 'DX10' ``DXGI_FORMAT`` extension header format ``.dds`` files.
@@ -7,9 +7,9 @@ This is a simple light-weight DirectDraw Surface (``.dds``) file loader. This is
 
 > To load legacy files that require runtime format conversion (i.e. 24bpp RGB files), use _DirectXTex_ or convert them with the [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) utility.
 
-> To load FourCC "XBOX" variant ``.DDS`` files, use [[XboxDDSTextureLoader]], which is supported by the [xtexconv](https://aka.ms/atgsplxtexconv) utility.
+> To load FourCC "XBOX" variant ``.DDS`` files, use [XboxDDSTextureLoader](XboxDDSTextureLoader.md), which is supported by the [xtexconv](https://aka.ms/atgsplxtexconv) utility.
 
-**Related tutorial:** [[Sprites and textures]]
+**Related tutorial:** [Sprites and textures](Sprites-and-textures.md)
 
 # Header
 ```cpp

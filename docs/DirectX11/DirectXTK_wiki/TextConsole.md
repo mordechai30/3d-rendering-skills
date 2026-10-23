@@ -1,8 +1,8 @@
 This is a C++ implementation of a simple console for displaying text. As more text is printed, the text display scrolls up.
 
-![Text console test](https://github.com/Microsoft/DirectXTK/wiki/images/TextConsole.PNG)
+![Text console test](images/TextConsole.PNG)
 
-[TextConsole.h](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.h)
+[TextConsole.h](TextConsole.h)
 
 ```cpp
 class TextConsole
@@ -60,7 +60,7 @@ private:
 };
 ```
 
-[TextConsole.cpp](https://github.com/Microsoft/DirectXTK/wiki/TextConsole.cpp)
+[TextConsole.cpp](TextConsole.cpp)
 
 ```cpp
 #include "TextConsole.h"
@@ -358,7 +358,7 @@ Since Xbox One XDK apps do not have 'lost device' scenarios, you can avoid using
 m_console = std::make_unique<DX::TextConsole>(context, L"consolas.spritefont");
 ```
 
-The example above uses the [[Viewport]] function ``ComputeTitleSafeArea`` which is important when rendering text or other UI element on televisions. This is of course optional when rendering on a PC or mobile device and can use the full render viewport instead.
+The example above uses the [Viewport](Viewport.md) function ``ComputeTitleSafeArea`` which is important when rendering text or other UI element on televisions. This is of course optional when rendering on a PC or mobile device and can use the full render viewport instead.
 
 For 11.X Fast Semantics support, you need to call ``SetViewport`` before rendering. This is optional for other platforms.
 

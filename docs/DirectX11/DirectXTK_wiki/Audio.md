@@ -1,19 +1,19 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 The _DirectXTK for Audio_ components implement a low-level audio API similar to the XNA Game Studio 4 (``Microsoft.Xna.Framework.Audio``) design. This consists of the following classes all declared in the ``Audio.h`` header (in the _Inc_ folder of the distribution):
 
-* [[AudioEngine]] - This class represents an XAudio2 audio graph, device, and mastering voice.
-* [[SoundEffect]] - A container class for sound resources which can be loaded from ``.wav`` files. These can be played as 'one-shots' managed by the engine, or used to create a *SoundEffectInstance*.
-* [[SoundEffectInstance]] -  Provides a single playing, looped, paused, or stopped instance of a sound. These support 3D positional audio and optionally reverb effects.
-* [[SoundStreamInstance]] - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank.
-* [[DynamicSoundEffectInstance]] - *SoundEffectInstance* where the application provides the audio data on demand.
-* [[WaveBank]] - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance* / *SoundStreamInstance* objects that refer to entries in the wave bank.
-* [[AudioListener]],  [[AudioEmitter]] - Utility classes used with ``SoundEffectInstance::Apply3D``.
+* [AudioEngine](AudioEngine.md) - This class represents an XAudio2 audio graph, device, and mastering voice.
+* [SoundEffect](SoundEffect.md) - A container class for sound resources which can be loaded from ``.wav`` files. These can be played as 'one-shots' managed by the engine, or used to create a *SoundEffectInstance*.
+* [SoundEffectInstance](SoundEffectInstance.md) -  Provides a single playing, looped, paused, or stopped instance of a sound. These support 3D positional audio and optionally reverb effects.
+* [SoundStreamInstance](SoundStreamInstance.md) - *SoundEffectInstance* for playing waves from a streaming XACT-style ``.xwb`` wave bank.
+* [DynamicSoundEffectInstance](DynamicSoundEffectInstance.md) - *SoundEffectInstance* where the application provides the audio data on demand.
+* [WaveBank](WaveBank.md) - A container class for sound resources packaged into an XACT-style ``.xwb`` wave bank, with support for directly playing one-shots and creating *SoundEffectInstance* / *SoundStreamInstance* objects that refer to entries in the wave bank.
+* [AudioListener](AudioListener.md),  [AudioEmitter](AudioEmitter.md) - Utility classes used with ``SoundEffectInstance::Apply3D``.
 
 > DirectXTK for Audio uses XAudio 2. It does not make use of the legacy XACT Engine, XACT Cue, or XACT SoundBank.
 
-**Related tutorials:** [[Adding the DirectX Tool Kit for Audio]], [[Adding audio to your project]], [[Creating and playing sounds]], [[Making use of wave banks]], [[Using positional audio]]
+**Related tutorials:** [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md), [Adding audio to your project](Adding-audio-to-your-project.md), [Creating and playing sounds](Creating-and-playing-sounds.md), [Making use of wave banks](Making-use-of-wave-banks.md), [Using positional audio](Using-positional-audio.md)
 
 ```mermaid
 classDiagram
@@ -145,7 +145,7 @@ if ( !audEngine->Update() )
 }
 ```
 
-``Update`` returns false if no audio is actually playing (either due to there being no audio device on the system at the time AudioEngine was created, or because XAudio2 encountered a Critical Error--typically due to speakers being unplugged). Calls to various DirectXTK for Audio methods can still be made in this state but no actual audio processing will take place. See [[AudioEngine]] for more information.
+``Update`` returns false if no audio is actually playing (either due to there being no audio device on the system at the time AudioEngine was created, or because XAudio2 encountered a Critical Error--typically due to speakers being unplugged). Calls to various DirectXTK for Audio methods can still be made in this state but no actual audio processing will take place. See [AudioEngine](AudioEngine.md) for more information.
 
 ## Loading and a playing a looping sound
 Creating SoundEffectInstances allows full control over the playback, and are provided with a  dedicated XAudio2 source voice. This allows control of playback, looping, volume control, panning,  and pitch-shifting.
@@ -248,7 +248,7 @@ if ( !stream )
 stream->Play( true );
 ```
 
-XACT3-style "wave banks" can be created by using the [[XWBTool]] command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on ``.wav`` files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
+XACT3-style "wave banks" can be created by using the [XWBTool](XWBTool.md) command-line tool, or they can be authored using XACT3 in the DirectX SDK. Note that the XWBTool will not perform any format conversions or compression, so more full-featured options are better handled with the XACT3 GUI or XACTBLD, or it can be used on ``.wav`` files already compressed by ``adpcmencode.exe``, ``xwmaencode.exe``, ``xma2encode.exe``, etc.
 
     xwbtool -o wavebank.xwb Sound.wav Explosion.wav Music.wav
 
@@ -259,7 +259,7 @@ DirectXTK for Audio does not make use of the XACT engine, nor does it make use o
 # Voice management
 Each instance of a SoundEffectInstance will allocate it's own source voice when played, which won't be released until it is destroyed. Each time a one-shot sound is played from a SoundEffect or a WaveBank, a voice will be created or a previously used one-shot voice will be reused if possible.
 
-See [[AudioEngine]] for more information.
+See [AudioEngine](AudioEngine.md) for more information.
 
 # Platform support
 
@@ -281,7 +281,7 @@ See [[AudioEngine]] for more information.
 
 > XAudio 2.7 support was retired in June 2010. Support for XAudio2Redist is still present in the CMake projects, but is not supported by the Visual Studio projects or NuGet packages as of March 2025.
 
-See the [[Adding the DirectX Tool Kit for Audio]].
+See the [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md).
 
 > Use of XAudio 2.7 and the legacy DirectX SDK is not recommended, and support for this configuration is removed as of the June 2020 release.
 

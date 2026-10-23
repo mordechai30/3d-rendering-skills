@@ -1,15 +1,15 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 Here we learn how to render a grid in 3D, and enable multi-sample anti-aliasing (MSAA).
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Background
 
-In addition to the Direct3D objects we used in [[Simple rendering]], this tutorial makes use of 3D transformations using the [[SimpleMath]] library.
+In addition to the Direct3D objects we used in [Simple rendering](Simple-rendering.md), this tutorial makes use of 3D transformations using the [SimpleMath](SimpleMath.md) library.
 
 # Drawing a grid
 
@@ -119,7 +119,7 @@ m_batch->End();
 
 Build and run to see a 3D grid.
 
-![Screenshot of the grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGrid.PNG)
+![Screenshot of the grid](images/screenshotGrid.PNG)
 
 # Anti-aliasing
 
@@ -175,7 +175,7 @@ context->RSSetState(m_raster.Get());
 
 Build and run to see the shimmering of the lines lessen, although they will appear to be a bit thicker than a single pixel.
 
-![Screenshot of the AA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridAA.PNG)
+![Screenshot of the AA grid](images/screenshotGridAA.PNG)
 
 ## Multisampling
 A second more general solution is to use [Multisample anti-aliasing](https://wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA) which uses more video memory and pixel-fill performance to achieve higher quality rendering results. In this case, we will make use of 4x MSAA where the render target and the depth buffer will be 4 times larger. MSAA can be used with all primitives, not just lines.
@@ -296,7 +296,7 @@ m_deviceResources->Present();
 
 Build and run to see the shimmering of the lines lessen compared to the first version, and is slightly less thickened than when we used the AA line mode.
 
-![Screenshot of the MSAA grid](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotGridMSAA.PNG)
+![Screenshot of the MSAA grid](images/screenshotGridMSAA.PNG)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get an exception, it may be because your device does not support 4x MSAA--which you can confirm by checking the debug device output at the failure point. Direct3D Feature Level 10.1 or later devices all support 4x MSAA for most render target formats, but some 10.0 and 9.x feature levels do not. You can try setting <code>MSAA_COUNT</code> to 2 if this happens. If you have a Feature Level 11.0 or later device, you can try using 4 or 8 for <code>MSAA_COUNT</code>. See also <a href="https://docs.microsoft.com/windows/win32/api/d3d11/nf-d3d11-id3d11device-checkmultisamplequalitylevels">CheckMultisampleQualityLevels</a></p></details>
@@ -314,15 +314,15 @@ See [this blog series](https://walbourn.github.io/care-and-feeding-of-modern-swa
 
 * See the **SimpleMSAA** [Win32](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/PCSamples/IntroGraphics/SimpleMSAA_PC) | [UWP](https://github.com/Microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/IntroGraphics/SimpleMSAA_UWP) sample.
 
-* The [[MSAAHelper]] utility can be used to simplify the implementation of the MSAA rendering above.
+* The [MSAAHelper](MSAAHelper.md) utility can be used to simplify the implementation of the MSAA rendering above.
 
-* PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [[DebugDraw]].
+* PrimitiveBatch is ideally suited for drawing debug displays such as visualizing bounding volumes, collision data, etc. For more on this, see [DebugDraw](DebugDraw.md).
 
-**Next lesson:** [[3D shapes]]
+**Next lesson:** [3D shapes](3D-shapes.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[CommonStates]], [[Effects]], [[PrimitiveBatch]], [[VertexTypes]]  
+DirectX Tool Kit docs [CommonStates](CommonStates.md), [Effects](Effects.md), [PrimitiveBatch](PrimitiveBatch.md), [VertexTypes](VertexTypes.md)  
 [FXAA](https://wikipedia.org/wiki/Fast_approximate_anti-aliasing)  
 [SMAA](https://www.iryoku.com/smaa/)  
 [Spatial anti-alising](https://wikipedia.org/wiki/Spatial_anti-aliasing)

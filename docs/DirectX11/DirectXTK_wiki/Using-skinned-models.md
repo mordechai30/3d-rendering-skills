@@ -1,24 +1,24 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson we learn how to render models using skinned vertices for smooth animations.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Background
-In the [[previous lesson|Animating using model bones]], we learned the use of [[ModelBone]] as general metadata and for doing rigid-body animation of meshes. The other common use for model bones is as a 'skeleton' to control vertices for [vertex skinning](https://wikipedia.org/wiki/Skeletal_animation) animation.
+In the [previous lesson](Animating-using-model-bones.md), we learned the use of [ModelBone](ModelBone.md) as general metadata and for doing rigid-body animation of meshes. The other common use for model bones is as a 'skeleton' to control vertices for [vertex skinning](https://wikipedia.org/wiki/Skeletal_animation) animation.
 
 Like *XNA Game Studio*, the *DirectX Tool Kit* does not provide a specific implementation of an animation control system. There are numerous approaches, and each have their own strengths and weaknesses. In this lesson, we'll cover the animation system in the Visual Studio Mesh Content Pipeline (``CMO``) and the legacy DirectX SDK sample animation system (``SDKMESH`` v1), providing some basic code for using them. Neither solution is ideal, but they do a good job of demonstrating the techniques and some trade-offs.
 
 # Rendering a skinned model
 
-Start by saving [teapot.cmo](https://github.com/Microsoft/DirectXTK/wiki/media/teapot.cmo) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "teapot.cmo" and click "OK".
+Start by saving [teapot.cmo](media/teapot.cmo) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "teapot.cmo" and click "OK".
 
 > If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``teapot.cmo`` file and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
-Now download [Animation.cpp](https://github.com/Microsoft/DirectXTK/wiki/Animation.cpp) and [Animation.h](https://github.com/Microsoft/DirectXTK/wiki/Animation.h) into your project directory. Use **Project** / **Add Existing Item...** to add them to your project. *This is a simple helper class we'll describe more later on in the lesson.*
+Now download [Animation.cpp](Animation.cpp) and [Animation.h](Animation.h) into your project directory. Use **Project** / **Add Existing Item...** to add them to your project. *This is a simple helper class we'll describe more later on in the lesson.*
 
 In the **Game.h** file, add to the list of header includes:
 
@@ -117,7 +117,7 @@ m_world = XMMatrixRotationY(time);
 
 Build and render to see a dancing teapot:
 
-![Screenshot dancing teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotAnimatingTeapot.PNG)
+![Screenshot dancing teapot](images/screenshotAnimatingTeapot.PNG)
 
 # CMO animation
 
@@ -191,7 +191,7 @@ for (size_t j = 0; j < nbones; ++j)
 
 The ``CMO`` animation system is an example of 'direct-mapped' bones where the bone indices in the vertex data directly map to the Model's bone array. This is simple, but means that each mesh in the model file is limited to the same set of MaxBones (72). The ``SDKMESH`` animation system uses 'bone-influences' which maps the vertex data index to the model bone index.
 
-Now save [soldier.sdkmesh](https://github.com/Microsoft/DirectXTK/wiki/media/soldier.sdkmesh), [soldier.sdkmesh_anim](https://github.com/Microsoft/DirectXTK/wiki/media/soldier.sdkmesh_anim), [head_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/head_diff.dds), [head_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/head_norm.dds), [jacket_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/jacket_diff.dds), [jacket_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/jacket_norm.dds), [pants_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/pants_diff.dds), [pants_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/pants_norm.dds), [upBody_diff.dds](https://github.com/Microsoft/DirectXTK/wiki/media/upBody_diff.dds), and [upbody_norm.dds](https://github.com/Microsoft/DirectXTK/wiki/media/upbody_norm.dds) into your new project's directory. From the top menu select **Project** / **Add Existing Item...**, then select "soldier.sdkmesh", "soldier.sdkmesh_anim", and the eight  ``DDS`` files followed by "OK".
+Now save [soldier.sdkmesh](media/soldier.sdkmesh), [soldier.sdkmesh_anim](media/soldier.sdkmesh_anim), [head_diff.dds](media/head_diff.dds), [head_norm.dds](media/head_norm.dds), [jacket_diff.dds](media/jacket_diff.dds), [jacket_norm.dds](media/jacket_norm.dds), [pants_diff.dds](media/pants_diff.dds), [pants_norm.dds](media/pants_norm.dds), [upBody_diff.dds](media/upBody_diff.dds), and [upbody_norm.dds](media/upbody_norm.dds) into your new project's directory. From the top menu select **Project** / **Add Existing Item...**, then select "soldier.sdkmesh", "soldier.sdkmesh_anim", and the eight  ``DDS`` files followed by "OK".
 
 > If you are using a Universal Windows Platform app or Xbox project rather than a Windows desktop app, you need to manually edit the Visual Studio project properties on the ``soldier.sdkmesh`` and ``soldier.sdkmesh_anim`` files and make sure "Content" is set to "Yes" so the data file will be included in your packaged build.
 
@@ -225,7 +225,7 @@ static const XMVECTORF32 c_lookAt = { 0.f, 0.25f, 0.f, 0.f };
 
 Build and run to see a walking "dude" model:
 
-![Screenshot of walking character](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSoldier.PNG)
+![Screenshot of walking character](images/screenshotSoldier.PNG)
 
 # SDKMESH animation
 
@@ -307,9 +307,9 @@ for (size_t j = 0; j < nbones; ++j)
 
 # More to explore
 
-* Vertex skinning is supported by [[SkinnedEffect]], [[SkinnedNormalMapEffect|NormalMapEffect]], [[SkinnedPBREffect|PBREffect]], and [[SkinnedDGSLEffect|DGSLEffect]] using the ``IEffectSkinning`` interface.
+* Vertex skinning is supported by [SkinnedEffect](SkinnedEffect.md), [SkinnedNormalMapEffect](NormalMapEffect.md), [SkinnedPBREffect](PBREffect.md), and [SkinnedDGSLEffect](DGSLEffect.md) using the ``IEffectSkinning`` interface.
 
-**Next lesson:** [[Using advanced shaders]]
+**Next lesson:** [Using advanced shaders](Using-advanced-shaders.md)
 
 # Credits
 

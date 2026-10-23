@@ -1,9 +1,9 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This class is used for the Xbox One platform to manage video memory allocations using *fast semantics*. This class is a 'no-op' for all other platforms.
 
-**Related tutorial:** [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK/wiki/Adding-the-DirectX-Tool-Kit#graphics-memory)
+**Related tutorial:** [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md#graphics-memory)
 
 ```cpp
 class DirectX::GraphicsMemory
@@ -52,6 +52,6 @@ Error reporting with standard C++ exceptions ``std::logic_error`` or ``std::bad_
 Allocation of memory resources is fully asynchronous, but should be sync'd once-per-frame to ensure the proper ``Commit`` semantics.
 
 # Platform Notes
-Use of this class is only required for the Xbox One with DirectX 11--it's required for all platforms with [DirectX Tool Kit for DX12](https://github.com/Microsoft/DirectXTK12). If you fail to create the singleton, an exception is thrown when using classes that make use of dynamic memory allocation for constant buffers, dynamic index buffers, and dynamic vertex buffers notably all [[Effects]], [[PrimitiveBatch]], and [[SpriteBatch]].
+Use of this class is only required for the Xbox One with DirectX 11--it's required for all platforms with [DirectX Tool Kit for DX12](https://github.com/Microsoft/DirectXTK12). If you fail to create the singleton, an exception is thrown when using classes that make use of dynamic memory allocation for constant buffers, dynamic index buffers, and dynamic vertex buffers notably all [Effects](Effects.md), [PrimitiveBatch](PrimitiveBatch.md), and [SpriteBatch](SpriteBatch.md).
 
 For other Direct3D 11 platforms including Windows desktop and Universal Windows Platform apps, the use of this class is entirely optional. If created, the class performs a 'no-op' and does nothing. The ``Allocate`` method will always return nullptr in this case.

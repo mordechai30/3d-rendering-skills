@@ -1,7 +1,7 @@
-|[[DirectXTK]]|[[Model]]|
+|[DirectXTK](DirectXTK.md)|[Model](Model.md)|
 |---|---|
 
-This class is part of the [[Model]] hierarchy. The primary purpose of this class is to be a shared container for a list of [[ModelMeshPart]] instances which are referenced by one or more instances of the Model class.
+This class is part of the [Model](Model.md) hierarchy. The primary purpose of this class is to be a shared container for a list of [ModelMeshPart](ModelMeshPart.md) instances which are referenced by one or more instances of the Model class.
 
 Note that Model uses a collection of ``std::shared_ptr`` instances to ModelMesh since meshes can be shared by multiple instances of Model.
 
@@ -26,12 +26,12 @@ Use the ``Model::Draw`` function which will call **ModelMesh::Draw** on all the 
 
 There is an overload of **Draw** which takes an array of transformation matrices. This is used for drawing with rigid-body animation. The *boneIndex* in each ModelMesh is used to indicate which matrix in the array to use in addition to the *world* matrix for positioning.
 
-See [[Model]] for more details and an example.
+See [Model](Model.md) for more details and an example.
 
 # Advanced drawing
 The **ModelMesh::Draw** method draws the mesh in two passes. In the first pass, all 'opaque' ModelMeshPart instances are drawn (i.e. _ModelMeshPart::isAlpha_ is false), and in the second pass all 'alpha' instances are drawn (i.e. _ModelMeshPart::isAlpha_ is true).
 
-The Draw method assumes that the proper blend state, depth/stencil state, rasterizer state, and sampler state have been set up before being called. The **ModelMesh::PrepareForRendering** method can be used to set up standard defaults via [[CommonStates]] or it can be skipped in favor of custom state setting.
+The Draw method assumes that the proper blend state, depth/stencil state, rasterizer state, and sampler state have been set up before being called. The **ModelMesh::PrepareForRendering** method can be used to set up standard defaults via [CommonStates](CommonStates.md) or it can be skipped in favor of custom state setting.
 
 * The opaque pass is drawn using _Opaque_ blending, _DepthDefault_ sorting, an optional wireframe mode or a winding mode based on _ModelMesh::ccw_.
 * The alpha pass is drawn using alpha blending, _DepthRead_ sorting, an optional wireframe mode or a winding mode based on _ModelMesh::ccw_. The choice of  alpha blending is based on _ModelMesh::pmalpha_ to select between _AlphaBlend_ and _NonPremultiplied_.
@@ -88,7 +88,7 @@ for(const auto& mit : models)
 
 # Skinned drawing
 
-The ``Model::DrawSkinned`` method takes an array of bone transformation matrices and renders using skinning effects--this is applied if the effect supports the [[IEffectSkinning]] interface.
+The ``Model::DrawSkinned`` method takes an array of bone transformation matrices and renders using skinning effects--this is applied if the effect supports the [IEffectSkinning](IEffectSkinning.md) interface.
 
 If the ModelMeshPart's effect supports skinning and the *boneInfluences* array is empty, then direct-mapped skinned animation is used.
 
@@ -105,7 +105,7 @@ A ModelMesh also includes bounding information for culling & collision detection
 
 The choice of frame-of-reference for these bounding volumes is up to the Model loader, but is typically in 'local' coordinates.
 
-If the Model contains [[ModelBone]] data, then each ModelMesh can have a ``boneIndex`` value used for rigid-body mesh animation (otherwise the value is ``ModelBone::c_Invalid``). For SDKMESH or other bone-influenced mapped skeletons, the *boneInfluences* array indicates how to map the local bone list for skinning animation to the parent Model's bone array. Otherwise if *boneInfluences* is empty, direct-mapped skinned animation is assumed.
+If the Model contains [ModelBone](ModelBone.md) data, then each ModelMesh can have a ``boneIndex`` value used for rigid-body mesh animation (otherwise the value is ``ModelBone::c_Invalid``). For SDKMESH or other bone-influenced mapped skeletons, the *boneInfluences* array indicates how to map the local bone list for skinning animation to the parent Model's bone array. Otherwise if *boneInfluences* is empty, direct-mapped skinned animation is assumed.
 
 # Exceptions
 

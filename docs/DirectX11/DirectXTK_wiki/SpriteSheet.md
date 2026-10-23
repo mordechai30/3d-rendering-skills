@@ -1,8 +1,8 @@
-This is an example of a C++ port of the C# MonoGame sprite loader and renderer for using sprite sheets created by the CodeAndWeb tool [TexturePacker](https://www.codeandweb.com/texturepacker/monogame) using the built-in MonoGame project type.  This makes use of [[SpriteBatch]] to render.
+This is an example of a C++ port of the C# MonoGame sprite loader and renderer for using sprite sheets created by the CodeAndWeb tool [TexturePacker](https://www.codeandweb.com/texturepacker/monogame) using the built-in MonoGame project type.  This makes use of [SpriteBatch](SpriteBatch.md) to render.
 
 > You can change this code to work with other sprite sheet creation tools by modifying the metadata reading code in Load.
 
-[SpriteSheet.h](https://github.com/Microsoft/DirectXTK/wiki/SpriteSheet.h)
+[SpriteSheet.h](SpriteSheet.h)
 
 ```cpp
 class SpriteSheet
@@ -230,11 +230,11 @@ private:
 
 This example uses a sprite sheet created from the content in the original C# XNA Game Studio ``SpriteSheetSample`` sample.
 
-The resulting sprite sheet is [SpriteSheetSample.png](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteSheetSample.png)
+The resulting sprite sheet is [SpriteSheetSample.png](images/SpriteSheetSample.png)
 
-![Sprite Sheet](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteSheetSample.png)
+![Sprite Sheet](images/SpriteSheetSample.png)
 
-and the resulting metadata [SpriteSheetSample.txt](https://github.com/Microsoft/DirectXTK/wiki/SpriteSheetSample.txt)
+and the resulting metadata [SpriteSheetSample.txt](SpriteSheetSample.txt)
 
     #
     # Sprite sheet data for MonoGame.
@@ -310,7 +310,7 @@ The default _Max size_ of 2048 x 2048 under _Layout_ is suitable for all feature
 
 ## DDS
 
-You can optionally convert the ``PNG`` to a ``DDS`` using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger ``DDS`` file on disk than a ``PNG``, but will use less video memory when loaded. You would use [[DDSTextureLoader]] instead of [[WICTextureLoader]] in this case.
+You can optionally convert the ``PNG`` to a ``DDS`` using DirectXTex's [texconv](https://github.com/Microsoft/DirectXTex/wiki/Texconv) tool or the Visual Studio texture content processor, ideally using BC2 or BC3 for runtime compression. This will result in a larger ``DDS`` file on disk than a ``PNG``, but will use less video memory when loaded. You would use [DDSTextureLoader](DDSTextureLoader.md) instead of [WICTextureLoader](WICTextureLoader.md) in this case.
 
 If using ``DDS`` rather than ``PNG`` and premultiplied alpha for your blending, you should leave the **TexturePacker** _Premultiply alpha_ option unchecked and add the `--premultiplied-alpha` option to DirectXTex's **texconv** to get the premultipled alpha conversion as part of creating the ``DDS``.
 

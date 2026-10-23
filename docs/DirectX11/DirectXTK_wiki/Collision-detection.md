@@ -1,11 +1,11 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers simple collision detection using rectangles, spheres, and boxes.
 
 # 2D collision detection
 
-The primary functionality here offered by the *DirectX Tool Kit* is in [[SimpleMath]]'s ``Rectangle`` class:
+The primary functionality here offered by the *DirectX Tool Kit* is in [SimpleMath](SimpleMath.md)'s ``Rectangle`` class:
 
 The **Contains** methods perform *rectangle contains point* and *rectangle contains rectangle* tests.
 
@@ -35,7 +35,7 @@ static RECT Union(const RECT& rcta, const RECT& rctb);
 
 # 3D collision detection
 
-For 3D collision implementation, the [DirectXMath](https://docs.microsoft.com/windows/win32/dxmath/directxmath-portal) bounding classes provide implementations of many 3D test. If desired, you can interop with these using [[SimpleMath]]'s types like ``Vector3``, ``Vector4``, ``Plane``, ``Ray``, etc.
+For 3D collision implementation, the [DirectXMath](https://docs.microsoft.com/windows/win32/dxmath/directxmath-portal) bounding classes provide implementations of many 3D test. If desired, you can interop with these using [SimpleMath](SimpleMath.md)'s types like ``Vector3``, ``Vector4``, ``Plane``, ``Ray``, etc.
 
 > See the *Collision* ([PC](https://github.com/walbourn/directx-sdk-samples/tree/main/Collision) / [UWP](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/System/CollisionUWP) / [GDK](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/System/Collision) / [XDK](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/XDKSamples/System/Collision)) sample for a demonstration of these ``DirectXCollision.h`` types.
 
@@ -124,7 +124,7 @@ ContainmentType ContainedBy(XMVECTOR V0, XMVECTOR V1, XMVECTOR V2,
 
 See [Microsoft Docs](https://docs.microsoft.com/windows/win32/dxmath/ovw-xnamath-triangletests).
 
-**Next lesson**: [[Picking]]
+**Next lesson**: [Picking](Picking.md)
 
 # Further reading
 

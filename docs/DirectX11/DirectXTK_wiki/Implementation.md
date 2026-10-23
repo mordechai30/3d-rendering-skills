@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)
 |---|---|
 
 # Coding style
@@ -66,7 +66,7 @@ The Modern C++ recommendation is to use [UTF-8 Everywhere](https://utf8everywher
 * Always explicitly call the "W" or "A" versions of Win32 APIs. Prefer to convert from UTF-8 at the point of call.
 * Do not rely on the macros to select "W" vs. "A", but always build with ``UNICODE`` and ``_UNICODE`` defined for safety.
 
-Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed directly along to Win32 types. [[SpriteFont]] provides both UTF-8 ``char*`` and UTF-16LE ``wchar_t*`` methods.
+Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed directly along to Win32 types. [SpriteFont](SpriteFont.md) provides both UTF-8 ``char*`` and UTF-16LE ``wchar_t*`` methods.
 
 # Error reporting
 
@@ -76,7 +76,7 @@ Most functions in _DirectX Tool Kit_ take ``wchar_t*`` since they are passed dir
 
 For the remainder of the APIs, they use C++ exception handling leveraging C++11 ``exception``, ``stdexcept`` and ``system_error``. In these cases, the method usually returns ``void``.
 
-* For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via [[DX::ThrowIfFailed|ThrowIfFailed]].
+* For COM API exceptional failures, we throw a custom ``com_exception`` derived from ``std::exception`` implemented in ``PlatformHelpers.h`` via [DX::ThrowIfFailed](ThrowIfFailed.md).
 
 * For cases where you would use ``E_INVALIDARG`` for ``HRESULT``, we throw ``std::invalid_argument`` with a simple what string.
 

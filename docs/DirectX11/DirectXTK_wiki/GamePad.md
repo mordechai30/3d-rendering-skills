@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 This is a helper for simplified access to gamepad controllers modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) GamePad class.
 
-![Xbox 360 Common Controller](https://github.com/Microsoft/DirectXTK/wiki/images/xbox360controller.png)
+![Xbox 360 Common Controller](images/xbox360controller.png)
 
-**Related tutorial:** [[Game controller input]]
+**Related tutorial:** [Game controller input](Game-controller-input.md)
 
 ```cpp
 class DirectX::GamePad
@@ -338,7 +338,7 @@ navigation.BackRequested([](const winrt::Windows::Foundation::IInspectable&, con
 [Xbox 360 Controller Images](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Images)  
 [Xbox 360 Controller Buttons](https://github.com/SimonDarksideJ/XNAGameStudio/wiki/Xbox-360-Controller-Button-Images)
 
-See [[MakeSpriteFont]].
+See [MakeSpriteFont](MakeSpriteFont.md).
 
 # Further reading
 [DirectX Tool Kit: Now with GamePads](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/)  

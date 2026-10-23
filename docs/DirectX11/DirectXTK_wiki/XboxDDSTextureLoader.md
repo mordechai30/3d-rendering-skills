@@ -1,11 +1,11 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
-This is a version of [[DDSTextureLoader]] for use by Xbox One XDK developers. This loads pre-tiled texture resources for use with the ``CreatePlacement`` APIs available to Xbox One exclusive app developers.
+This is a version of [DDSTextureLoader](DDSTextureLoader.md) for use by Xbox One XDK developers. This loads pre-tiled texture resources for use with the ``CreatePlacement`` APIs available to Xbox One exclusive app developers.
 
 These pre-tiled resources are stored in a variant of the ``.DDS`` file format marked with the "XBOX" FourCC pixel format. To generate these ``.DDS`` files, see the [xtexconv](https://aka.ms/atgsplxtexconv).
 
-> To load legacy ``DDPIXELFORMAT`` or FourCC "DX10" ``DXGI_FORMAT`` variant DDS files, use [[DDSTextureLoader]]
+> To load legacy ``DDPIXELFORMAT`` or FourCC "DX10" ``DXGI_FORMAT`` variant DDS files, use [DDSTextureLoader](DDSTextureLoader.md)
 
 This function is only usable by [Xbox registered developers](https://www.xbox.com/en-US/developers) via the Xbox One XDK.
 

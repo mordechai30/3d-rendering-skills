@@ -1,4 +1,4 @@
-|[[DirectXTK]]|[[PostProcess]]|
+|[DirectXTK](DirectXTK.md)|[PostProcess](PostProcess.md)|
 |---|---|
 
 Performs basic post-processing with a built-in set of shaders which operate using one input texture.
@@ -51,7 +51,7 @@ Error reporting uses the standard C++ exceptions ``std::exception``, ``std::inva
 
 # Example
 
-If drawing a single texture which fills the render viewport, then using the **Copy** effect above is faster than using [[SpriteBatch]]--assuming you have Direct3D Hardware Feature Level 10 or later.
+If drawing a single texture which fills the render viewport, then using the **Copy** effect above is faster than using [SpriteBatch](SpriteBatch.md)--assuming you have Direct3D Hardware Feature Level 10 or later.
 
 ```cpp
 std::unique_ptr<BasicPostProcess> postProcess;

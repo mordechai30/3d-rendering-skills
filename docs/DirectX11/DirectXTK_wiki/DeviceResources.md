@@ -2,7 +2,7 @@ The DeviceResources class is an abstraction for the device & swapchain, and opti
 
 For the DirectX 12 version, see [DeviceResources](https://github.com/Microsoft/DirectXTK12/wiki/DeviceResources)
 
-**Related tutorial:** [[Using DeviceResources]]
+**Related tutorial:** [Using DeviceResources](Using-DeviceResources.md)
 
 # Header
 ```cpp
@@ -110,7 +110,7 @@ The ``flags`` parameter is covered below in *Device Options*.
 
 * ``c_FlipPresent``: Prefer the use of "flip" style swap per [this blog post](https://devblogs.microsoft.com/directx/dxgi-flip-model/) on Windows 10 systems.
 * ``c_AllowTearing``: Enable [variable refresh rate](https://docs.microsoft.com/windows/win32/direct3ddxgi/variable-refresh-rate-displays) (a.k.a. NVIDIA’s G-SYNC, AMD’s FreeSync, and VESA DisplayPort Adaptive-Sync) if supported.
-* ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](https://github.com/Microsoft/DirectXTK/wiki/DeviceResources#wide-gamut-hdr-rendering).
+* ``c_EnableHDR``: Enable [HDR10 output](https://docs.microsoft.com/windows/win32/direct3darticles/high-dynamic-range) if supported. See [below](DeviceResources.md#wide-gamut-hdr-rendering).
 * ``c_FastSemantics`` (Xbox One XDK only): Create the 11.x device with "fast semantics" enabled.
 * ``c_Enable4K_UHD`` (Xbox One XDK only): Enable 4k swapchain if supported, otherwise use 1080p.
 
@@ -179,11 +179,11 @@ If the ctor is created with the ``c_EnableHDR`` option flag, then the **GetColor
 
 > The HDR display support requires the Windows 10 Creators Update (15063) and must be built with the Windows 10 Creators Update SDK (15063).
 
-The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` for rendering in HDR10 or ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for rendering linear float values. The [[ToneMapPostProcess]] class supports the required color transformations for preparing an HDR10 signal, or tone-mapping for non-HDR displays.
+The ``backBufferFormat`` for PC/UWP should be ``DXGI_FORMAT_R10G10B10A2_UNORM`` for rendering in HDR10 or ``DXGI_FORMAT_R16G16B16A16_FLOAT`` for rendering linear float values. The [ToneMapPostProcess](ToneMapPostProcess.md) class supports the required color transformations for preparing an HDR10 signal, or tone-mapping for non-HDR displays.
 
-> For _Xbox One_, the ``backBufferFormat`` is actually the GameDVR SDR swapchain format which can be any 8:8:8:8 or 10:10:10:2 UNORM format. The HDR swapchain in this case is always ``DXGI_FORMAT_R10G10B10A2_UNORM`` using HDR10. You would typically use [[ToneMapPostProcess]] with the <abbr title="Multiple Render Target">MRT</abbr> mode enabled to generate both HDR10 and SDR signals at the same time.
+> For _Xbox One_, the ``backBufferFormat`` is actually the GameDVR SDR swapchain format which can be any 8:8:8:8 or 10:10:10:2 UNORM format. The HDR swapchain in this case is always ``DXGI_FORMAT_R10G10B10A2_UNORM`` using HDR10. You would typically use [ToneMapPostProcess](ToneMapPostProcess.md) with the <abbr title="Multiple Render Target">MRT</abbr> mode enabled to generate both HDR10 and SDR signals at the same time.
 
-See the tutorial [[Using HDR rendering]] for example usage.
+See the tutorial [Using HDR rendering](Using-HDR-rendering.md) for example usage.
 
 # Further reading
 [The Care and Feeding of Modern Swap Chains](https://walbourn.github.io/care-and-feeding-of-modern-swapchains/)   

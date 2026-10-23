@@ -1,7 +1,7 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
-After creating a new project in [[Using DeviceResources]], the next step is to add the _DirectX Tool Kit_ library and headers to the project so we can make use of it in our code.
+After creating a new project in [Using DeviceResources](Using-DeviceResources.md), the next step is to add the _DirectX Tool Kit_ library and headers to the project so we can make use of it in our code.
 
 # NuGet package manager
 The easiest way to achieve this is to use the [NuGet package manager](https://docs.microsoft.com/nuget/what-is-nuget) built into Visual Studio.
@@ -13,7 +13,7 @@ The easiest way to achieve this is to use the [NuGet package manager](https://do
 * Select "Install"
 * When finished, close the NuGet Manager
 
-![Manage NuGet Packages](https://github.com/Microsoft/DirectXTK/wiki/images/nuget.png)
+![Manage NuGet Packages](images/nuget.png)
 
 You can check for updates to the NuGet package by selecting "Updates/All" in the left-hand tree view. If there are updates, select the "DirectX Tool Kit" package, and click on "Update".
 
@@ -49,11 +49,11 @@ Another option is to use Visual Studio's [project-to-project references](https:/
 * Edit _Additional Include Directories_ to the relative path to the ``DirectXTK\Inc`` folder. With our original assumption, you can use ``$(SolutionDir)\DirectXTK\Inc``.
 * Select "OK"
 
-![Add Reference](https://github.com/Microsoft/DirectXTK/wiki/images/AddReference.png)
+![Add Reference](images/AddReference.png)
 
-![Additional Includes](https://github.com/Microsoft/DirectXTK/wiki/images/AdditionalIncludes.png)
+![Additional Includes](images/AdditionalIncludes.png)
 
-For more information see [[Integration]] under _Adding to a VS solution_.
+For more information see [Integration](Integration.md) under _Adding to a VS solution_.
 
 > For Xbox One XDK apps, you have to use project-to-project references instead of NuGet to ensure the built library matches the XDK edition specific headers and shader generation.
 
@@ -106,7 +106,7 @@ If using ``CMakePresets.json`` set the environment variable ``VCPKG_ROOT`` and a
 
 If not using **vcpkg**, you have to provide a per-configuration path to the individual installed package in the ``directxtk_DIR`` variable:
 
-![Setting cmake installed package path](https://github.com/Microsoft/DirectXTK/wiki/images/cmakepkg.png)
+![Setting cmake installed package path](images/cmakepkg.png)
 
 > The `CMakeList.txt` from *directx-vs-templates* for Win32 desktop and UWP C++/WinRT have commented out code to supporting VCPKG integration of *directxtk*.
 
@@ -146,7 +146,7 @@ General advice for C++ projects is that you should only add the headers you actu
 #include "WICTextureLoader.h"
 ```
 
-> This does not include the _DirectX Tool Kit for Audio_ header ``Audio.h`` which is covered by another [[tutorial|Adding the DirectX Tool Kit for Audio]].
+> This does not include the _DirectX Tool Kit for Audio_ header ``Audio.h`` which is covered by another [tutorial](Adding-the-DirectX-Tool-Kit-for-Audio.md).
 
 If using VCPKG, you should prefix all the header names with `directxtk`:
 
@@ -209,7 +209,7 @@ auto device = m_deviceResources->GetD3DDevice();
 m_graphicsMemory = std::make_unique<GraphicsMemory>(device);
 ```
 
-In **Game.cpp**, in **Render** add a call to [[GraphicsMemory]] ``Commit`` right after the present:
+In **Game.cpp**, in **Render** add a call to [GraphicsMemory](GraphicsMemory.md) ``Commit`` right after the present:
 
 ```cpp
 void Game::Render()
@@ -241,4 +241,4 @@ m_graphicsMemory.reset();
 
 If you are using the DirectX Tool Kit with the Xbox One XDK, then you may need to build the Xbox One shaders that match your XDK release. Generally this is handled automatically, but if you run into problems you can build them directly from the Xbox One Developer Command prompt using ``CompileShaders.cmd xbox``
 
-**Next lessons:** [[Sprites and textures]], [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
+**Next lessons:** [Sprites and textures](Sprites-and-textures.md), [Game controller input](Game-controller-input.md), [Using the SimpleMath library](Using-the-SimpleMath-library.md), [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md)

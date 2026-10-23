@@ -1,4 +1,4 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson we learn the basics of Physically-Based Rendering (PBR) as supported by the *DirectX Tool Kit*.
@@ -9,19 +9,19 @@ A full discussion of Physically-Based Rendering (PBR) is beyond the scope of thi
 
 The proponents of PBR rendering have gone back to the foundational [rendering equation](https://wikipedia.org/wiki/Rendering_equation) and built new algorithms that in some way better mimic laws of physics (such as the *law of conservation of energy*). While there are many ways to formulate a PBR materials & lighting system, the industry has converged on a few workflows. *DirectX Tool Kit* implements the "Disney-style Roughness/Metalness" workflow as it's well-understood, has reasonably good tooling support, and is the one that was chosen for [Khronos' glTF2 asset format](https://www.khronos.org/gltf/) and many modern game engines.
 
-> PBR rendering essentially requires HDR rendering as there's no physical process that clamps light into a 0 to 1 range. As such, be sure you have worked through the [[Using HDR rendering]] tutorial before this one.
+> PBR rendering essentially requires HDR rendering as there's no physical process that clamps light into a 0 to 1 range. As such, be sure you have worked through the [Using HDR rendering](Using-HDR-rendering.md) tutorial before this one.
 
 ## Image-Based Lighting (IBL)
 
 Another important aspect of PBR is that real world lighting is not well modeled by trivial point, directional, or spot light sources. Area lighting or other global illumination systems are expensive and/or complex to implement in real-time systems, so for the purposes of *DirectX Tool Kit*'s PBR implementation we make use of [image-based lighting](https://wikipedia.org/wiki/Image-based_lighting). Specifically the ambient lighting environment consists of two specially formulated cubemaps, in addition to direct lighting from up to 3 directional lights.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # A simple PBR+HDR test scene
 
-Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h), [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp), [SunSubMixer_diffuseIBL.dds](https://github.com/Microsoft/DirectXTK/wiki/media/SunSubMixer_diffuseIBL.dds), and [SunSubMixer_specularIBL.dds](https://github.com/Microsoft/DirectXTK/wiki/media/SunSubMixer_specularIBL.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for the other files.
+Save the files [RenderTexture.h](RenderTexture.h), [RenderTexture.cpp](RenderTexture.cpp), [SunSubMixer_diffuseIBL.dds](media/SunSubMixer_diffuseIBL.dds), and [SunSubMixer_specularIBL.dds](media/SunSubMixer_specularIBL.dds) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for the other files.
 
 Add to the **Game.h** file to the ``#include`` section:
 
@@ -192,11 +192,11 @@ m_world = Matrix::CreateRotationY(cosf(time) * 2.f);
 
 Build and run to see the sphere rendered with a reflective metal appearance:
 
-![Screenshot of sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpherePBR.PNG)
+![Screenshot of sphere](images/screenshotSpherePBR.PNG)
 
 # Adding PBR Textures
 
-While **PBREffect** does have a basic 'constant' shader, the real impact of PBR materials requires the use of texture maps. Save the files [Sphere2Mat_baseColor.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_baseColor.png), [Sphere2Mat_normal.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_normal.png), [Sphere2Mat_occlusionRoughnessMetallic.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_occlusionRoughnessMetallic.png), and [Sphere2Mat_emissive.png](https://github.com/Microsoft/DirectXTK/wiki/media/Sphere2Mat_emissive.png) to your project directory and add them to your project.
+While **PBREffect** does have a basic 'constant' shader, the real impact of PBR materials requires the use of texture maps. Save the files [Sphere2Mat_baseColor.png](media/Sphere2Mat_baseColor.png), [Sphere2Mat_normal.png](media/Sphere2Mat_normal.png), [Sphere2Mat_occlusionRoughnessMetallic.png](media/Sphere2Mat_occlusionRoughnessMetallic.png), and [Sphere2Mat_emissive.png](media/Sphere2Mat_emissive.png) to your project directory and add them to your project.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -245,7 +245,7 @@ m_emissiveMap.Reset();
 
 Build and run to see the sphere rendered a more complex material.
 
-![Screenshot of textured sphere](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSphere2PBR.PNG)
+![Screenshot of textured sphere](images/screenshotSphere2PBR.PNG)
 
 ## Technical note
 
@@ -255,11 +255,11 @@ The use of the emissive texture is optional. Any textured use of **PBREffect** r
 
 # Rendering a PBR Model
 
-*DirectX Tool Kit* supports "SDKMESH version 2", which is the venerable DirectX SDK sample mesh file format updated with PBR-style materials information. Follow the instructions from [[Rendering a model]] with these differences:
+*DirectX Tool Kit* supports "SDKMESH version 2", which is the venerable DirectX SDK sample mesh file format updated with PBR-style materials information. Follow the instructions from [Rendering a model](Rendering-a-model.md) with these differences:
 
 * The [meshconvert](https://go.microsoft.com/fwlink/?LinkID=324981) and [DirectX SDK Samples Content Exporter](https://github.com/walbourn/contentexporter) utilities both support a ``-sdkmesh2`` command-line switch to export PBR materials information.
 
-* You need an HDR render setup per [[Using HDR rendering]].
+* You need an HDR render setup per [Using HDR rendering](Using-HDR-rendering.md).
 
 * Make use of **PBREffectFactory** instead of ``EffectFactory`` which will create ``PBREffect`` or ``SkinnedPBREffect`` instances.
 
@@ -280,13 +280,13 @@ model->UpdateEffects([&](IEffect* effect)
 
 # More to explore
 
-* **PBREffect** supports [[GPU Instancing|Multistream rendering and instancing]].
+* **PBREffect** supports [GPU Instancing](Multistream-rendering-and-instancing.md).
 
-**Next lessons:** [[Game controller input]], [[Using the SimpleMath library]], [[Adding the DirectX Tool Kit for Audio]]
+**Next lessons:** [Game controller input](Game-controller-input.md), [Using the SimpleMath library](Using-the-SimpleMath-library.md), [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md)
 
 # Further Reading
 
-DirectX Tool Kit docs [[PBREffect]]
+DirectX Tool Kit docs [PBREffect](PBREffect.md)
 
 [Physically-Based Rendering wikipedia](https://wikipedia.org/wiki/Physically_based_rendering)
 

@@ -1,17 +1,17 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson we learn about  additional built-in shader types and some of their uses.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Environment mapping
 
 Environment mapping (also known as [reflection mapping](https://wikipedia.org/wiki/Reflection_mapping)) is a common technique for adding reflections of the surrounding environment to 3D rendered materials using a [cubemap](https://wikipedia.org/wiki/Cube_mapping).
 
-Start by saving [wood.dds](https://github.com/Microsoft/DirectXTK/wiki/media/wood.dds) and [cubemap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
+Start by saving [wood.dds](media/wood.dds) and [cubemap.dds](media/cubemap.dds) into your new project's directory, and then from the top menu select **Project / Add Existing Item....** Select "wood.dds" and click "OK". Repeat for "cubemap.dds"
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -101,7 +101,7 @@ m_world = Matrix::CreateRotationZ(cosf(time) * 2.f);
 
 Build and run to see the teapot rendered with a 'glossy' material:
 
-![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot.PNG)
+![Screenshot of teapot](images/screenshotTeapot.PNG)
 
 In **Game.cpp** add the following to the TODO section of **Update**:
 
@@ -111,7 +111,7 @@ m_effect->SetFresnelFactor(cosf(time * 2.f));
 
 Build and run to see the effect of animating the [Fresnel](https://wikipedia.org/wiki/Fresnel_equations) factor.
 
-![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot2.PNG)
+![Screenshot of teapot](images/screenshotTeapot2.PNG)
 
 ## Technical notes
 The EnvironmentMapEffect shader is computing a 3D reflection vector from the eye direction determined from the view matrix and the normal vector of the pixel. The result is used to index into the cubemap. This results in the 'mirror-like' appearance of the material.
@@ -120,11 +120,11 @@ For dynamic environments, you can generate the cubemap at runtime by rendering t
 
 # Normal mapping
 
-[[NormalMapEffect]] is similar to the [[BasicEffect]] with the addition of a [normal texture map](https://wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://wikipedia.org/wiki/Specularity).
+[NormalMapEffect](NormalMapEffect.md) is similar to the [BasicEffect](BasicEffect.md) with the addition of a [normal texture map](https://wikipedia.org/wiki/Normal_mapping) and an optional [specular texture map](https://wikipedia.org/wiki/Specularity).
 
 > Note that ``NormalMapEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
-Starting with the project from the exercise above, download [normalMap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/normalMap.dds) into your project's directory, and then from the top menu select **Project / Add Existing Item....** Select "normalMap.dds" and click "OK".
+Starting with the project from the exercise above, download [normalMap.dds](media/normalMap.dds) into your project's directory, and then from the top menu select **Project / Add Existing Item....** Select "normalMap.dds" and click "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -164,11 +164,11 @@ m_normalTexture.Reset();
 
 Build and run to see the normal mapped effect rendering a bumpy teapot:
 
-![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot3.PNG)
+![Screenshot of teapot](images/screenshotTeapot3.PNG)
 
 # Hemisphere lighting
 
-[[DebugEffect]] is intended primarily to visualize normals/tangents, but it also supports hemispherical ambient lighting. This basic form of lighting is useful for seeing 3D shapes, as well as providing a gradient color for skydomes, etc.
+[DebugEffect](DebugEffect.md) is intended primarily to visualize normals/tangents, but it also supports hemispherical ambient lighting. This basic form of lighting is useful for seeing 3D shapes, as well as providing a gradient color for skydomes, etc.
 
 > Note that ``DebugEffect`` requires Direct3D hardware feature level 10.0 or higher. It won't run on 9.x feature levels.
 
@@ -192,22 +192,22 @@ You'll also need to comment out the calls to **EnableDefaultLighting**, **SetTex
 
 Build and run to see the debug effect rendering a blue/purple gradient teapot:
 
-![Screenshot of teapot](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTeapot4.PNG)
+![Screenshot of teapot](images/screenshotTeapot4.PNG)
 
 # More to explore
 
-* The [[EnvironmentMapEffect]] also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
+* The [EnvironmentMapEffect](EnvironmentMapEffect.md) also supports spherical environment maps (a [DirectX 9](https://docs.microsoft.com/windows/win32/direct3d9/spherical-environment-mapping) feature) and dual-parabolic environment maps.
 
-* [[PBREffect]] is a Disney-style [[Physically-based rendering]] effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://wikipedia.org/wiki/Image-based_lighting).
+* [PBREffect](PBREffect.md) is a Disney-style [Physically-based rendering](Physically-based-rendering.md) effect which uses an albedo map, normal map, and roughness/metalness/ambient-occlusion map along with two cubemaps for [Image-Based Lighting](https://wikipedia.org/wiki/Image-based_lighting).
 
-* [[NPREffect]] is a non-photorealistic effect which implements cel/toon shading, Gooch shading, and material capture (MatCap) lighting.
+* [NPREffect](NPREffect.md) is a non-photorealistic effect which implements cel/toon shading, Gooch shading, and material capture (MatCap) lighting.
 
-* [[DualTextureEffect]] is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
+* [DualTextureEffect](DualTextureEffect.md) is used to render a material with two textures applied. This requires the input layout to contain a second set of _texture coordinates_. This does not perform vertex or per-pixel lighting, as the second texture is most often a [lightmap](https://wikipedia.org/wiki/Lightmap) with statically computed lighting information.  ``.SDKMESH`` and the [Content Exporter](https://aka.ms/dxsdkcontentexporter) support exporting light-mapped models which utilize this effect (see ``-lightmaps``).
 
-* The [[AlphaTestEffect]] is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
+* The [AlphaTestEffect](AlphaTestEffect.md) is used to perform pixel rejection based on an alpha reference value and function selection. It's primarily to implement techniques that relied on [legacy Direct3D 9 alpha testing](https://docs.microsoft.com/windows/win32/direct3d9/alpha-testing-state) render state. This effect is independent of the depth/stencil tests set in ``D3D11_DEPTH_STENCIL_DESC.DepthFunc`` and ``StencilFunc``.
 
-**Next lesson:** [[Multistream rendering and instancing]]
+**Next lesson:** [Multistream rendering and instancing](Multistream-rendering-and-instancing.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[Effects]]
+DirectX Tool Kit docs [Effects](Effects.md)

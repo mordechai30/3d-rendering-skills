@@ -1,13 +1,13 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 Post-processing is a common technique applied to 3D rendering to achieve various effects. It's image-based, so it's performance is based on the size of the 2D render target rather than the complexity of the scene. The post-processing implementation in the DirectX Tool Kit performs common effects like monochrome and bloom, as well tone mapping which is essential to High Dynamic Range (HDR) rendering.
 
-* [[BasicPostProcess]] supports post-processing that takes a single input texture such as monochrome conversion or blurring.
-* [[DualPostProcess]] supports post-processing that operates on two images such as merging/blending.
-* [[ToneMapPostProcess]] supports tone-map operations for HDR images such as the Reinhard operator. It also supports the HDR10 signal preparation needed for true 4k UHD wide color gamut rendering.
+* [BasicPostProcess](BasicPostProcess.md) supports post-processing that takes a single input texture such as monochrome conversion or blurring.
+* [DualPostProcess](DualPostProcess.md) supports post-processing that operates on two images such as merging/blending.
+* [ToneMapPostProcess](ToneMapPostProcess.md) supports tone-map operations for HDR images such as the Reinhard operator. It also supports the HDR10 signal preparation needed for true 4k UHD wide color gamut rendering.
 
-**Related tutorial:** [[Using HDR rendering]]
+**Related tutorial:** [Using HDR rendering](Using-HDR-rendering.md)
 
 ```mermaid
 classDiagram
@@ -95,7 +95,7 @@ postProcess->Process(context);
 
 In some cases, you will perform several post-processing passes between various off-screen render targets before applying the final pass to the swapchain render target for presentation.
 
-> You can make use of the [[RenderTexture]] helper to manage the offscreen render target.
+> You can make use of the [RenderTexture](RenderTexture.md) helper to manage the offscreen render target.
 
 # Custom render states
 
@@ -170,7 +170,7 @@ dualPostProcess->Process(context);
 
 # Feature level Notes
 
-The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value.  Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [[SpriteBatch]] instead).
+The built-in post-processing shaders rely on Direct3D hardware feature level 10.0 or greater. This allows the vertex shader to self-generate a full-screen rectangle without requiring any vertex buffer to be bound using the built-in ``SV_VertexId`` system value.  Applications should either have a minimum supported feature level of 10.0 or greater, or provide a run-time fallback (perhaps turning off post-processing effects or making use of simplified effects via [SpriteBatch](SpriteBatch.md) instead).
 
 [Direct3D feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro)
 

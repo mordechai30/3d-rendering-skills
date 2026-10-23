@@ -1,28 +1,28 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
 This is a native Direct3D 11 implementation of the five built-in effects from XNA Game Studio 4, providing identical functionality and API:
 
-* [[BasicEffect]] supports texture mapping, vertex coloring, directional lighting, and fog
-* [[AlphaTestEffect]] supports per-pixel alpha testing
-* [[DualTextureEffect]] supports two layer multi-texturing (for light maps or detail textures)
-* [[EnvironmentMapEffect]] supports cubic environment mapping, as well as spherical and parabolic environment mapping.
-* [[SkinnedEffect]] supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
+* [BasicEffect](BasicEffect.md) supports texture mapping, vertex coloring, directional lighting, and fog
+* [AlphaTestEffect](AlphaTestEffect.md) supports per-pixel alpha testing
+* [DualTextureEffect](DualTextureEffect.md) supports two layer multi-texturing (for light maps or detail textures)
+* [EnvironmentMapEffect](EnvironmentMapEffect.md) supports cubic environment mapping, as well as spherical and parabolic environment mapping.
+* [SkinnedEffect](SkinnedEffect.md) supports skinned animation with up to 72 bones and 1, 2, or 4 bone influences per vertex.
 
 DirectX Tool Kit also includes the following built-in effects:
-* [[NormalMapEffect]] which extends ``BasicEffect`` to support normal maps and optional specular map and/or GPU instancing.
-* [[SkinnedNormalMapEffect|NormalMapEffect]] which extends ``SkinnedEffect`` to support normal maps and optional specular map.
-* [[PBREffect]] which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting. This effect also supports GPU instancing.
-* [[SkinnedPBREffect|PBREffect]] which extends ``SkinnedEffect`` to support PBR.
-* [[NPREffect]] is a non-photorealistic effect which implements cel/toon shading, Gooch shading, and material capture (MatCap) lighting. This effect also supports GPU instancing.
-* [[DebugEffect]] which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting. This effect also supports GPU instancing.
-* [[DGSLEffect]] and [[SkinnedDGSLEffect|DGSLEffect]] which support the [Visual Studio Shader Designer](https://docs.microsoft.com/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
+* [NormalMapEffect](NormalMapEffect.md) which extends ``BasicEffect`` to support normal maps and optional specular map and/or GPU instancing.
+* [SkinnedNormalMapEffect](NormalMapEffect.md) which extends ``SkinnedEffect`` to support normal maps and optional specular map.
+* [PBREffect](PBREffect.md) which implements a Disney-style (Roughness/Metalness workflow) Physically-Based Renderer effect using image-based lighting. This effect also supports GPU instancing.
+* [SkinnedPBREffect](PBREffect.md) which extends ``SkinnedEffect`` to support PBR.
+* [NPREffect](NPREffect.md) is a non-photorealistic effect which implements cel/toon shading, Gooch shading, and material capture (MatCap) lighting. This effect also supports GPU instancing.
+* [DebugEffect](DebugEffect.md) which implements debugging shaders such as visualization of normals, tangents, and bi-tangents as well as supporting hemispherical ambient lighting. This effect also supports GPU instancing.
+* [DGSLEffect](DGSLEffect.md) and [SkinnedDGSLEffect](DGSLEffect.md) which support the [Visual Studio Shader Designer](https://docs.microsoft.com/visualstudio/designers/shader-designer) (DGSL) content pipeline with up to 8 textures.
 
-See also [[EffectFactory]]
+See also [EffectFactory](EffectFactory.md)
 
-![Effects Example](https://github.com/Microsoft/DirectXTK/wiki/images/EffectsExample.png)
+![Effects Example](images/EffectsExample.png)
 
-**Related tutorials:** [[Simple rendering]], [[Using skinned models]], [[Using advanced shaders]], [[Creating custom shaders with DGSL]], [[Multistream rendering and instancing]], [[Authoring an Effect]]
+**Related tutorials:** [Simple rendering](Simple-rendering.md), [Using skinned models](Using-skinned-models.md), [Using advanced shaders](Using-advanced-shaders.md), [Creating custom shaders with DGSL](Creating-custom-shaders-with-DGSL.md), [Multistream rendering and instancing](Multistream-rendering-and-instancing.md), [Authoring an Effect](Authoring-an-Effect.md)
 
 ```mermaid
 classDiagram
@@ -171,7 +171,7 @@ device->CreateInputLayout(VertexPositionNormalTexture::InputElements,
                           &pInputLayout);
 ```
 
-Or use [[CreateInputLayoutFromEffect|DirectXHelpers]] which wraps up this boiler-plate code into a simple template:
+Or use [CreateInputLayoutFromEffect](DirectXHelpers.md) which wraps up this boiler-plate code into a simple template:
 
 ```cpp
 DX::ThrowIfFailed(
@@ -191,13 +191,13 @@ For the built-in effects, the trigger for needing to create a new layout would b
 
 The built-in effects support a number of different settings, some of which are organized into more 'generic' interfaces.
 
-* [[IEffect]] is the basic interface for all effects which includes applying it to the device context and obtaining the shader information needed to create a Direct3D 11 input layout with a signature that matches the effect's shader. Remember that a given Effect instance could return a different shader based on internal state.
-* [[IEffectMatrices]] is the interface for setting an effects' world, view, and projection matrices. All the built-in effects support this interface.
-* [[IEffectLights]] is the interface for controlling the effects' lighting computations and settings. This is supported by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_
-* [[IEffectFog]] is the interface to control the effects' fog settings. This is supported by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
-* [[IEffectSkinning]] is the interface to control skinned animation settings. This is supported by _DGSLEffect_, _SkinnedEffect_, and _SkinnedNormalMapEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
+* [IEffect](IEffect.md) is the basic interface for all effects which includes applying it to the device context and obtaining the shader information needed to create a Direct3D 11 input layout with a signature that matches the effect's shader. Remember that a given Effect instance could return a different shader based on internal state.
+* [IEffectMatrices](IEffectMatrices.md) is the interface for setting an effects' world, view, and projection matrices. All the built-in effects support this interface.
+* [IEffectLights](IEffectLights.md) is the interface for controlling the effects' lighting computations and settings. This is supported by _BasicEffect_, _EnvironmentMapEffect_, _SkinningEffect_, and _DGSLEffect_
+* [IEffectFog](IEffectFog.md) is the interface to control the effects' fog settings. This is supported by _BasicEffect_, _AlphaTestEffect_, _DualTextureEffect_, _EnvironmentMapEffect_, and _SkinnedEffect_.
+* [IEffectSkinning](IEffectSkinning.md) is the interface to control skinned animation settings. This is supported by _DGSLEffect_, _SkinnedEffect_, and _SkinnedNormalMapEffect_. This includes setting the bone transform matrices, and optimizing the number of bone influences per vertex to process (1, 2, or 4; defaults to 4).
 
-> For a UML diagram of the Effects interfaces and classes, see [here](https://raw.githubusercontent.com/wiki/Microsoft/DirectXTK/images/effectsuml.PNG).
+> For a UML diagram of the Effects interfaces and classes, see [here](images/effectsuml.PNG).
 
 # Coordinate systems
 
@@ -205,7 +205,7 @@ The built-in effects work equally well for both right-handed and left-handed coo
 
 # Instancing
 
-[[NormalMapEffect]], [[PBREffect]], and [[DebugEffect]] optionally support GPU instancing. When enabled, the vertex input layout must include a ``XMFLOAT3X4`` (i.e. a column-major transform matrix which supports affine transformations like translation, rotation, and scaling). Typically, these values are pulled from a second Vertex Buffer with GPU instancing enabled--although the effect shaders do not actually care where the additional vertex data comes from so it can be used in other creative ways as well.
+[NormalMapEffect](NormalMapEffect.md), [PBREffect](PBREffect.md), and [DebugEffect](DebugEffect.md) optionally support GPU instancing. When enabled, the vertex input layout must include a ``XMFLOAT3X4`` (i.e. a column-major transform matrix which supports affine transformations like translation, rotation, and scaling). Typically, these values are pulled from a second Vertex Buffer with GPU instancing enabled--although the effect shaders do not actually care where the additional vertex data comes from so it can be used in other creative ways as well.
 
 For example, this is an input layout for two Vertex Buffer streams: Slot 0 with ``VertexPositionNormalTexture`` data provided per-vertex, and Slot 1 with ``XMFLOAT3X4`` data provided 'per-instance':
 
@@ -224,7 +224,7 @@ static const D3D11_INPUT_ELEMENT_DESC s_InputElements[] =
 # Feature Level Notes
 Most built-in shaders are compiled using the ``vs_4_0_level_9_1`` and ``ps_4_0_level_9_1`` profiles to support all feature levels.
 
-The [[PostProcess]], [[DebugEffect]], [[NormalMapEffect]], and [[PBREffect]] use ``vs_4_0`` and ``ps_4_0`` profiles and therefore require Direct3D hardware feature level 10.0 or better. Dual-parabolic environment map support in [[EnvironmentMapEffect]] requires 10.0 or better due to the use of texture arrays.
+The [PostProcess](PostProcess.md), [DebugEffect](DebugEffect.md), [NormalMapEffect](NormalMapEffect.md), and [PBREffect](PBREffect.md) use ``vs_4_0`` and ``ps_4_0`` profiles and therefore require Direct3D hardware feature level 10.0 or better. Dual-parabolic environment map support in [EnvironmentMapEffect](EnvironmentMapEffect.md) requires 10.0 or better due to the use of texture arrays.
 
 The compiled shaders are integrated into the DirectXTK library to avoid the need for runtime compilation, shader reflection, or deploying compiled shader binary files (``.cso``).
 
@@ -252,13 +252,13 @@ The built-in effects make use of the following states:
 * Shader resources (Pixel Shader stage, slots 0, 1, and 2)
 * Vertex shader
 
-[[SkinnedNormalMapEffect|NormalMapEffect]] also uses
+[SkinnedNormalMapEffect](NormalMapEffect.md) also uses
 * Constant buffer (Vertex Shader slot 1)
 
-[[PBREffect]] adds:
+[PBREffect](PBREffect.md) adds:
 * Shader resources (Pixel Shader stage, slots 0-5)
 
-[[DGSLEffect]] also uses:
+[DGSLEffect](DGSLEffect.md) also uses:
 * Constant buffer (Vertex Shader stage, slots 0-4)
 * Constant buffer (Pixel Shader stage, slots 0-3)
 * SamplerState (Pixel Shader stage, all 8 slots)

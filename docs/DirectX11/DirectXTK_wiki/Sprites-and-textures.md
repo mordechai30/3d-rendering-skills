@@ -1,11 +1,11 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 In this lesson, we will cover the basics of creating a texture from a bitmap file, and then rendering it using a 2D sprite with various drawing options.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Background
 
@@ -21,10 +21,10 @@ A [sprite](https://wikipedia.org/wiki/Sprite_(computer_graphics)) is a bitmap re
 
 * A *blend state object* which indicates how the GPU should combine existing information in the render target with the texture data.
 
-* Additional Direct3D objects are also required (*vertex buffer*, *index buffer*, *rasterizer state object*, *input layout*, *vertex shader*, *pixel shader*, and *constant buffer*), but in this tutorial these are handled by [[SpriteBatch]].
+* Additional Direct3D objects are also required (*vertex buffer*, *index buffer*, *rasterizer state object*, *input layout*, *vertex shader*, *pixel shader*, and *constant buffer*), but in this tutorial these are handled by [SpriteBatch](SpriteBatch.md).
 
 # Loading a texture
-Start by saving [cat.png](https://github.com/Microsoft/DirectXTK/wiki/images/cat.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cat.png" and click "OK".
+Start by saving [cat.png](images/cat.png) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "cat.png" and click "OK".
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -116,10 +116,10 @@ m_spriteBatch->End();
 
 Build and run, and you should get the following screen:
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat.PNG)
 
 ## Alpha mode
-One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the ``cat.png`` file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the [[CommonStates]] factory to provide one of the built-in blend state objects.
+One thing you should notice is that the edges of the cat look strange with a bit of white outline. The problem here is that the ``cat.png`` file's alpha channel is _straight_  alpha (i.e. the pixels are of the form ``(R,G,B,A)``). The default behavior of SpriteBatch, however, is to assume you are using _premultiplied_ alpha (i.e. the pixels are of the form ``(R*A, G*A, B*A, A)``). There are many reasons why using premultiplied alpha is superior, but for now we can fix this mismatch by changing our use of SpriteBatch to use straight alpha blending instead by supplying our own ``ID3D11BlendState`` object. We'll make use of the [CommonStates](CommonStates.md) factory to provide one of the built-in blend state objects.
 
 In the **Game.h** file, add the following variable to the bottom of the Game class's private declarations:
 
@@ -152,7 +152,7 @@ m_spriteBatch->End();
 
 Build and run again, and you'll get a nice clean cat:
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat2.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat2.PNG)
 
 # Using DDS files for textures
 
@@ -170,7 +170,7 @@ Then run the following command-line:
 
     texconv cat.png --premultiplied-alpha -m 1 -f BC3_UNORM
 
-Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](https://github.com/Microsoft/DirectXTK/wiki/media/cat.dds) and click "OK".
+Then from the top menu in Visual Studio select **Project** / **Add Existing Item...**. Select [cat.dds](media/cat.dds) and click "OK".
 
 Now will return to **Game.cpp** in the **CreateDeviceDependentResources** and change our use of ``CreateWICTextureFromFile`` to ``CreateDDSTextureFromFile``:
 
@@ -196,7 +196,7 @@ m_spriteBatch->End();
 
 Build and run we are rendering our 'clean' cat with premultiplied alpha:
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat2.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat2.PNG)
 
 ## Technical notes
 
@@ -305,7 +305,7 @@ m_spriteBatch->End();
 
 Build and run to see the sprite as an array of 4x4 cats.
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat3.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat3.PNG)
 
 ## Technical Notes
 
@@ -343,12 +343,12 @@ m_spriteBatch->End();
 
 Build and run to see the sprite blown up
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat4.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat4.PNG)
 
 # Drawing a background image
 
 Our last exercise for this lesson is rendering a sprite as a full background image.  Start by saving
-[sunset.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/sunset.jpg) to your project directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "sunset.jpg" and click "OK".
+[sunset.jpg](images/sunset.jpg) to your project directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "sunset.jpg" and click "OK".
 
 In the **Game.h** file, add  the following variables to the bottom of the Game class's private declarations:
 
@@ -399,17 +399,17 @@ m_spriteBatch->End();
 
 Build and run to see our cat drawing over a sunset background.
 
-![Screenshot of cat sprite](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotSpriteCat5.PNG)
+![Screenshot of cat sprite](images/screenshotSpriteCat5.PNG)
 
 ## Technical note
 
-If we were only drawing the background (i.e. a single 'sprite' that fills an entire viewport), then using [[BasicPostProcess]]'s Copy operation is faster than ``SpriteBatch``, but requires Direct3D Hardware Feature Level 10.0 or later.
+If we were only drawing the background (i.e. a single 'sprite' that fills an entire viewport), then using [BasicPostProcess](BasicPostProcess.md)'s Copy operation is faster than ``SpriteBatch``, but requires Direct3D Hardware Feature Level 10.0 or later.
 
-**Next lesson:** [[More tricks with sprites]]
+**Next lesson:** [More tricks with sprites](More-tricks-with-sprites.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[CommonStates]], [[DDSTextureLoader]], [[SpriteBatch]], [[WICTextureLoader]]
+DirectX Tool Kit docs [CommonStates](CommonStates.md), [DDSTextureLoader](DDSTextureLoader.md), [SpriteBatch](SpriteBatch.md), [WICTextureLoader](WICTextureLoader.md)
 
 [Direc3D 11 Textures and Block Compression](https://walbourn.github.io/direct3d-11-textures-and-block-compression/)  
 

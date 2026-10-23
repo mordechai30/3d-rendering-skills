@@ -1,12 +1,12 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson covers the playing sounds with _DirectX Tool Kit for Audio_ using 3D positional audio effects.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]], then [[Adding the DirectX Tool Kit]], [[Adding the DirectX Tool Kit for Audio]], and finally [[Adding audio to your project]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md), then [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md), [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md), and finally [Adding audio to your project](Adding-audio-to-your-project.md) which we will use for this lesson.
 
-> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [[Adding audio to your project]]
+> If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources), then [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit), add ``#include <Audio.h>`` and ``#define _USE_MATH_DEFINES`` to **pch.h**, and finally [Adding audio to your project](Adding-audio-to-your-project.md)
 
 # Background
 Games provide an immersive visual and audio experience, and often use [3D audio effects](https://wikipedia.org/wiki/3D_audio_effect) to enhance the audio. The effect modifies the speaker position, pitch, and volume of a sound to provide audial cues to place it in the 3D environment. **XAudio2** itself provides the ability to specify a complex per-channel volume mapping, pitch modification, and other parameters to generate these 3D effects, but does not perform the computations. The X3DAudio library is used by *DirectX Tool Kit for Audio* to compute the virtual placement of the sound.
@@ -15,7 +15,7 @@ See [Microsoft Docs](https://docs.microsoft.com/windows/win32/xaudio2/x3daudio-o
 
 # Sound
 
-Save the this file to your new project's folder: [heli.wav](https://github.com/Microsoft/DirectXTK/wiki/media/heli.wav).  Use the top menu and select **Project / Add Existing Item**.... Select the ``heli.wav`` file and hit "OK".
+Save the this file to your new project's folder: [heli.wav](media/heli.wav).  Use the top menu and select **Project / Add Existing Item**.... Select the ``heli.wav`` file and hit "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -37,7 +37,7 @@ Build and run. No sounds will be heard, but the audio file is loaded.
 
 # Play the sound
 
-As we did in the [[Creating and playing sounds]] tutorial, we create an instance of our sound and start it looping. To ensure it reacts properly to "lost device" scenarios, we update it in a few places.
+As we did in the [Creating and playing sounds](Creating-and-playing-sounds.md) tutorial, we create an instance of our sound and start it looping. To ensure it reacts properly to "lost device" scenarios, we update it in a few places.
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -198,7 +198,7 @@ m_ball->Draw(commandList);
 
 Build and run, and you should get the following screen:
 
-![Screenshot of yellow ball](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotYellowBall.PNG)
+![Screenshot of yellow ball](images/screenshotYellowBall.PNG)
 
 # Applying a 3D positional effect
 
@@ -211,7 +211,7 @@ DirectX::AudioListener m_listener;
 DirectX::AudioEmitter  m_emitter;
 ```
 
-Modify **Initialize** in **Game.cpp** so we enable 3D positioning for our instance. The [[AudioListener]] defaults the same position and view direction as our camera, so we don't have to add any explicit initialization.
+Modify **Initialize** in **Game.cpp** so we enable 3D positioning for our instance. The [AudioListener](AudioListener.md) defaults the same position and view direction as our camera, so we don't have to add any explicit initialization.
 
 ```cpp
 m_soundSource = m_soundEffect->CreateInstance(SoundEffectInstance_Use3D);
@@ -245,7 +245,7 @@ Build and run, and the sound will move from left-to-right in front, then right-t
 
 ## Technical note
 
-We do the audio engine processing and 3D audio computations in **Update** for simplicity, but if [[StepTimer]] were set for for fixed-update timesteps instead of variable-rate, then you may be getting more than one call to **Update** per render frame. In that case, it is better to move the "audio rendering" up into **Tick** so it only happens once per render frame.
+We do the audio engine processing and 3D audio computations in **Update** for simplicity, but if [StepTimer](StepTimer.md) were set for for fixed-update timesteps instead of variable-rate, then you may be getting more than one call to **Update** per render frame. In that case, it is better to move the "audio rendering" up into **Tick** so it only happens once per render frame.
 
 # Environmental effects
 
@@ -328,11 +328,11 @@ graph LR;
 
 # More to explore
 
-* The [[AudioEmitter]] defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``ChannelCount`` (i.e. something like ``m_emitter.ChannelCount = m_effect->GetChannelCount();``). Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters. See the *AudioEmitter* ``EnableDefaultMultiChannel`` helper method as well.
+* The [AudioEmitter](AudioEmitter.md) defaults assume your source sound is mono/single-channel. If you are using a multi-channel sound (stereo, etc.) then you need to set ``ChannelCount`` (i.e. something like ``m_emitter.ChannelCount = m_effect->GetChannelCount();``). Also note that ``m_emitter.pCone`` is ignored for multi-channel emitters. See the *AudioEmitter* ``EnableDefaultMultiChannel`` helper method as well.
 
-* In addition to [[SoundEffectInstance]], you can also use the ``Apply3D`` method on [[SoundStreamInstance]] and [[DynamicSoundEffectInstance]].
+* In addition to [SoundEffectInstance](SoundEffectInstance.md), you can also use the ``Apply3D`` method on [SoundStreamInstance](SoundStreamInstance.md) and [DynamicSoundEffectInstance](DynamicSoundEffectInstance.md).
 
 # Further reading
-DirectX Tool Kit docs [[AudioListener]], [[AudioEmitter]], [[SoundEffectInstance]]
+DirectX Tool Kit docs [AudioListener](AudioListener.md), [AudioEmitter](AudioEmitter.md), [SoundEffectInstance](SoundEffectInstance.md)
 
 [XAudio2Sound3D](https://github.com/walbourn/directx-sdk-samples/tree/main/XAudio2/XAudio2Sound3D), [SimplePlay3DSound (UWP)](https://github.com/microsoft/Xbox-ATG-Samples/tree/master/UWPSamples/Audio/SimplePlay3DSoundUWP), [SimplePlay3DSound (GDK)](https://github.com/microsoft/Xbox-GDK-Samples/tree/main/Samples/Audio/SimplePlaySoundStream) samples

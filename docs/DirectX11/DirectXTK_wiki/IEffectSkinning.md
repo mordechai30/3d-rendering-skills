@@ -1,11 +1,11 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 This abstract interface controls skinning animation matrices. Settings for this interface can influence the choice of shader permutation.
 
 Effects that implement this interface typically require ``BLENDINDICES`` and ``BLENDWEIGHT`` semantic data in the vertex input layout.
 
-**Related tutorial:** [[Using skinned models]]
+**Related tutorial:** [Using skinned models](Using-skinned-models.md)
 
 ```cpp
 class DirectX::IEffectSkinning
@@ -24,7 +24,7 @@ std::shared_ptr<SkinnedEffect> effect;
 effect->SetBoneTransforms( bones.get(), boneCount );
 ```
 
-For more general cases where a number of effect classes can be in use (such as [[Model]] which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
+For more general cases where a number of effect classes can be in use (such as [Model](Model.md) which uses a mix of _BasicEffect_, _DualTextureEffect_, _SkinnedEffect_, and/or _DGSLEffect_), use [Run-Time Type Information](https://wikipedia.org/wiki/Run-time_type_information) (RTTI) to obtain the interface.
 
 ```cpp
 std::shared_ptr<IEffect> effect;

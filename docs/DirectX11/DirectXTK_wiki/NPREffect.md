@@ -1,13 +1,13 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 **NPREffect** implements *non-photorealistic rendering* techniques such as [cel shading](https://en.wikipedia.org/wiki/Cel_shading), [Gooch shading](https://en.wikipedia.org/wiki/Gooch_shading), and MatCap (material capture) rendering. It provides an optional rim-lighting Fresnel effect for cel and Gooch shading modes.
 
 **SkinnedNPREffect** extends *NPREffect* to support vertex skinning. The skinned effect does not support per-vertex colors or GPU instancing. Texturing is always enabled for the skinned effect as well.
 
-See also [[NPREffectFactory|EffectFactory]]
+See also [NPREffectFactory](EffectFactory.md)
 
-![NPR effect](https://github.com/Microsoft/DirectXTK/wiki/images/npreffect.png)
+![NPR effect](images/npreffect.png)
 
 ```mermaid
 classDiagram
@@ -90,11 +90,11 @@ effect = std::make_unique<SkinnedNPREffect>(device);
 For exception safety, it is recommended you make use of the C++ [RAII](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
 # Interfaces
-NPREffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+NPREffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), and [IEffectLights](IEffectLights.md).
 
 Lighting is always enabled and `MaxDirectionalLights` is 1.
 
-SkinnedNPREffect also supports [[IEffectSkinning]]
+SkinnedNPREffect also supports [IEffectSkinning](IEffectSkinning.md)
 
 Fog settings are not supported.
 

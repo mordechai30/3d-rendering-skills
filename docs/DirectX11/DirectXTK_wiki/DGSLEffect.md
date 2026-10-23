@@ -1,13 +1,13 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
 **DGSLEffect** is a _DirectX Tool Kit_ implementation of the Visual Studio Shader Designer (DGSL) content pipeline with up to 8 textures.
 
 **SkinnedDGSLEffect** extends ``DGSLEffect`` with vertex skinning.
 
-See also [[DGSLEffectFactory|EffectFactory]]
+See also [DGSLEffectFactory](EffectFactory.md)
 
-**Related tutorials:** [[Creating custom shaders with DGSL]]
+**Related tutorials:** [Creating custom shaders with DGSL](Creating-custom-shaders-with-DGSL.md)
 
 ```mermaid
 classDiagram
@@ -95,9 +95,9 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 # Interfaces
 
-DGSLEffect supports [[IEffect]], [[IEffectMatrices]], and [[IEffectLights]].
+DGSLEffect supports [IEffect](IEffect.md), [IEffectMatrices](IEffectMatrices.md), and [IEffectLights](IEffectLights.md).
 
-SkinnedDGSLEffect also supports [[IEffectSkinning]].
+SkinnedDGSLEffect also supports [IEffectSkinning](IEffectSkinning.md).
 
 Fog settings are not supported by this effect, but could be 'baked in' to a given DGSL pixel shader.
 
@@ -106,7 +106,7 @@ This effect requires ``SV_Position``, ``NORMAL`` , ``TANGENT`` , and ``TEXCOORD0
 
 If skinning is used, it also requires ``BLENDINDICES`` and ``BLENDWEIGHT``
 
-DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture``--and SkinnedDGSLEffect with ``VertexPositionNormalTangentColorTextureSkinning``--which match the vertex structures used by ``CMO`` files. See [[VertexTypes]]
+DGSLEffect is typically used with ``VertexPositionNormalTangentColorTexture``--and SkinnedDGSLEffect with ``VertexPositionNormalTangentColorTextureSkinning``--which match the vertex structures used by ``CMO`` files. See [VertexTypes](VertexTypes.md)
 
 # Properties
 * **SetAmbientColor**: Sets the ambient color of the material. Defaults to black (0,0,0). _Note that other built-in effects do not make use of the ambient material color assuming they react equally to all ambient light in the scene._
@@ -144,7 +144,7 @@ The DGSLEffect includes built-in support for the three default materials: _Unlit
 
 Visual Studio Shader Designer (DGSL) ``.DGSL.CSO`` files support Feature Level 10.0+.
 
-The [[DGSLEffectFactory|EffectFactory]] automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
+The [DGSLEffectFactory](EffectFactory.md) automatically attempts to locate a suitably named standard ``.CSO`` on Feature Level 9.x which is a manually created fall-back shader. The method for creating these fall-back shaders is to use "Export to HLSL..." from the Visual Studio Shader Designer, then modify that ``.hlsl`` file so it will successfully compile with ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` (whichever is your minimum supported feature level).
 
 # Exceptions
 
@@ -158,7 +158,7 @@ DGSL shaders always use per-pixel lighting if lighting is supported by the effec
 
 If using compressed vertex normals which require ``*2 - 1`` biasing at runtime such as ``DXGI_FORMAT_R10G10B10A2_UNORM``, this should be implemented directly in the pixel shader.
 
-DGSL shaders can require up to 8 texture samplers. [[GeometricPrimitive]] and [[SpriteBatch]] only set a texture sampler in slot 0 by default, [[Model]] sets a sampler in slots 0 and 1. Note that it only makes use of a single set of texture coordinates no matter how many textures are used.
+DGSL shaders can require up to 8 texture samplers. [GeometricPrimitive](GeometricPrimitive.md) and [SpriteBatch](SpriteBatch.md) only set a texture sampler in slot 0 by default, [Model](Model.md) sets a sampler in slots 0 and 1. Note that it only makes use of a single set of texture coordinates no matter how many textures are used.
 
 DGSL shaders support up to 4 directional lights, while the other built-in shaders only support 3 (i.e. ``DGSLEffect::MaxDirectionalLights`` is 4).
 

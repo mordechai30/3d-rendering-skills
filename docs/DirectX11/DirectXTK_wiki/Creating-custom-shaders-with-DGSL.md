@@ -1,27 +1,27 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 This lesson covers creating custom shaders with the Visual Studio <abbr title="Directed Graph Shader Language">DGSL</abbr> Shader Designer and using them with _DirectX Tool Kit_.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Creating custom shaders using DGSL
 One approach to creating your own shader is to use a visual designer tool, such as Visual Studio's DGSL Shader Designer. In this tool, the vertex shader is 'fixed' and the visual tool is used to create the pixel shader. The result of the designer tool is a compiled shader in a ``.DGSL.CSO`` file that can be loaded at runtime. The resulting shaders can be complex and use up to 8 textures at once, perform tangent-space lighting, and many other complex effects.
 
-To use these with _DirectX Tool Kit_, you can manually create [[DGSLEffect]] instances and use them with [[PrimitiveBatch]]. You can also load them automatically from a ``.CMO`` using Model when you provide the [[DGSLEffectFactory|EffectFactory]] rather than the standard [[EffectFactory]] as we demonstrated in [[Rendering a model]].
+To use these with _DirectX Tool Kit_, you can manually create [DGSLEffect](DGSLEffect.md) instances and use them with [PrimitiveBatch](PrimitiveBatch.md). You can also load them automatically from a ``.CMO`` using Model when you provide the [DGSLEffectFactory](EffectFactory.md) rather than the standard [EffectFactory](EffectFactory.md) as we demonstrated in [Rendering a model](Rendering-a-model.md).
 
 # Rendering a sphere with our effect
-Save the files [MyDGSLShader.dgsl](https://github.com/Microsoft/DirectXTK/wiki/MyDGSLShader.dgsl), [billard15.dds](https://github.com/Microsoft/DirectXTK/wiki/media/billard15.dds), [envmap.dds](https://github.com/Microsoft/DirectXTK/wiki/media/envmap.dds), [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h), and [dgslsphere.inc](https://github.com/Microsoft/DirectXTK/wiki/dgslsphere.inc) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item...**. Select "MyDGSLShader.dgsl" and hit "OK".  Repeat for each file.
+Save the files [MyDGSLShader.dgsl](MyDGSLShader.dgsl), [billard15.dds](media/billard15.dds), [envmap.dds](media/envmap.dds), [ReadData.h](ReadData.h), and [dgslsphere.inc](dgslsphere.inc) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item...**. Select "MyDGSLShader.dgsl" and hit "OK".  Repeat for each file.
 
 Right click on your project in the Solution Explorer. Select **Build Dependencies** / **Build Customizations...**. Check "ShaderGraphContentTask..." and hit "Ok".
 
-![Build Customization Settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsBCS.PNG)
+![Build Customization Settings](images/settingsBCS.PNG)
 
 Right-click on the "MyDGSLShader.dgsl" file in the Solution Explorer, select **Properties...**. Set _Item Type_ to "Shader Graph Content Pipeline".
 
-![DGSL Settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsDGSL.PNG)
+![DGSL Settings](images/settingsDGSL.PNG)
 
 In **pch.h** add after the other ``#include`` statements:
 
@@ -173,7 +173,7 @@ m_effect->SetWorld(m_world);
 
 Build and run to see the sphere.
 
-![Screenshot of ball](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotBall.PNG)
+![Screenshot of ball](images/screenshotBall.PNG)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a runtime exception, then you may have the "billard15.dds" or "envmap.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateDDSTextureFromFile</code> and step into the code to find the exact problem.</p><p>If you get an exception from <code>DX::ReadData</code>, then you may not have the "MyDGSLShader.dgsl" file building correctly.</p></details>
@@ -186,17 +186,17 @@ While the example DGSL here doesn't require it, this lesson shows setting the ex
 # Limitations
 The main limitation of using the DGSL tool is that it creates only Shader Model 4.0 Pixel Shaders, which requires Direct3D feature level 10.0 or greater.
 
-To support Windows phone, you need feature level 9.3, and to target Surface RT you need feature level 9.1. There is a workaround which is to manually export the DGSL shader to an HLSL file, then compile it using FXC with either the ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` shader profile. It is quite likely you'll need to manually simplify the HLSL shader to successfully get it to compile. [[DGSLEffectFactory|EffectFactory]] implements this workaround by looking for a 'base-name' equivalent of the ``.DGSL.CSO`` file as a ``.CSO`` file when on feature level 9.x devices.
+To support Windows phone, you need feature level 9.3, and to target Surface RT you need feature level 9.1. There is a workaround which is to manually export the DGSL shader to an HLSL file, then compile it using FXC with either the ``ps_4_0_level_9_1`` or ``ps_4_0_level_9_3`` shader profile. It is quite likely you'll need to manually simplify the HLSL shader to successfully get it to compile. [DGSLEffectFactory](EffectFactory.md) implements this workaround by looking for a 'base-name' equivalent of the ``.DGSL.CSO`` file as a ``.CSO`` file when on feature level 9.x devices.
 
 [How to: Export a Shader](https://docs.microsoft.com/visualstudio/designers/how-to-export-a-shader)
 
 > DGSLEffect is not supported for *DirectX Tool Kit for DirectX 12* since it's specific to Shader Model 4.0.
 
-**Next lesson:** [[Writing custom shaders]]
+**Next lesson:** [Writing custom shaders](Writing-custom-shaders.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[Effects]]  
+DirectX Tool Kit docs [Effects](Effects.md)  
 [Using 3-D Assets in Your Game or App](https://docs.microsoft.com/visualstudio/designers/using-3-d-assets-in-your-game-or-app)  
 [Working with Shaders](https://docs.microsoft.com/visualstudio/designers/working-with-shaders)  
 [Visual Studio 3D Starter Kit (Windows 8.1)](https://aka.ms/vs3dkitwin)

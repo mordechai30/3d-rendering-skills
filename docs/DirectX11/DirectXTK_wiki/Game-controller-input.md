@@ -1,11 +1,11 @@
-|[[Getting Started]] for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
+|[Getting Started](Getting-Started.md) for DX11|[Getting Started](https://github.com/microsoft/DirectXTK12/wiki/Getting-Started) for DX12|
 |---|---|
 
 This lesson will show how to read user input from game controllers, and use it to control a simple 3D camera.
 
 # Setup
-First create a new project using the instructions from the earlier lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the earlier lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 > If using *DirectX Tool Kit for DX12*, use [Using DeviceResources](https://github.com/microsoft/DirectXTK12/wiki/Using-DeviceResources) and [Adding the DirectX Tool Kit](https://github.com/microsoft/DirectXTK12/wiki/Adding-the-DirectX-Tool-Kit).
 
@@ -55,7 +55,7 @@ Build and run. The application does not display anything other than our cornflow
 <p>If using the MinGW toolset, you will likely get unresolved link errors for <code>XInputGetState</code>, etc. You should explicitly link to <code>xinput1_4.lib</code> or <code>xinput9_1_0.lib</code> to fix this.</p></details>
 
 # Adding a a simple scene
-Start by saving [roomtexture.dds](https://github.com/Microsoft/DirectXTK/wiki/media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
+Start by saving [roomtexture.dds](media/roomtexture.dds) into your new project's directory, and then from the top menu select **Project** / **Add Existing Item...**. Select "roomtexture.dds" and click "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -261,7 +261,7 @@ m_room->Draw(commandList);
 
 Build and run, and you should get the following screen:
 
-![Screenshot of room](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotRoom.PNG)
+![Screenshot of room](images/screenshotRoom.PNG)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a runtime exception, then you may have the "roomtexture.dds" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateDDSTextureFromFile</code> and step into the code to find the exact problem.</p></details>
@@ -503,10 +503,10 @@ if (m_buttons.a == GamePad::ButtonStateTracker::PRESSED)
 
 Build and run. The same controls are present, but now move the camera in an 'orbital' path around the origin with the left stick moving closer/further away to the center.
 
-**Next lessons:** [[Mouse and keyboard input]]
+**Next lessons:** [Mouse and keyboard input](Mouse-and-keyboard-input.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[GamePad]]  
+DirectX Tool Kit docs [GamePad](GamePad.md)  
 [DirectX Tool Kit: Now with GamePads](https://walbourn.github.io/directx-tool-kit-now-with-gamepads/)  
 [XInput and Windows 8](https://walbourn.github.io/xinput-and-windows-8/)

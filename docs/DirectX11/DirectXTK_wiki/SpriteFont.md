@@ -1,13 +1,13 @@
-|[[DirectXTK]]|
+|[DirectXTK](DirectXTK.md)|
 |---|
 
-This is a native Direct3D 11 implementation of a bitmap font renderer, similar to the SpriteFont type from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteFont``), plus a command line tool ([[MakeSpriteFont]]) for building fonts into bitmap format. It is less fully featured than Direct2D and DirectWrite, but may be useful for those who want something simpler and lighter weight.
+This is a native Direct3D 11 implementation of a bitmap font renderer, similar to the SpriteFont type from XNA Game Studio 4 (``Microsoft.Xna.Framework.Graphics.SpriteFont``), plus a command line tool ([MakeSpriteFont](MakeSpriteFont.md)) for building fonts into bitmap format. It is less fully featured than Direct2D and DirectWrite, but may be useful for those who want something simpler and lighter weight.
 
 > UWP on Xbox One supports Direct2D/DirectWrite, but Xbox One XDK does not.
 
-![Sprite Font Example](https://github.com/Microsoft/DirectXTK/wiki/images/SpriteFontExample.png)
+![Sprite Font Example](images/SpriteFontExample.png)
 
-**Related tutorial:** [[Drawing text]]
+**Related tutorial:** [Drawing text](Drawing-text.md)
 
 ```cpp
 class DirectX::SpriteFont
@@ -22,7 +22,7 @@ class DirectX::SpriteFont
 
 ## Initialization
 
-The SpriteFont class requires a [[SpriteBatch]] instance and a ``.spritefont`` bitmap file.
+The SpriteFont class requires a [SpriteBatch](SpriteBatch.md) instance and a ``.spritefont`` bitmap file.
 
 ```cpp
 std::unique_ptr<SpriteBatch> spriteBatch;
@@ -34,7 +34,7 @@ spriteFont = std::make_unique<SpriteFont>(device, L"myfile.spritefont");
 
 For exception safety, it is recommended you make use of the C++ [RAII](https://wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) pattern and use a ``std::unique_ptr`` or ``std::shared_ptr``
 
-> You create one ``SpriteFont`` instance per font style & point-size you want to use to render with. You can use the same ``SpriteBatch`` or use several ``SpriteBatch`` instances if desired. Be sure to read the _Threading model_ notes for [[SpriteBatch]].
+> You create one ``SpriteFont`` instance per font style & point-size you want to use to render with. You can use the same ``SpriteBatch`` or use several ``SpriteBatch`` instances if desired. Be sure to read the _Threading model_ notes for [SpriteBatch](SpriteBatch.md).
 
 ## Simple drawing
 
@@ -50,7 +50,7 @@ The **DrawString** method has several overloads with parameters controlling colo
 
 SpriteFont has three constructors:
 
-* Pass a filename string to read a binary file created by [[MakeSpriteFont]]
+* Pass a filename string to read a binary file created by [MakeSpriteFont](MakeSpriteFont.md)
 * Pass a buffer containing a MakeSpriteFont binary that was already loaded some other way
 * Pass an array of Glyph structs if you prefer to entirely bypass MakeSpriteFont
 
@@ -63,7 +63,7 @@ In addition to ``DrawString`` with various overloads, SpriteFont includes the fo
 
 For example, ``XMVECTOR result = spriteFont->MeasureString( L"Measure" );`` would be the pixel width in ``XMVectorGetX(result)`` and the pixel height in ``XMVectorGetY(result)``:
 
-![MeasureString](https://github.com/Microsoft/DirectXTK/wiki/images/MeasureString.png)
+![MeasureString](images/MeasureString.png)
 
 > The string size is computed from the origin to the rightmost pixel rendered by any character glyph. This has the effect of ignoring 'trailing spaces'.
 
@@ -71,7 +71,7 @@ For example, ``XMVECTOR result = spriteFont->MeasureString( L"Measure" );`` woul
 
 For example, ``RECT result = spriteFont->MeasureDrawBounds( L"Measure", XMFLOAT2(0.f, 0.f) );`` would return a pixel rectangle as follows:
 
-![MeasureDrawBounds](https://github.com/Microsoft/DirectXTK/wiki/images/MeasureDrawBounds.PNG)
+![MeasureDrawBounds](images/MeasureDrawBounds.PNG)
 
 * **ContainsCharacter** tests to see if a given character is defined in the font
 
@@ -104,14 +104,14 @@ By default fonts can be drawn at sub-pixel locations which is needed for general
 This implementation supports sparse fonts, so if you are localizing into languages such as Chinese, Japanese, or Korean, you can build a ``.spritefont`` including only the specific characters needed by your program. This is usually a good idea for CJK languages, as a complete CJK character set is too large to fit in a Direct3D texture! If you need full CJK support, DrectWrite would be a better choice if available on your target platform. SpriteFont does not support combining characters or right-to-left (RTL) layout, so it will not work for languages with complex layout requirements such as Arabic or Thai.
 
 # ASCII
-The default character region for [[MakeSpriteFont]] from 32 to 127 covers the standard 7-bit [ASCII](https://ascii-table.com/ascii.php) range. For example, here is a C++ Unicode string for the printable characters (this would be an ASCII string if you remove the L prefix).
+The default character region for [MakeSpriteFont](MakeSpriteFont.md) from 32 to 127 covers the standard 7-bit [ASCII](https://ascii-table.com/ascii.php) range. For example, here is a C++ Unicode string for the printable characters (this would be an ASCII string if you remove the L prefix).
 
     L" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`"
     L"abcdefghijklmnopqrstuvwxyz{|}~"
 
 # Extended ASCII
 
-If you are wanting to render an [extended ASCII](https://ascii-table.com/ascii-extended-pc-list.php) string with SpriteFont, you need to capture the full set of characters which are not contiguous in Unicode (see [[MakeSpriteFont]] for details). You then need to convert your 'extended ASCII' string to Unicode using [Code page 437](https://wikipedia.org/wiki/Code_page_437) before calling ``DrawString``.
+If you are wanting to render an [extended ASCII](https://ascii-table.com/ascii-extended-pc-list.php) string with SpriteFont, you need to capture the full set of characters which are not contiguous in Unicode (see [MakeSpriteFont](MakeSpriteFont.md) for details). You then need to convert your 'extended ASCII' string to Unicode using [Code page 437](https://wikipedia.org/wiki/Code_page_437) before calling ``DrawString``.
 
 ```cpp
 char ascii[...];
@@ -142,15 +142,15 @@ For example, here is a C++ Unicode string with the full extended ASCII IBM PC ch
 
 # Applications
 
-For code for rendering text in a classic-style scrolling console, see [[TextConsole]].
+For code for rendering text in a classic-style scrolling console, see [TextConsole](TextConsole.md).
 
-Code for rendering text mixed with the Xbox controller button spritefont, see [[ControllerFont]].
+Code for rendering text mixed with the Xbox controller button spritefont, see [ControllerFont](ControllerFont.md).
 
 # Feature Level Notes
 
 The Sprite Font implementation is compatible with all feature levels. The primary limitation is on the size of the sprite sheet texture which should fit into the limits for [known feature levels](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) (i.e. to support all feature levels, it should be no larger than 2048 x 2048; if you target feature level 9.3 or later you can use 4096 x 4096, etc.).
 
-> You are of course free to use a larger texture as long as you set your application's minimum supported feature level as appropriate. [[MakeSpriteFont]] will emit warnings if your captured font texture exceeds the various feature level size thresholds.
+> You are of course free to use a larger texture as long as you set your application's minimum supported feature level as appropriate. [MakeSpriteFont](MakeSpriteFont.md) will emit warnings if your captured font texture exceeds the various feature level size thresholds.
 
 # Exceptions
 
@@ -160,7 +160,7 @@ Error reporting using standard C++ exceptions ``std::exception``, ``std::invalid
 
 # Threading model
 
-Creation is fully asynchronous, so you can instantiate multiple SpriteFont instances at the same time on different threads. Most SpriteFont methods are thread-safe with the exception of ``SetLineSpacing`` and ``SetDefaultCharacter``. Be sure to read the _Threading model_ notes for [[SpriteBatch]] as well.
+Creation is fully asynchronous, so you can instantiate multiple SpriteFont instances at the same time on different threads. Most SpriteFont methods are thread-safe with the exception of ``SetLineSpacing`` and ``SetDefaultCharacter``. Be sure to read the _Threading model_ notes for [SpriteBatch](SpriteBatch.md) as well.
 
 # Further reading
 

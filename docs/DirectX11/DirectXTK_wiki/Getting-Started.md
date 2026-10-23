@@ -1,4 +1,4 @@
-This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to using the DirectX Tool Kit with DirectX 11 in C++. This takes the form of a series of tutorial lessons for introducing the various functional parts of the tool kit. If you are just looking for basic integration instructions, see [[Adding to a VS solution|DirectXTK#adding-to-a-vs-solution]].
+This is the _Getting Started_ tutorial for _DirectX Tool Kit_ which introduces the reader to using the DirectX Tool Kit with DirectX 11 in C++. This takes the form of a series of tutorial lessons for introducing the various functional parts of the tool kit. If you are just looking for basic integration instructions, see [Adding to a VS solution](DirectXTK.md#adding-to-a-vs-solution).
 
 > If you are looking to use DirectX 12 and are already familiar with Direct3D 11, the place to start is the _DirectX Tool Kit for DirectX 12_ [tutorials](https://github.com/Microsoft/DirectXTK12/wiki/Getting-Started). Keep in mind that DirectX 12 is an expert API which builds on knowing the ins & outs of DirectX 11, and can be an unforgiving API to developers new to Direct3D or graphics in general.
 
@@ -10,7 +10,7 @@ This tutorial assumes the reader is familiar with the basics of C++ programming 
 * [C++ Language and Standard Libraries](https://docs.microsoft.com/cpp/cpp/c-cpp-language-and-standard-libraries)
 * [Tools for Visual C++ Development](https://docs.microsoft.com/cpp/ide/ide-and-tools-for-visual-cpp-development)
 * [Smart Pointers](https://docs.microsoft.com/cpp/cpp/smart-pointers-modern-cpp)
-* [[ComPtr]]
+* [ComPtr](ComPtr.md)
 
 > If you are more comfortable with C#, then you should consider [SharpDX](https://github.com/sharpdx/SharpDX/) and [read this blog post](https://devblogs.microsoft.com/dotnet/choose-a-net-game-engine/).
 
@@ -27,11 +27,11 @@ One thing that many C++ developers, particularly game developers, may not be all
 * [Errors and Exception Handling](https://docs.microsoft.com/cpp/cpp/errors-and-exception-handling-modern-cpp)
 * [C++ Exception Handling](https://docs.microsoft.com/cpp/cpp/cpp-exception-handling)
 * [Exception Handling (Debugging)](https://docs.microsoft.com/visualstudio/debugger/managing-exceptions-with-the-debugger)
-* [[ThrowIfFailed]]
+* [ThrowIfFailed](ThrowIfFailed.md)
 
 For debugging exceptions thrown by the _DirectX Tool Kit_, you should enable the checkbox next to ``std::exception`` in the Visual Studio Exception Settings dialog (_Debug_ -> _Windows_ -> _Exception Settings_). It's not on by default. Then select the "C++ Exceptions" line, right-click and select the <kbd>+</kbd> button, and type ``DirectX::com_exception`` to add that one. If working with the [Direct3D VS Game templates](https://github.com/walbourn/directx-vs-templates) you should do this once more typing ``DX::com_exception``.
 
-![Exception Settings](https://github.com/Microsoft/DirectXTK/wiki/images/DebugExcept.PNG)
+![Exception Settings](images/DebugExcept.PNG)
 
 > For some more detail on how the Visual Studio debugger deals with exceptions, read [this](https://devblogs.microsoft.com/devops/understanding-exceptions-while-debugging-with-visual-studio/) blog post.
 
@@ -41,7 +41,7 @@ These tutorials are written with game development in mind as the target applicat
 # System requirements
 The DirectX Tool Kit for DirectX 11 tutorials assume you are using Windows 8.1, Windows 10 or Windows 11. The *DirectX Tool Kit* supports ``D3D_FEATURE_LEVEL_9_1`` Direct3D hardware feature level or greater. Any use of 32-bit index buffers (``DXGI_FORMAT_R32_UINT``) requires at least ``D3D_FEATURE_LEVEL_9_2``.
 
-A few features such as [[DebugEffect]], [[DGSLEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], and dual-parabolic environment maps require ``D3D_FEATURE_LEVEL_10_0`` or better.
+A few features such as [DebugEffect](DebugEffect.md), [DGSLEffect](DGSLEffect.md), [NormalMapEffect](NormalMapEffect.md), [PBREffect](PBREffect.md), [PostProcess](PostProcess.md), and dual-parabolic environment maps require ``D3D_FEATURE_LEVEL_10_0`` or better.
 
 > Older versions of the tool kit supported Windows phone 8 and Windows Vista SP2 with KB971644.
 
@@ -82,49 +82,49 @@ The official samples for DirectX 11 were originally shipped in the legacy *Direc
 
 # Tutorials
 
-* [[The basic game loop]]
-* [[Using DeviceResources]]
-* [[Adding the DirectX Tool Kit]]
+* [The basic game loop](The-basic-game-loop.md)
+* [Using DeviceResources](Using-DeviceResources.md)
+* [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md)
 
 ## Graphics
 
-* [[Sprites and textures]]
-* [[More tricks with sprites]]
-* [[Drawing text]]
-* [[Simple rendering]]
-* [[Line drawing and anti-aliasing]]
-* [[3D shapes]]
-* [[Rendering a model]]
-* [[Animating using model bones]]
-* [[Using skinned models]]
-* [[Using advanced shaders]]
-* [[Multistream rendering and instancing]]
-* [[Creating custom shaders with DGSL]]
-* [[Writing custom shaders]]
-* [[Authoring an Effect]]
-* [[Using HDR rendering]]
-* [[Physically-based rendering]]
+* [Sprites and textures](Sprites-and-textures.md)
+* [More tricks with sprites](More-tricks-with-sprites.md)
+* [Drawing text](Drawing-text.md)
+* [Simple rendering](Simple-rendering.md)
+* [Line drawing and anti-aliasing](Line-drawing-and-anti-aliasing.md)
+* [3D shapes](3D-shapes.md)
+* [Rendering a model](Rendering-a-model.md)
+* [Animating using model bones](Animating-using-model-bones.md)
+* [Using skinned models](Using-skinned-models.md)
+* [Using advanced shaders](Using-advanced-shaders.md)
+* [Multistream rendering and instancing](Multistream-rendering-and-instancing.md)
+* [Creating custom shaders with DGSL](Creating-custom-shaders-with-DGSL.md)
+* [Writing custom shaders](Writing-custom-shaders.md)
+* [Authoring an Effect](Authoring-an-Effect.md)
+* [Using HDR rendering](Using-HDR-rendering.md)
+* [Physically-based rendering](Physically-based-rendering.md)
 
 ## Input
 
-* [[Game controller input]]
-* [[Mouse and keyboard input]]
+* [Game controller input](Game-controller-input.md)
+* [Mouse and keyboard input](Mouse-and-keyboard-input.md)
 
 ## Math
 
-* [[Using the SimpleMath library]]
-* [[Basic game math]]
-* [[Collision detection]]
-* [[Picking]]
-* [[Mixing SimpleMath and DirectXMath]]
+* [Using the SimpleMath library](Using-the-SimpleMath-library.md)
+* [Basic game math](Basic-game-math.md)
+* [Collision detection](Collision-detection.md)
+* [Picking](Picking.md)
+* [Mixing SimpleMath and DirectXMath](Mixing-SimpleMath-and-DirectXMath.md)
 
 ## Audio
 
-* [[Adding the DirectX Tool Kit for Audio]]
-* [[Adding audio to your project]]
-* [[Creating and playing sounds]]
-* [[Making use of wave banks]]
-* [[Using positional audio]]
+* [Adding the DirectX Tool Kit for Audio](Adding-the-DirectX-Tool-Kit-for-Audio.md)
+* [Adding audio to your project](Adding-audio-to-your-project.md)
+* [Creating and playing sounds](Creating-and-playing-sounds.md)
+* [Making use of wave banks](Making-use-of-wave-banks.md)
+* [Using positional audio](Using-positional-audio.md)
 
 # Resources
 

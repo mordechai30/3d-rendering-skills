@@ -1,10 +1,10 @@
 This is a C++ implementation of a helper that will composite Xbox controller artwork into a string inspired by [this XNA tutorial](https://mort8088.com/2011/03/11/xna-4-0-tutorial-4-spritebatch-extended/).
 
-![Controller font test](https://github.com/Microsoft/DirectXTK/wiki/images/ControllerFontExample.PNG)
+![Controller font test](images/ControllerFontExample.PNG)
 
-For details on creating the ``xboxController.spritefont`` file, see [[MakeSpriteFont]].
+For details on creating the ``xboxController.spritefont`` file, see [MakeSpriteFont](MakeSpriteFont.md).
 
-[ControllerFont.h](https://github.com/Microsoft/DirectXTK/wiki/ControllerFont.h)
+[ControllerFont.h](ControllerFont.h)
 
 ```cpp
 enum class ControllerFont : wchar_t
@@ -181,7 +181,7 @@ inline void XM_CALLCONV DrawControllerString(DirectX::SpriteBatch* spriteBatch,
 
 # Example
 
-To use the controller, you need to create and initialize two [[SpriteFont]] instances, and a [[SpriteBatch]]. Declare the following variables:
+To use the controller, you need to create and initialize two [SpriteFont](SpriteFont.md) instances, and a [SpriteBatch](SpriteBatch.md). Declare the following variables:
 
 ```cpp
 std::unique_ptr<DirectX::SpriteBatch> m_batch;

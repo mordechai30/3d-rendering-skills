@@ -1,9 +1,9 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
-In [[the basic game loop]] lesson, we made use of the **Direct3D Game** Visual Studio template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
+In [the basic game loop](The-basic-game-loop.md) lesson, we made use of the **Direct3D Game** Visual Studio template which has all the relevant Direct3D code in the ``Game`` class including creating the device and swap chain. This makes it easy to see how to create the device & swapchain. This, however, results in a lot of 'boiler-plate' code in the main ``Game`` class which is distracting for the remainder of our tutorial lessons.
 
-There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [[DeviceResources]].
+There is therefore a "DR" variant of each of the Direct3D Game VS templates in the [VS 2019/2022](https://github.com/walbourn/directx-vs-templates/raw/main/VSIX/Direct3DUWPGame.vsix) VSIX package which adds [DeviceResources](DeviceResources.md).
 
 > The standard Universal Windows Platform app ``DirectXApp`` VS templates make use of a similar ``DeviceResources`` abstraction.
 
@@ -52,19 +52,19 @@ Game --o DeviceResources : m_deviceResources
 
 > If using Visual Studio 2022 Update 6 or later, you should consider using "Direct3D Win32 Game VCPKG" which will simplify integration of the toolkit later on. You need to have the *vcpkg package manager* component (`Microsoft.VisualStudio.Component.Vcpkg`) installed for this version of the project template.
 
-![Create New Project](https://github.com/Microsoft/DirectXTK/wiki/images/CreateNewProjectDR2019.PNG)
+![Create New Project](images/CreateNewProjectDR2019.PNG)
 
 ## Windows SDK Selection
 The UWP templates use the Windows SDK, so the project wizard will trigger this dialog to select the Windows SDK version to use.
 
-![Windows SDK Selection](https://github.com/Microsoft/DirectXTK/wiki/images/Windows10SDKSelect.png)
+![Windows SDK Selection](images/Windows10SDKSelect.png)
 
 For Win32 projects, the default is to use the latest installed Windows SDK.
 
 ## Newly Created Project
 The newly created project contains the following files:
 
-![Open Game Cpp](https://github.com/Microsoft/DirectXTK/wiki/images/OpenGameCppDR.PNG)
+![Open Game Cpp](images/OpenGameCppDR.PNG)
 
 * Precompiled header files
   * pch.h
@@ -74,7 +74,7 @@ The newly created project contains the following files:
 * Device resources abstraction
   * DeviceResources.h
   * DeviceResources.cpp
-* [[Timer|StepTimer]] helper class
+* [Timer](StepTimer.md) helper class
   * StepTimer.h
 * The Game class
   * Game.h
@@ -117,7 +117,7 @@ Visual Studio will default to the _x64_ platform / _Debug_ configuration which b
 
 Press F5 to build and run the application It displays the following window:
 
-![Running Project](https://github.com/Microsoft/DirectXTK/wiki/images/RunningProject.png)
+![Running Project](images/RunningProject.png)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If the base template fails to start, there are a few possibilities:
@@ -162,7 +162,7 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
 
 The ``minFeatureLevel`` defaults to 10 for PC and 9.3 for UWP. See [Microsoft Docs](https://docs.microsoft.com/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro) for the definitions of Direct3D hardware feature levels. You can specify a higher hardware level if you want to take a hard dependency on additional capabilities.
 
-If you want to make use of [[DebugEffect]], [[DGSLEffect]], [[NormalMapEffect]], [[PBREffect]], [[PostProcess]], or dual-parabolic environment maps then you need ``D3D_FEATURE_LEVEL_10_0`` or higher:
+If you want to make use of [DebugEffect](DebugEffect.md), [DGSLEffect](DGSLEffect.md), [NormalMapEffect](NormalMapEffect.md), [PBREffect](PBREffect.md), [PostProcess](PostProcess.md), or dual-parabolic environment maps then you need ``D3D_FEATURE_LEVEL_10_0`` or higher:
 
 ```cpp
 m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_UNORM,
@@ -176,10 +176,10 @@ m_deviceResources = std::make_unique<DX::DeviceResources>(DXGI_FORMAT_B8G8R8A8_U
     DXGI_FORMAT_D24_UNORM_S8_UINT, 2, D3D_FEATURE_LEVEL_9_1);
 ```
 
-> There is one more defaulted parameter for enabling additional features such as such as [variable refresh rate](https://docs.microsoft.com/windows/win32/direct3ddxgi/variable-refresh-rate-displays) or [HDR10](https://docs.microsoft.com/windows/win32/direct3darticles/high-dynamic-range) output. See [[DeviceResources]] for details and usage.
+> There is one more defaulted parameter for enabling additional features such as such as [variable refresh rate](https://docs.microsoft.com/windows/win32/direct3ddxgi/variable-refresh-rate-displays) or [HDR10](https://docs.microsoft.com/windows/win32/direct3darticles/high-dynamic-range) output. See [DeviceResources](DeviceResources.md) for details and usage.
 
 ## Initialize
-When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [[StepTimer]] in the 'variable length' mode. You uncomment the code if you want **StepTimer** in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
+When the application first starts, execution is passed to the **Initialize** method. The TODO here by default leaves the applications [StepTimer](StepTimer.md) in the 'variable length' mode. You uncomment the code if you want **StepTimer** in the 'fixed-step' mode. We'll explain this more once we get to ``Update``.
 
 ```cpp
 void Game::Initialize(HWND window, int width, int height)
@@ -318,7 +318,7 @@ The template includes a number of message handlers that are called for process s
 
 > For Win32 desktop, the **OnSuspending** / **OnResuming** messages are triggered when (a) the window is minimized/unminimized or (b) in reaction to the ``WM_POWERBROADCAST`` message. On other platforms, this is driven by Process Lifecycle Management ([PLM](https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle)).
 
-Since we are using [[ComPtr]], most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
+Since we are using [ComPtr](ComPtr.md), most cleanup is automatic when the Game class is destroyed. If ``Present`` encounters a device-removed or device-reset, then the application needs to release all Direct3D objects and recreate the device, swapchain, and all Direct3D objects again. Therefore, the TODO in **OnDeviceLost** should be updated to release your application's Direct3D objects.
 
 ```cpp
 void Game::OnDeviceLost()
@@ -332,12 +332,12 @@ void Game::OnDeviceLost()
 > You will not get "device lost" all that often. In legacy Direct3D 9, you would routinely get a 'device lost' if you just <kbd>Alt</kbd>+<kbd>TAB</kbd> away from the application because the GPU used to be an 'exclusive' rather than 'shared' resource. The situation where you'd get ``DXGI_ERROR_DEVICE_RESET`` is if the driver crashes or the video hardware hangs. You get ``DXGI_ERROR_DEVICE_REMOVED`` if a new driver is installed while your application is running, or if you are running on a 'GPU is in the dock' style laptop and the laptop is undocked. You can test this case by opening the *Developer Command Prompt for Visual Studio* as an administrator, and typing ``dxcap -forcetdr`` which will immediately cause all currently running Direct3D apps to get a ``DXGI_ERROR_DEVICE_REMOVED`` event.
 
 # Smart-pointer
-We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [ComPtr](https://github.com/Microsoft/DirectXTK/wiki/ComPtr) and [Microsoft Docs](https://docs.microsoft.com/windows/win32/prog-dx-with-com) for more information and usage.
+We make use of the ``Microsoft::WRL::ComPtr`` smart-pointer for managing the lifetime of the Direct3D 11 COM objects, which is why we make use of ``.Get()`` in the code above. See [ComPtr](ComPtr.md) and [Microsoft Docs](https://docs.microsoft.com/windows/win32/prog-dx-with-com) for more information and usage.
 
 # Error handling
 Many Direct3D functions return an ``HRESULT`` which is the standard for COM APIs. For robustness and easier debugging, it is important that you always check the result of every function that return an ``HRESULT``. If you really can safely assume there is no error condition for a particular function, the function itself will return ``void`` instead of ``HRESULT``.
 
-The Win32 game template makes use of the helper function [[ThrowIfFailed]] in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
+The Win32 game template makes use of the helper function [ThrowIfFailed](ThrowIfFailed.md) in the ``DX`` C++ namespace declared in ``pch.h``. This is the same helper that is used by the Windows Store and Windows phone VS templates. This helper throws a C++ exception if the standard ``FAILED`` macro returns true for a given ``HRESULT``. This is used for [fail fast](https://wikipedia.org/wiki/Fail-fast) error handling.
 
 ```cpp
 DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
@@ -346,7 +346,7 @@ DX::ThrowIfFailed(device->CreateTexture2D(&depthStencilDesc,
 
 > Do not use ``hr == S_OK`` to check for success. Use ``SUCCEEDED(hr)`` instead.
 
-The DR VS template variants include the enhanced version of [[ThrowIfFailed]].
+The DR VS template variants include the enhanced version of [ThrowIfFailed](ThrowIfFailed.md).
 
 # Gamma
 
@@ -380,7 +380,7 @@ This ensures that all pending Win32 messages are consumed before updating/render
 
 For UWP, the equivalent thing is done inside the ``ViewProvider`` **Run** method.
 
-**Next lesson**: [[Adding the DirectX Tool Kit]]
+**Next lesson**: [Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md)
 
 # Further reading
 [Direct3D Win32 Game Visual Studio template](https://walbourn.github.io/direct3d-win32-game-visual-studio-template/)  

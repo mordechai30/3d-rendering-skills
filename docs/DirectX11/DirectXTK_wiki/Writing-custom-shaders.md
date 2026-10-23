@@ -1,19 +1,19 @@
-|[[Getting Started]]|
+|[Getting Started](Getting-Started.md)|
 |---|
 
 This lesson covers the basics of writing your own [HLSL shaders](https://wikipedia.org/wiki/High-Level_Shading_Language) and using them with _DirectX Tool Kit_, in particular to customize **SpriteBatch**.
 
 # Setup
-First create a new project using the instructions from the previous lessons: [[Using DeviceResources]] and
-[[Adding the DirectX Tool Kit]] which we will use for this lesson.
+First create a new project using the instructions from the previous lessons: [Using DeviceResources](Using-DeviceResources.md) and
+[Adding the DirectX Tool Kit](Adding-the-DirectX-Tool-Kit.md) which we will use for this lesson.
 
 # Creating custom shaders with HLSL
 
-The general approach is to author your own shaders in HLSL and compile them. For this lesson, we'll focus on writing a custom pixel shader and rely on the built-in vertex shader for [[SpriteBatch]], but the same basic principles apply to all HLSL shaders: _vertex shaders_, _pixel shaders_, _geometry shaders_, _hull shaders_, _domain shaders_, and even _compute shaders_.
+The general approach is to author your own shaders in HLSL and compile them. For this lesson, we'll focus on writing a custom pixel shader and rely on the built-in vertex shader for [SpriteBatch](SpriteBatch.md), but the same basic principles apply to all HLSL shaders: _vertex shaders_, _pixel shaders_, _geometry shaders_, _hull shaders_, _domain shaders_, and even _compute shaders_.
 
 # Setting up our test scene
 
-Save the file [sunset.jpg](https://github.com/Microsoft/DirectXTK/wiki/images/sunset.jpg) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "sunset.jpg" and hit "OK".
+Save the file [sunset.jpg](images/sunset.jpg) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "sunset.jpg" and hit "OK".
 
 In the **Game.h** file, add the following variables to the bottom of the Game class's private declarations:
 
@@ -108,18 +108,18 @@ context->OMSetRenderTargets(1, &renderTarget, depthStencil);
 
 Build and run to see our initial scene.
 
-![Screenshot of Torus](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTorus1.PNG)
+![Screenshot of Torus](images/screenshotTorus1.PNG)
 
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a runtime exception, then you may have the "sunset.jpg" in the wrong folder, have modified the "Working Directory" in the "Debugging" configuration settings, or otherwise changed the expected paths at runtime of the application. You should set a break-point on <code>CreateWICTextureFromFile</code> and step into the code to find the exact problem.</p></details>
 
 # Compiling and loading shaders
 
-Save the files [Bloom.hlsli](https://github.com/Microsoft/DirectXTK/wiki/shaders/Bloom.hlsli), [BloomCombine.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/BloomCombine.hlsl), [BloomExtract.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/BloomExtract.hlsl), [GaussianBlur.hlsl](https://github.com/Microsoft/DirectXTK/wiki/shaders/GaussianBlur.hlsl), and [ReadData.h](https://github.com/Microsoft/DirectXTK/wiki/ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "Bloom.hlsli" and hit "OK". Repeat for "BloomCombine.hlsl", "BloomExtract.hlsl", "GaussianBlur.hlsl", and "ReadData.h".
+Save the files [Bloom.hlsli](shaders/Bloom.hlsli), [BloomCombine.hlsl](shaders/BloomCombine.hlsl), [BloomExtract.hlsl](shaders/BloomExtract.hlsl), [GaussianBlur.hlsl](shaders/GaussianBlur.hlsl), and [ReadData.h](ReadData.h) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "Bloom.hlsli" and hit "OK". Repeat for "BloomCombine.hlsl", "BloomExtract.hlsl", "GaussianBlur.hlsl", and "ReadData.h".
 
 View **Properties** on each of the three ``.hlsl`` files ("BloomCombine.hlsl", "BloomExtract.hlsl", and "GaussianBlur.hlsl") and for "All Configurations" and "All Platforms", set the "Shader Type" to "Pixel Shader (/ps)" and select "OK".
 
-![HLSL Compiler Settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsHLSL.PNG)
+![HLSL Compiler Settings](images/settingsHLSL.PNG)
 
 In **pch.h** add after the other ``#include`` statements:
 
@@ -315,11 +315,11 @@ Build and run. The scene is unchanged, but we've loaded our new shaders.
 <details><summary><i>Click here for troubleshooting advice</i></summary>
 <p>If you get a runtime exception, then the shaders are not getting built as expected by Visual Studio. The <code>DX::ReadData</code> helper looks in the same directory as the EXE for the compiled shader files (since they are built for each configuration Debug, Release, etc.). See if the files "BloomExtract.cso", "BloomCombine.cso", and "GaussianBlur.cso" are present in the directory where the project's EXE is built. If one or more of them is missing, check the properties on each of the HLSL files as above, and double-check the general settings for those files as well.</p></details>
 
-![HLSL Compiler Settings](https://github.com/Microsoft/DirectXTK/wiki/images/settingsHLSLg.PNG)
+![HLSL Compiler Settings](images/settingsHLSLg.PNG)
 
 # Implementing a post processing effect
 
-Save the files [RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h) and [RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
+Save the files [RenderTexture.h](RenderTexture.h) and [RenderTexture.cpp](RenderTexture.cpp) to your new project's folder. Using to the top menu and select **Project** / **Add Existing Item....** Select "RenderTexture.h" and hit "OK". Repeat for "RenderTexture.cpp".
 
 Add to the **Game.h** file to the ``#include`` section:
 
@@ -479,7 +479,7 @@ void Game::PostProcess()
 
 Build and run to see the bloom in action:
 
-![Screenshot of Torus](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTorus2.PNG)
+![Screenshot of Torus](images/screenshotTorus2.PNG)
 
 Change the value in **Game.cpp** for ``g_Bloom`` to "Saturated" instead of "Default":
 
@@ -489,7 +489,7 @@ BloomPresets g_Bloom = Saturated;
 
 Build and run to see a different set of bloom settings in action:
 
-![Screenshot of Torus](https://github.com/Microsoft/DirectXTK/wiki/images/screenshotTorus3.PNG)
+![Screenshot of Torus](images/screenshotTorus3.PNG)
 
 Change the value in **Game.cpp** for ``g_Bloom`` to "None" to render our original scene without bloom.
 
@@ -526,7 +526,7 @@ add_dependencies(${PROJECT_NAME} compileHLSLShaders)
 ```
 
 ## Technical notes
-First the original scene is rendered to a hidden render target ``m_offscreenTexture`` as normal. The only change here was for ``Clear`` to use ``m_offscreenTexture``'s render target view rather than [[DeviceResources]] backbuffer render target view.
+First the original scene is rendered to a hidden render target ``m_offscreenTexture`` as normal. The only change here was for ``Clear`` to use ``m_offscreenTexture``'s render target view rather than [DeviceResources](DeviceResources.md) backbuffer render target view.
 
 Our first past of post-processing is to render the original scene texture as a 'full-screen quad' onto our first half-sized render target using the custom shader in "BloomExtract.hlsl" into ``m_renderTarget1``.
 
@@ -538,7 +538,7 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 }
 ```
 
-![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass1.png)
+![Screenshot of post-processed torus](images/postprocessPass1.png)
 
 We take the result of the extract & down-size and then blur it horizontally using "GausianBlur.hlsl" from ``m_renderTarget1`` to ``m_renderTarget2``.
 
@@ -557,11 +557,11 @@ float4 main(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_Target0
 }
 ```
 
-![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass2.png)
+![Screenshot of post-processed torus](images/postprocessPass2.png)
 
 We take that result in ``m_renderTarget2`` and then blur it vertically using the same shader--we are using a [Gaussian blur](https://wikipedia.org/wiki/Gaussian_blur) which is a separable filter which allows us to do the filter in two simple render passes one for each dimension--back into ``m_renderTarget1``.
 
-![Screenshot of post-processed torus](https://github.com/Microsoft/DirectXTK/wiki/images/postprocessPass3.png)
+![Screenshot of post-processed torus](images/postprocessPass3.png)
 
 And finally we take the result of both blur passes in ``m_renderTarget1`` and combine it with our original scene texture ``m_offscreenTexture`` using the "BloomCombine.hlsl" shader to get our final image into the presentation swapchain.
 
@@ -600,15 +600,15 @@ One final note, because we are using a render target that is larger than our blu
 
 # More to explore
 
-* See [[PostProcess]] for a Bloom example using the built-in post-processing shaders. *If you are targeting Direct3D Hardware Feature Level 9.x, the PostProcess class is not supported for you so you should use the sprite batch solution above.*
+* See [PostProcess](PostProcess.md) for a Bloom example using the built-in post-processing shaders. *If you are targeting Direct3D Hardware Feature Level 9.x, the PostProcess class is not supported for you so you should use the sprite batch solution above.*
 
-* See  [[BasicPostProcess]] and [[DualPostProcess]] for additional built-in post-processing effects.
+* See  [BasicPostProcess](BasicPostProcess.md) and [DualPostProcess](DualPostProcess.md) for additional built-in post-processing effects.
 
-**Next lessons:** [[Authoring an Effect]]
+**Next lessons:** [Authoring an Effect](Authoring-an-Effect.md)
 
 # Further reading
 
-DirectX Tool Kit docs [[SpriteBatch]]
+DirectX Tool Kit docs [SpriteBatch](SpriteBatch.md)
 
 [HLSL, FXC, and D3DCompile](https://walbourn.github.io/hlsl-fxc-and-d3dcompile/)  
 [What's up with D3DCompiler_xx.dll](https://walbourn.github.io/whats-up-with-d3dcompiler_xx-dll)  

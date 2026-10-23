@@ -1,6 +1,6 @@
 This provides a helper class for managing an offscreen render target.
 
-[RenderTexture.h](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.h)
+[RenderTexture.h](RenderTexture.h)
 
 ```cpp
 class RenderTexture
@@ -35,7 +35,7 @@ private:
 };
 ```
 
-[RenderTexture.cpp](https://github.com/Microsoft/DirectXTK/wiki/RenderTexture.cpp)
+[RenderTexture.cpp](RenderTexture.cpp)
 
 ```cpp
 #include "RenderTexture.h"
@@ -177,7 +177,7 @@ m_renderTexture = std::make_unique<DX::RenderTexture>(
     m_deviceResources->GetBackBufferFormat());
 ```
 
-> For this example, our render texture is the same size & format as the swapchain, and we are using the depth/stencil buffer created by [[DeviceResources]].
+> For this example, our render texture is the same size & format as the swapchain, and we are using the depth/stencil buffer created by [DeviceResources](DeviceResources.md).
 
 In the **CreateDeviceDependentResources** method, add:
 
@@ -206,7 +206,7 @@ Rendering to the offscreen rendering texture, update the **Clear** method as fol
 auto renderTarget = m_renderTexture->GetRenderTargetView();
 ```
 
-In the **Render** function, our scene is rendered to the offscreen texture. To see it, we need to render using it to the swapchain. For example, you could use a [[SpriteBatch]]:
+In the **Render** function, our scene is rendered to the offscreen texture. To see it, we need to render using it to the swapchain. For example, you could use a [SpriteBatch](SpriteBatch.md):
 
 ```cpp
 Clear();
@@ -232,7 +232,7 @@ context->PSSetShaderResources(0, 1, nullsrv);
 m_deviceResources->Present();
 ```
 
-If using a Direct3D Hardware Feature Level 10.0 or better device, you can use [[PostProcess]]:
+If using a Direct3D Hardware Feature Level 10.0 or better device, you can use [PostProcess](PostProcess.md):
 
 ```cpp
 Clear();

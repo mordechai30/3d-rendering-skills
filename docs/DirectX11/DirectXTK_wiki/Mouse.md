@@ -1,15 +1,15 @@
-|[[DirectXTK]]|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
+|[DirectXTK](DirectXTK.md)|[DirectXTK12](https://github.com/microsoft/DirectXTK12/wiki/DirectXTK)|
 |---|---|
 
 This is a helper for simplified mouse tracking modeled after the XNA Game Studio 4 (``Microsoft.Xna.Framework.Input``) Mouse class.
 
-![Microsoft Sculpt Mobile Mouse - Blue](https://github.com/Microsoft/DirectXTK/wiki/images/sculptmobilemouse.jpg)
+![Microsoft Sculpt Mobile Mouse - Blue](images/sculptmobilemouse.jpg)
 
 ```cpp
 class DirectX::Mouse
 ```
 
-**Related tutorial**: [[Mouse and keyboard input]]
+**Related tutorial**: [Mouse and keyboard input](Mouse-and-keyboard-input.md)
 
 # Header
 ```cpp
@@ -306,7 +306,7 @@ The Mouse class should be thread-safe with the exception of the **ProcessMessage
 
 For Universal Windows Platform apps, touch/pointer devices are captured as [mouse movement](https://docs.microsoft.com/windows/uwp/gaming/tutorial--adding-touch-controls-to-your-directx-game). Touch/pointer devices do not, however, result in changes to button state. Relative mouse movement is captured per this [Microsoft Docs](https://docs.microsoft.com/windows/uwp/gaming/relative-mouse-movement) article.
 
-> For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [[GamePad]] class directly.
+> For UWP applications on Xbox One, the game controller can be made to emulate a mouse which will provide input through the Mouse class, but the input paradigm is more natural if you use the [GamePad](GamePad.md) class directly.
 
 For Windows desktop apps, relative mouse movement is captured using "raw input" per the article [Taking Advantage of High-Definition Mouse Movement](https://docs.microsoft.com/windows/win32/dxtecharts/taking-advantage-of-high-dpi-mouse-movement). Note that a consequence of this implementation is that relative mouse movement is not available when using the application through Remote Desktop.
 

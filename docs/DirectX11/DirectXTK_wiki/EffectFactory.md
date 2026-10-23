@@ -1,7 +1,7 @@
-|[[DirectXTK]]|[[Effects]]|
+|[DirectXTK](DirectXTK.md)|[Effects](Effects.md)|
 |---|---|
 
-This is a helper object primarily used by the [[Model]] loader implementations to provide sharing of material instances of [[Effects]] and textures. This can be used standalone as well, and allows access to any existing 'materials' definitions already created.
+This is a helper object primarily used by the [Model](Model.md) loader implementations to provide sharing of material instances of [Effects](Effects.md) and textures. This can be used standalone as well, and allows access to any existing 'materials' definitions already created.
 
 It uses a simple case-sensitive string-based (wide-character) map for finding effect and texture instances that have already been created by the factory, which avoid duplication of texture and effect resources in complex models and scenes.
 
@@ -134,7 +134,7 @@ For exception safety, it is recommended you make use of the C++ [RAII](https://w
 
 ## Creating effects
 
-Fill out the ``EffectInfo`` structure, then call **CreateEffect** to obtain an [[Effects]] instance. If the _info.name_ string is provided then any already created effect from the factory that has the same name will be returned as a shared instance rather than a new instance created. If there is a name match, then all the other parameters in the ``EffectInfo`` are ignored.
+Fill out the ``EffectInfo`` structure, then call **CreateEffect** to obtain an [Effects](Effects.md) instance. If the _info.name_ string is provided then any already created effect from the factory that has the same name will be returned as a shared instance rather than a new instance created. If there is a name match, then all the other parameters in the ``EffectInfo`` are ignored.
 
 Otherwise a new effect is created from the provided EffectInfo parameters, and **CreateTexture** is called automatically if the _info.diffuseTexture_, _info.specularTexture_, _info.normalTexture_ , and/or _info.emissiveTexture_ strings are provided. Remember that the use of a texture or _info.perVertexColor_ will result in a varying the input layout requirements for the resulting Effect.
 
@@ -148,12 +148,12 @@ info.diffuseColor = XMFLOAT3( 0.8f, 0.8f, 0.8f );
 auto effect = fxFactory->CreateEffect( info, deviceContext );
 ```
 
-The standard factory will create instances of [[BasicEffect]].
+The standard factory will create instances of [BasicEffect](BasicEffect.md).
 
-* If _info.enableSkinning_ is true, it returns a [[SkinnedEffect]] instance.
-* If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance.
-* If _info.enableNormalMaps_ is true, then it returns a [[NormalMapEffect]] instance.
-* If _info.enableSkinning_  and _info.enableNormalMaps_ are true, then it returns a [[SkinnedNormalMapEffect|NormalMapEffect]] instance.
+* If _info.enableSkinning_ is true, it returns a [SkinnedEffect](SkinnedEffect.md) instance.
+* If _info.enableDualTexture_ is true, it returns a [DualTextureEffect](DualTextureEffect.md) instance.
+* If _info.enableNormalMaps_ is true, then it returns a [NormalMapEffect](NormalMapEffect.md) instance.
+* If _info.enableSkinning_  and _info.enableNormalMaps_ are true, then it returns a [SkinnedNormalMapEffect](NormalMapEffect.md) instance.
 
 These are kept in distinct 'sharing' lists since they have different input layout requirements.
 
@@ -161,7 +161,7 @@ These are kept in distinct 'sharing' lists since they have different input layou
 
 ## Creating DGSL Effects
 
-The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [[DGSLEffect]] or [[SkinnedDGSLEffect|DGSLEffect]]. It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
+The **DGSLEffectFactory** extends the standard EffectFactory with support for the Visual Studio Shader Designer (DGSL) system used by ``.CMO`` files. It creates instances of [DGSLEffect](DGSLEffect.md) or [SkinnedDGSLEffect](DGSLEffect.md). It also supports sharing the pixel shader instances required for DGSL shaders through the **CreatePixelShader** method.
 
 ```cpp
 DGSLEffectFactory::DGSLEffectInfo info;
@@ -183,7 +183,7 @@ _DGSLEffect_ instances with and without skinning are kept in distinct 'sharing' 
 
 ## Creating NPR Effects
 
-The **NPREffectFactory** replaces the standard EffectFactory. It creates instances of [[NPREffect]]. If _info.enableSkinning_ is true, it creates instances of [[SkinnedNPREffect|NPREffect]]. If _info.enableDualTexture_ is true, it returns a [[DualTextureEffect]] instance.
+The **NPREffectFactory** replaces the standard EffectFactory. It creates instances of [NPREffect](NPREffect.md). If _info.enableSkinning_ is true, it creates instances of [SkinnedNPREffect](NPREffect.md). If _info.enableDualTexture_ is true, it returns a [DualTextureEffect](DualTextureEffect.md) instance.
 
 The rendering mode is set by the factory via the **SetMode** method which defaults to cel shading.
 
@@ -193,7 +193,7 @@ For material capture shading, there is a default material capture texture set by
 
 ## Creating PBR Effects
 
-The **PBREffectFactory** replaces the standard EffectFactory. It creates instances of [[PBREffect]], and is intended for use with the ``.SDKMESH`` version 2 file variant which defines PBR materials. If _info.enableSkinning_ is true, it creates instances of [[SkinnedPBREffect|PBREffect]].
+The **PBREffectFactory** replaces the standard EffectFactory. It creates instances of [PBREffect](PBREffect.md), and is intended for use with the ``.SDKMESH`` version 2 file variant which defines PBR materials. If _info.enableSkinning_ is true, it creates instances of [SkinnedPBREffect](PBREffect.md).
 
 ```cpp
 EffectFactory::EffectInfo info;
@@ -219,7 +219,7 @@ You can also optionally provide an emissive channel texture as ``info.emissiveTe
 
 ## Creating textures
 
-**CreateTexture** assumes the name given is the filename of the texture to load. If the name string provided matches an already returned texture from the factory, then the existing shader resource view is returned rather than a new texture instance being created. If the name contains the extension ``.dds``, then [[DDSTextureLoader]] is used to create the texture and return the shader resource view, otherwise it will attempt to use [[WICTextureLoader]].  The device context is not used by the DDSTextureLoader, only by the WICTextureLoader or can be null to skip auto-gen of mipmaps.
+**CreateTexture** assumes the name given is the filename of the texture to load. If the name string provided matches an already returned texture from the factory, then the existing shader resource view is returned rather than a new texture instance being created. If the name contains the extension ``.dds``, then [DDSTextureLoader](DDSTextureLoader.md) is used to create the texture and return the shader resource view, otherwise it will attempt to use [WICTextureLoader](WICTextureLoader.md).  The device context is not used by the DDSTextureLoader, only by the WICTextureLoader or can be null to skip auto-gen of mipmaps.
 
 ```cpp
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv;
@@ -237,7 +237,7 @@ fxFactory->SetDirectory( L".\\Assets" );
 
 # Interfaces
 
-The _DGSLEffectFactory_, _EffectFactory_, _NPREffectFactory_, and _PBREffectFactory_ are concrete implementations of the _IEffectFactory_ interface, and provide a default implementation and caching policy. This allows the developer to create their own custom version of the Effect Factory by deriving from _IEffectFactory_, which can be used with Model loaders. This could be used for alternative caching policies, locating textures in packed archives, substituting special [[Effects]] triggered material name, etc.
+The _DGSLEffectFactory_, _EffectFactory_, _NPREffectFactory_, and _PBREffectFactory_ are concrete implementations of the _IEffectFactory_ interface, and provide a default implementation and caching policy. This allows the developer to create their own custom version of the Effect Factory by deriving from _IEffectFactory_, which can be used with Model loaders. This could be used for alternative caching policies, locating textures in packed archives, substituting special [Effects](Effects.md) triggered material name, etc.
 
 # Sharing
 
